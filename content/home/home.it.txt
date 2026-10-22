@@ -2,4 +2,62 @@ Title: Home
 
 ----
 
+Tagline: il vostro fisioterapista a km 0
+
+----
+
+Abouttitle: Chi sono
+
+----
+
+Aboutlead: <strong>Da oltre 30 anni fisioterapista diplomato, sono sempre stato guidato fin da giovane dalla curiosità per il modo in cui ogni persona affronta sfide, ostacoli e difficoltà quotidiane.</strong>
+
+----
+
+Abouttext: <p>È questa convinzione che ha accompagnato il mio percorso professionale: ogni persona porta con sé ferite, anche invisibili, ma possiede allo stesso tempo la capacità di recuperare, trasformarsi e ritrovare il proprio equilibrio.</p>
+
+----
+
+Stats:
+
+-
+  value: '31'
+  label: 'anni di studio'
+-
+  value: '1'
+  label: fisioterapista
+-
+  value: '100'
+  label: naturale
+
+----
+
+Whattitle: Cosa faccio
+
+----
+
+Visitstitle: Un plus: servizi a domicilio
+
+----
+
+Visitslead: <strong>I servizi a domicilio permettono di ricevere trattamenti fisioterapici e osteopatici direttamente nella propria abitazione, offrendo un'assistenza personalizzata a chi presenta difficoltà motorie o limitazioni negli spostamenti.</strong>
+
+----
+
+Visitstext: <p>Questo servizio è pensato per garantire maggiore comodità e accessibilità, soprattutto alle persone anziane o con una disabilità motoria.</p>
+
+----
+
+Wheretitle: Dove trovi lo studio
+
+----
+
+Seotitle: Beweeg physio · Fisioterapia e osteopatia a Tesserete
+
+----
+
+Seodescription: Fisioterapista diplomato a Tesserete: osteopatia dolce, terapia del cuore, riabilitazione dopo operazioni e cure palliative. Anche a domicilio.
+
+----
+
 Uuid: wljMYhm0m3e9QOwC

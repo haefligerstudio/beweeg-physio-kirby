@@ -50,3 +50,6 @@ Icon
 
 # PDF originali del visual: pesanti e del cliente, restano solo in locale
 /docs/visual-originali/
+
+# Modifiche non salvate del pannello (Kirby 5): sono bozze di lavoro, non contenuti
+/content/**/_changes/

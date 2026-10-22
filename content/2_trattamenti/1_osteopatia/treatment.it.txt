@@ -2,23 +2,23 @@ Title: Tecniche di manipolazione dolce osteopatiche
 
 ----
 
-Label: 
+Label: Tecniche di manipolazione dolce osteopatiche
 
 ----
 
-Tagline: 
+Tagline: terapie e riabilitazioni
 
 ----
 
-Lead: 
+Lead: <strong>Le tecniche di manipolazione dolce osteopatiche utilizzano movimenti manuali delicati e mirati per migliorare la mobilità del corpo e alleviare tensioni muscolari e articolari.</strong>
 
 ----
 
-Text: 
+Text: <p>Attraverso trattamenti personalizzati, si favorisce l'equilibrio tra le diverse strutture corporee, rispettando le esigenze e i limiti di ogni paziente. L'obiettivo è promuovere il benessere generale, ridurre eventuali dolori e migliorare la qualità dei movimenti.</p>
 
 ----
 
-Photo: []
+Photo: - 'file://t5tj4okbqryg7ruy'
 
 ----
 

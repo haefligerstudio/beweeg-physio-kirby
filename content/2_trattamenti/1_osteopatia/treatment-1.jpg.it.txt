@@ -1,0 +1,13 @@
+Alt: Fisioterapista che piega la gamba di un paziente sdraiato sul lettino
+
+----
+
+Caption: 
+
+----
+
+Uuid: t5tj4okbqryg7ruy
+
+----
+
+Template: image

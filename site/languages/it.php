@@ -26,6 +26,13 @@ return [
         // Footer
         'footer.address' => 'Indirizzo',
         'footer.contacts' => 'Contatti',
+        // Mostrato negli orari quando un gruppo di giorni non ha fasce orarie.
+        'hours.closed' => 'chiuso',
+
+        // Pagina non trovata (404). BOZZA approvata da Amos il 22.10, da confermare con il cliente.
+        'error.title' => 'Pagina non trovata',
+        'error.text' => 'La pagina che cerchi non esiste o è stata spostata.',
+        'buttons.home' => 'torna alla pagina iniziale',
 
         // Accessibilità: testi letti dagli screen reader
         'a11y.skip' => 'Vai al contenuto',
@@ -37,6 +44,12 @@ return [
         'a11y.slideGo' => 'Vai all’immagine',
         'a11y.mainNav' => 'Navigazione principale',
         'a11y.home' => 'Beweeg physio, pagina iniziale',
+
+        // Nomi delle icone social, letti dagli screen reader (nel progetto Next erano scritti nel codice)
+        'social.facebook' => 'Facebook',
+        'social.instagram' => 'Instagram',
+        'social.whatsapp' => 'WhatsApp',
+        'social.email' => 'Email',
 
         // Mappa
         'map.open' => 'Apri la mappa',

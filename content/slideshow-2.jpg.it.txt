@@ -1,0 +1,13 @@
+Alt: Fisioterapista che esamina la schiena di una paziente seduta sul lettino
+
+----
+
+Caption: 
+
+----
+
+Uuid: smfj4rilbdujzxum
+
+----
+
+Template: image

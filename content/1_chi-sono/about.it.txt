@@ -2,23 +2,23 @@ Title: chi sono
 
 ----
 
-Tagline: 
+Tagline: chi sono
 
 ----
 
-Heading: 
+Heading: Su di me
 
 ----
 
-Text: 
+Text: <p><strong>Mi chiamo Johannes de Wild, ma per tutti sono Jan. Nato nel 1962 e originario dell’Olanda, mi sono formato come fisioterapista, guidato fin da giovane dalla curiosità per il modo in cui ogni persona affronta sfide, ostacoli e difficoltà quotidiane.</strong></p><p>Questo è il mio pensiero che sta alla base della mia scelta di formarmi come fisioterapista. Ognuno porta dietro con se delle ferite – spesso anche invisibili – ma avendo sempre la capacità di rinascere, trasformarsi o recuperare il proprio equilibrio nonostante questa mancanza. <strong>È da qui che nasce il mio modo di intendere la fisioterapia: accompagnare ogni paziente nel proprio percorso, con attenzione alla persona oltre che al corpo attraverso terapie naturali.</strong></p><p>Nel mio lavoro quotidiano cerco, insieme ai miei pazienti, di individuare soluzioni che contribuiscano a migliorare la loro qualità di vita e il loro benessere. A questo scopo utilizzo diverse tecniche, tra cui massaggi e manipolazioni secondo Sohier e Cyriax, elettroterapia, esercizi di ginnastica e pratiche di rilassamento come lo yoga e il rilassamento muscolare progressivo (PMR).</p><p><strong>Credo che il dialogo con il paziente sia fondamentale per individuare gli approcci più adatti alle sue esigenze e favorire il miglioramento della sua condizione fisica. La fisioterapia è, per me, un percorso che considera la persona nella sua globalità, tenendo conto dei diversi aspetti dell'esperienza umana: un approccio complesso, ma al tempo stesso profondamente affascinante.”</strong></p>
 
 ----
 
-Quote: 
+Quote: se non c’è movimento non c’è vita
 
 ----
 
-Signature: 
+Signature: Jan
 
 ----
 
@@ -26,7 +26,7 @@ Photos: []
 
 ----
 
-Diplomastitle: 
+Diplomastitle: Diplomi principali
 
 ----
 
@@ -34,11 +34,11 @@ Diplomas: []
 
 ----
 
-Seotitle: 
+Seotitle: Chi sono · Jan de Wild, fisioterapista a Tesserete
 
 ----
 
-Seodescription: 
+Seodescription: Johannes “Jan” de Wild, fisioterapista originario dell’Olanda con oltre 30 anni di esperienza. Il mio percorso, le tecniche e i diplomi principali.
 
 ----
 

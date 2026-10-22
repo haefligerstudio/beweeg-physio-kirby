@@ -1,1 +1,76 @@
 Title: Beweeg physio
+
+----
+
+Street: a Garamé 10
+
+----
+
+Zip: 6950
+
+----
+
+City: Tesserete
+
+----
+
+Region: Ticino
+
+----
+
+Phone: +41 77 452 17 64
+
+----
+
+Email: fisionassa@bluewin.ch
+
+----
+
+Whatsapp: https://wa.me/41774521764
+
+----
+
+Facebook: https://www.facebook.com/jan.dewild.62
+
+----
+
+Instagram: https://www.instagram.com/fisionassa
+
+----
+
+Hours:
+
+-
+  label: 'lu–ma e gi–ve'
+  days: 'Monday, Tuesday, Thursday, Friday'
+  slots:
+    -
+      opens: '08:00:00'
+      closes: '12:00:00'
+    -
+      opens: '14:00:00'
+      closes: '19:00:00'
+-
+  label: 'me e sa'
+  days: 'Wednesday, Saturday'
+  slots:
+    -
+      opens: '08:00:00'
+      closes: '12:00:00'
+-
+  label: domenica
+  days: Sunday
+  slots: []
+
+----
+
+Bookingurl: 
+
+----
+
+Slideshow:
+
+- 'file://zxd4nj27vywdrog9'
+- 'file://smfj4rilbdujzxum'
+- 'file://0z1wlovjmpikwq3e'
+- 'file://9d6laovo9ety5ooh'

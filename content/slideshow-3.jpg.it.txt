@@ -1,0 +1,13 @@
+Alt: Paziente sdraiata con gli occhi chiusi, il terapista le sostiene testa e spalla
+
+----
+
+Caption: 
+
+----
+
+Uuid: 0z1wlovjmpikwq3e
+
+----
+
+Template: image

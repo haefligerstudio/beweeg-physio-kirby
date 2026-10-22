@@ -2,4 +2,24 @@ Title: Cure palliative per pazienti terminali
 
 ----
 
+Label: Cure palliative per pazienti terminali
+
+----
+
+Tagline: terapie e riabilitazioni
+
+----
+
+Lead: <strong>Le cure palliative offrono un'assistenza orientata al benessere e alla qualità della vita delle persone affette da malattie gravi e in fase avanzata.</strong>
+
+----
+
+Text: <p>Attraverso trattamenti delicati, tecniche di rilassamento e interventi mirati, si cerca di alleviare il dolore, ridurre le tensioni e favorire il comfort fisico. L'approccio tiene conto delle esigenze individuali, rispettando i ritmi e i limiti di ogni paziente. Oltre all'aspetto fisico, viene data particolare importanza alla dimensione umana, garantendo ascolto, sensibilità e sostegno alla persona e ai suoi familiari.</p>
+
+----
+
+Photo: - 'file://6tgl4ybxujcmjnkq'
+
+----
+
 Uuid: zpv0387m8se0nprx

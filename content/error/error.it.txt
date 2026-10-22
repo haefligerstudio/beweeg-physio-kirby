@@ -2,8 +2,4 @@ Title: Errore
 
 ----
 
-Text: [DA FORNIRE] testo della pagina non trovata
-
-----
-
 Uuid: dRz7d31JoFrPuWkG

@@ -1,0 +1,13 @@
+Alt: Medico che misura la pressione a una paziente anziana
+
+----
+
+Caption: 
+
+----
+
+Uuid: u6eeu8qvcumjwvmg
+
+----
+
+Template: image

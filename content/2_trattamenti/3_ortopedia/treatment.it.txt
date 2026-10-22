@@ -2,4 +2,24 @@ Title: Recupero funzionale dopo operazioni ortopediche
 
 ----
 
+Label: Recupero funzionale dopo operazioni ortopediche
+
+----
+
+Tagline: terapie e riabilitazioni
+
+----
+
+Lead: <strong>La riabilitazione postoperatoria accompagna il paziente nel percorso di recupero dopo interventi chirurgici a carico di ossa, articolazioni e muscoli.</strong>
+
+----
+
+Text: <p>Attraverso esercizi mirati, mobilizzazioni e trattamenti fisioterapici personalizzati, si lavora per recuperare progressivamente forza, flessibilità e coordinazione. Il percorso viene adattato alle condizioni e ai tempi di guarigione di ogni persona, con l'obiettivo di ripristinare la funzionalità, ridurre le limitazioni nei movimenti e favorire il ritorno alle attività quotidiane.</p>
+
+----
+
+Photo: - 'file://p5vmiqcklh1qppaw'
+
+----
+
 Uuid: emx2ybyth4rmsh7x

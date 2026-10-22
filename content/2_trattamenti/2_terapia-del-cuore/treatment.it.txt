@@ -2,4 +2,24 @@ Title: “Terapia del cuore” Pazienti cardiovascolari
 
 ----
 
+Label: “Terapia del cuore” Pazienti cardiovascolari
+
+----
+
+Tagline: terapie e riabilitazioni
+
+----
+
+Lead: <strong>La terapia del cuore è un percorso di riabilitazione dedicato alle persone con patologie cardiovascolari o che hanno affrontato eventi cardiaci.</strong>
+
+----
+
+Text: <p>Attraverso esercizi fisici personalizzati, attività controllate e un monitoraggio costante, si lavora per migliorare la resistenza, favorire la funzionalità cardiocircolatoria e recuperare gradualmente la forma fisica. Il trattamento aiuta inoltre a ritrovare fiducia nel movimento, promuovendo uno stile di vita attivo e una maggiore autonomia nella quotidianità.</p>
+
+----
+
+Photo: - 'file://u6eeu8qvcumjwvmg'
+
+----
+
 Uuid: oobwtzzcbtgry8zx

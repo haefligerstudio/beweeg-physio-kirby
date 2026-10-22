@@ -1,0 +1,13 @@
+Alt: Fisioterapista che muove il ginocchio di un paziente sdraiato
+
+----
+
+Caption: 
+
+----
+
+Uuid: p5vmiqcklh1qppaw
+
+----
+
+Template: image

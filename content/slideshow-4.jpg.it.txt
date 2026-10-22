@@ -1,0 +1,13 @@
+Alt: Fisioterapista che tratta il piede di un paziente sul lettino
+
+----
+
+Caption: 
+
+----
+
+Uuid: 9d6laovo9ety5ooh
+
+----
+
+Template: image

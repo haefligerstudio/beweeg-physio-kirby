@@ -2,4 +2,28 @@ Title: prenota
 
 ----
 
+Tagline: prenota
+
+----
+
+Heading: Prenota un appuntamento
+
+----
+
+Intro: Scegli il trattamento e l’orario che preferisci, in studio o a domicilio. Non è previsto alcun pagamento online: la fattura arriva dopo il trattamento.
+
+----
+
+Fallback: Il sistema di prenotazione non è ancora attivo. Nel frattempo puoi contattarci per telefono o WhatsApp.
+
+----
+
+Seotitle: Prenota un appuntamento · Beweeg physio
+
+----
+
+Seodescription: Scegli il trattamento e prenota online l’orario che preferisci, in studio o a domicilio. Nessun pagamento online.
+
+----
+
 Uuid: pciklozk9emglyo5

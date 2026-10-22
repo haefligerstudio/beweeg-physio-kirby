@@ -2,4 +2,32 @@ Title: servizio a domicilio
 
 ----
 
+Tagline: servizi a domicilio
+
+----
+
+Heading: Problemi motori?
+
+----
+
+Subheading: Non preoccuparti faccio anche servizio a domicilio
+
+----
+
+Lead: <strong>I servizi a domicilio permettono di ricevere trattamenti fisioterapici e osteopatici direttamente nella propria abitazione, offrendo un'assistenza personalizzata a chi presenta difficoltà motorie o limitazioni negli spostamenti.</strong>
+
+----
+
+Text: <p>Questo servizio è pensato per garantire maggiore comodità e accessibilità, soprattutto alle persone anziane, a chi è in fase di recupero o a chi ha difficoltà a raggiungere lo studio. Attraverso trattamenti ed esercizi adattati all'ambiente domestico e alle esigenze individuali, si favoriscono il recupero della mobilità, il mantenimento dell'autonomia e il benessere del paziente, nel rispetto dei suoi ritmi e delle sue necessità.</p>
+
+----
+
+Seotitle: Fisioterapia a domicilio · Beweeg physio
+
+----
+
+Seodescription: Trattamenti fisioterapici e osteopatici direttamente a casa tua, per chi ha difficoltà motorie o fatica a raggiungere lo studio.
+
+----
+
 Uuid: br7wj4stmsqkudh5
