@@ -1,0 +1,14 @@
+# Scheda SEO, uguale in tutte le pagine che ce l'hanno.
+# Sono i testi che Google mostra nei risultati di ricerca.
+label: SEO
+icon: search
+fields:
+  seoTitle:
+    label: Titolo per Google
+    type: text
+    help: Appare come titolo blu nei risultati di Google e nella scheda del browser.
+  seoDescription:
+    label: Descrizione per Google
+    type: textarea
+    buttons: false
+    help: Appare sotto il titolo nei risultati di Google. Circa 150 caratteri.

@@ -1,0 +1,31 @@
+# Pagina "servizio a domicilio".
+title: Servizio a domicilio
+icon: home
+
+options:
+  changeSlug: false
+  changeTemplate: false
+  delete: false
+
+tabs:
+  content:
+    label: Contenuto
+    icon: text
+    fields:
+      tagline:
+        label: Sottotitolo
+        type: text
+        help: La riga sotto "Beweeg physio", sopra le foto.
+      heading:
+        label: Titolo
+        type: text
+      subheading:
+        label: Sottotitolo della sezione
+        type: text
+        help: La frase sotto il titolo.
+      lead:
+        extends: fields/lead
+      text:
+        extends: fields/text
+
+  seo: tabs/seo

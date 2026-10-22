@@ -1,0 +1,39 @@
+# Pagina "trattamenti": elenco dei trattamenti, ognuno è una sottopagina.
+title: Trattamenti
+icon: list-bullet
+
+options:
+  changeSlug: false
+  changeTemplate: false
+  delete: false
+
+tabs:
+  content:
+    label: Contenuto
+    icon: text
+    sections:
+      fields:
+        type: fields
+        fields:
+          tagline:
+            label: Sottotitolo
+            type: text
+            help: La riga sotto "Beweeg physio", sopra le foto.
+          heading:
+            label: Titolo
+            type: text
+          moreTitle:
+            label: Titolo "altri trattamenti"
+            type: text
+            help: Appare in fondo alla pagina di ogni trattamento, sopra le schede degli altri.
+
+      treatments:
+        label: Trattamenti
+        type: pages
+        template: treatment
+        # I trattamenti sono quattro e fissi: un trattamento nuovo richiede anche la sua icona.
+        create: false
+        # L'ordine qui è l'ordine sul sito.
+        sortable: true
+
+  seo: tabs/seo

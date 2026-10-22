@@ -1,9 +1,0 @@
-# Blueprint di riserva: il pannello la usa per le pagine che non ne hanno una propria.
-# Provvisoria: con K2 ogni pagina avrà la sua.
-title: Pagina
-icon: page
-
-fields:
-  text:
-    label: Testo
-    type: textarea

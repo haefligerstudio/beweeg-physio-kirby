@@ -1,8 +1,92 @@
-# Pagina iniziale del pannello. Provvisoria: la vera struttura arriva con K2.
+# Pagina iniziale del pannello: elenco delle pagine e impostazioni comuni a tutto il sito.
+# Il titolo del sito ("Beweeg physio") è anche il grande titolo in cima a ogni pagina.
 # https://getkirby.com/docs/reference/panel/blueprints/site
 title: Sito
 
-sections:
+tabs:
   pages:
     label: Pagine
-    type: pages
+    icon: page
+    sections:
+      pages:
+        label: Pagine del sito
+        type: pages
+        # Le pagine sono fisse: aggiungerne una richiede anche un template, quindi niente pulsante.
+        create: false
+
+  settings:
+    label: Impostazioni sito
+    icon: settings
+    columns:
+      contacts:
+        width: 1/2
+        fields:
+          # Indirizzo, numeri e link sono uguali in tutte le lingue: translate: false
+          # evita di doverli riscrivere quando arriveranno inglese e tedesco.
+          street:
+            label: Via
+            type: text
+            translate: false
+          zip:
+            label: NPA
+            type: text
+            width: 1/4
+            translate: false
+          city:
+            label: Località
+            type: text
+            width: 3/4
+            translate: false
+          region:
+            label: Cantone
+            type: text
+            translate: false
+          phone:
+            label: Telefono
+            type: tel
+            translate: false
+            help: Scritto come deve apparire sul sito, per esempio +41 77 123 45 67.
+          email:
+            label: Email
+            type: email
+            translate: false
+          whatsapp:
+            label: Link WhatsApp
+            type: url
+            translate: false
+            help: https://wa.me/ seguito dal numero, senza + e senza spazi.
+          facebook:
+            label: Facebook
+            type: url
+            translate: false
+          instagram:
+            label: Instagram
+            type: url
+            translate: false
+
+      other:
+        width: 1/2
+        fields:
+          hours:
+            label: Orari
+            type: structure
+            fields:
+              days:
+                label: Giorni
+                type: text
+              slots:
+                label: Orari
+                type: textarea
+                buttons: false
+                size: small
+                help: Una fascia oraria per riga, oppure "chiuso".
+          bookingUrl:
+            label: Link di prenotazione
+            type: url
+            translate: false
+            help: Indirizzo dello strumento di prenotazione online. Finché è vuoto, la pagina Prenota mostra telefono, WhatsApp ed email.
+          slideshow:
+            extends: fields/images
+            label: Foto dello slideshow
+            translate: false
+            help: Le foto che scorrono in cima a ogni pagina, nell'ordine in cui appaiono.

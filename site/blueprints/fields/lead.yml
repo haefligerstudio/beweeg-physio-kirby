@@ -1,0 +1,10 @@
+# Paragrafo guida: un solo paragrafo, di solito tutto in grassetto.
+# Writer limitato a grassetto, corsivo e link: chi modifica non deve conoscere il markdown.
+# https://getkirby.com/docs/reference/panel/fields/writer
+label: Paragrafo guida
+type: writer
+inline: true
+marks:
+  - bold
+  - italic
+  - link

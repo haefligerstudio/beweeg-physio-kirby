@@ -1,4 +1,4 @@
-# Home. Provvisoria: i campi veri arrivano con K2.
+# Home. I campi seguono le sezioni della pagina, dall'alto in basso.
 title: Home
 icon: home
 
@@ -6,3 +6,61 @@ icon: home
 # https://getkirby.com/docs/reference/panel/blueprints/page#options
 options:
   changeStatus: false
+
+tabs:
+  content:
+    label: Contenuto
+    icon: text
+    fields:
+      tagline:
+        label: Sottotitolo
+        type: text
+        help: La riga sotto "Beweeg physio", sopra le foto.
+
+      aboutTitle:
+        label: Chi sono · titolo
+        type: text
+      aboutLead:
+        extends: fields/lead
+        label: Chi sono · paragrafo guida
+      aboutText:
+        extends: fields/text
+        label: Chi sono · testo
+
+      stats:
+        label: Numeri
+        type: structure
+        max: 3
+        help: I tre numeri grandi sotto "Chi sono".
+        fields:
+          value:
+            label: Numero
+            type: text
+            width: 1/3
+          label:
+            label: Etichetta
+            type: text
+            width: 2/3
+
+      whatTitle:
+        label: Cosa faccio · titolo
+        type: text
+        help: Le voci con le icone arrivano dalle pagine dei trattamenti (campo "Nome breve").
+
+      visitsTitle:
+        label: Un plus · titolo
+        type: text
+        help: La parte dopo i due punti appare in corsivo.
+      visitsLead:
+        extends: fields/lead
+        label: Un plus · paragrafo guida
+      visitsText:
+        extends: fields/text
+        label: Un plus · testo
+
+      whereTitle:
+        label: Dove trovi lo studio · titolo
+        type: text
+        help: L'indirizzo si modifica in Impostazioni sito.
+
+  seo: tabs/seo

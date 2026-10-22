@@ -1,0 +1,19 @@
+# Ogni foto caricata dal pannello usa questa blueprint (opzione "uploads: image" nei campi file).
+# https://getkirby.com/docs/reference/panel/blueprints/file
+title: Immagine
+
+# Solo foto: niente SVG caricati dal pannello, perché possono contenere codice.
+accept:
+  mime: image/jpeg, image/png, image/webp
+
+fields:
+  alt:
+    label: Testo alternativo
+    type: text
+    # Obbligatorio: chi usa uno screen reader sente questo testo al posto della foto.
+    required: true
+    help: Descrivi in poche parole cosa si vede nella foto, per chi non può vederla.
+  caption:
+    label: Didascalia
+    type: text
+    help: Facoltativa. Il testo che appare sotto la foto, dove previsto (per esempio sotto i diplomi).

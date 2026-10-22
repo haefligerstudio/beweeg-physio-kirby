@@ -1,0 +1,29 @@
+# Un singolo trattamento (sottopagina di "trattamenti").
+# Il titolo della pagina è il titolo grande del trattamento.
+# L'icona non è un campo: è un file del sito scelto in base all'indirizzo della pagina.
+title: Trattamento
+icon: heart
+
+options:
+  changeSlug: false
+  changeTemplate: false
+  delete: false
+
+fields:
+  label:
+    label: Nome breve
+    type: text
+    help: Usato nelle schede dei trattamenti e nella home. In italiano può essere uguale al titolo.
+  tagline:
+    label: Sottotitolo
+    type: text
+    help: La riga sotto "Beweeg physio", sopra le foto.
+  lead:
+    extends: fields/lead
+  text:
+    extends: fields/text
+  photo:
+    extends: fields/images
+    label: Foto
+    multiple: false
+    help: La foto della scheda del trattamento.

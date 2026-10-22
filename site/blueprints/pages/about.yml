@@ -1,0 +1,50 @@
+# Pagina "chi sono".
+title: Chi sono
+icon: user
+
+# Pagina fissa: indirizzo, template ed esistenza non si cambiano dal pannello.
+options:
+  changeSlug: false
+  changeTemplate: false
+  delete: false
+
+tabs:
+  content:
+    label: Contenuto
+    icon: text
+    fields:
+      tagline:
+        label: Sottotitolo
+        type: text
+        help: La riga sotto "Beweeg physio", sopra le foto.
+
+      heading:
+        label: Titolo
+        type: text
+      text:
+        extends: fields/text
+
+      quote:
+        label: Citazione
+        type: text
+        width: 3/4
+        help: La frase scritta a mano. Le virgolette le aggiunge il sito.
+      signature:
+        label: Firma
+        type: text
+        width: 1/4
+
+      photos:
+        extends: fields/images
+        label: Foto di Jan
+        max: 2
+
+      diplomasTitle:
+        label: Diplomi · titolo
+        type: text
+      diplomas:
+        extends: fields/images
+        label: Diplomi
+        help: La scritta sotto ogni diploma si inserisce nella foto, campo "Didascalia".
+
+  seo: tabs/seo

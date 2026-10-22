@@ -102,5 +102,6 @@ php -S localhost:8000 kirby/router.php     # sito:     http://localhost:8000
 - Commit e push li fa Amos, salvo richiesta esplicita.
 
 ## Stato
-Starterkit pulito (K1): restano solo home, pagina di errore e template di riserva provvisori. Prossimo passo: K2. Mancano ancora: foto di Jan, diplomi, mappa statica,
+K1 e K2 fatti: multilingua attivo (solo `it`, URL con `/it`), blueprint di tutte le pagine e della scheda
+"Impostazioni sito", pagine create con il solo titolo. Template ancora provvisori. Prossimo passo: K3 (import dei testi). Mancano ancora: foto di Jan, diplomi, mappa statica,
 email e social dello studio, strumento di prenotazione, testi legali (vedi `../beweeg-physio/docs/MATERIALE.md`).

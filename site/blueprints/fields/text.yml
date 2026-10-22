@@ -1,0 +1,10 @@
+# Testo su più paragrafi.
+# Solo grassetto, corsivo e link, niente titoli né elenchi: la grafica dei titoli la decide il sito.
+# https://getkirby.com/docs/reference/panel/fields/writer
+label: Testo
+type: writer
+nodes: false
+marks:
+  - bold
+  - italic
+  - link

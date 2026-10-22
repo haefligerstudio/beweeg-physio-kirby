@@ -1,0 +1,30 @@
+# Pagina "prenota". Il link allo strumento di prenotazione è in Impostazioni sito.
+title: Prenota
+icon: calendar
+
+options:
+  changeSlug: false
+  changeTemplate: false
+  delete: false
+
+tabs:
+  content:
+    label: Contenuto
+    icon: text
+    fields:
+      tagline:
+        label: Sottotitolo
+        type: text
+        help: La riga sotto "Beweeg physio", sopra le foto.
+      heading:
+        label: Titolo
+        type: text
+      intro:
+        extends: fields/lead
+        label: Introduzione
+      fallback:
+        extends: fields/lead
+        label: Testo se la prenotazione online non è attiva
+        help: Appare finché in Impostazioni sito il link di prenotazione è vuoto. Sotto il sito mostra telefono, WhatsApp ed email.
+
+  seo: tabs/seo

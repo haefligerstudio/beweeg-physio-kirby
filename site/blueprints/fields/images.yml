@@ -1,0 +1,9 @@
+# Campo per scegliere o caricare foto, uguale in tutto il sito.
+# https://getkirby.com/docs/reference/panel/fields/files
+type: files
+layout: cards
+uploads: image
+# Kirby non controlla il testo alternativo al caricamento, ma solo quando si salva la foto:
+# così, sotto ogni foto, chi modifica vede subito se manca.
+# https://getkirby.com/docs/guide/blueprints/query-language
+info: "{{ file.alt.isEmpty ? '⚠ Manca il testo alternativo: clicca sulla foto' : file.alt }}"
