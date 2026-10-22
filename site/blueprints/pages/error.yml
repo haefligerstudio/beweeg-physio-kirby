@@ -1,0 +1,6 @@
+# Pagina di errore (404). Nascosta nel pannello: nessuno deve modificarla per sbaglio.
+# https://getkirby.com/docs/reference/panel/blueprints/page#options
+title: Errore
+
+options:
+  read: false

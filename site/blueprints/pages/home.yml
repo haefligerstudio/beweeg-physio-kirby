@@ -1,0 +1,8 @@
+# Home. Provvisoria: i campi veri arrivano con K2.
+title: Home
+icon: home
+
+# La home non si può nascondere né mettere in bozza.
+# https://getkirby.com/docs/reference/panel/blueprints/page#options
+options:
+  changeStatus: false

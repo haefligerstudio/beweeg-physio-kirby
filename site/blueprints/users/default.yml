@@ -1,0 +1,3 @@
+# Utenti del pannello: non servono campi in più oltre a nome, email e password.
+# https://getkirby.com/docs/guide/users/managing-users
+title: Utente

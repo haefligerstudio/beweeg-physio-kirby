@@ -1,0 +1,52 @@
+# File di sistema
+# ---------------
+
+Icon
+.DS_Store
+
+# Editor
+# (impostazioni personali dell'editor)
+# ------------------------------------
+
+*.sublime-workspace
+/.vscode
+/.idea
+
+# Lock file di Kirby
+# ------------------
+
+.lock
+
+# ------------- SICUREZZA -------------
+# Questi file non vanno MAI nel repo.
+# ------------- SICUREZZA -------------
+
+# Licenza Kirby: legata al dominio e a chi l'ha comprata
+/site/config/.license
+
+# Variabili d'ambiente e segreti
+.env
+.env.*
+/site/config/env.php
+
+# Account del pannello (contengono le password cifrate)
+/site/accounts/*
+!/site/accounts/index.html
+
+# Sessioni di accesso al pannello
+/site/sessions/*
+!/site/sessions/index.html
+
+# Cache: Kirby la ricrea da solo
+/site/cache/*
+!/site/cache/index.html
+
+# Immagini e file generati da Kirby a partire da content/
+/media/*
+!/media/index.html
+
+# Documenti di lavoro
+# -------------------
+
+# PDF originali del visual: pesanti e del cliente, restano solo in locale
+/docs/visual-originali/

@@ -1,0 +1,8 @@
+# Pagina iniziale del pannello. Provvisoria: la vera struttura arriva con K2.
+# https://getkirby.com/docs/reference/panel/blueprints/site
+title: Sito
+
+sections:
+  pages:
+    label: Pagine
+    type: pages
