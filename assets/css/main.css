@@ -26,6 +26,11 @@
   --color-ink: #000;               /* testo */
   --color-paper: #fff;             /* sfondo */
   --color-focus: #000;             /* contorno del focus, con anello bianco: 3:1 su ogni sfondo */
+  --color-control: rgb(0 0 0 / 0.5);            /* fondo del pulsante pausa sopra le foto */
+  --color-dot-off: rgb(255 255 255 / 0.3);      /* pallino della foto non visibile */
+  /* Velo scuro sotto il testo bianco sulle foto: il contrasto non dipende dalla foto (DESIGN.md). */
+  --gradient-photo: linear-gradient(to top, rgb(0 0 0 / 0.7), rgb(0 0 0 / 0.3) 50%, transparent);
+  --shadow-button: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
   /* Font: due famiglie al massimo (pagina 2 del visual). */
   --font-sans: "Roboto", system-ui, sans-serif;
@@ -43,12 +48,17 @@
   --text-h3: 1.25rem;        /* 20px */
   --text-h4: 1.25rem;        /* 20px */
   --leading-heading: 1.2;
+  --leading-tight: 1;
   --text-menu: 1rem;         /* 16px: il visual ha 15px, +1 per leggibilità (audit) */
   --text-menu-mobile: 1.5rem;/* 24px, menu a tutto schermo */
   --text-footer: 1.125rem;   /* 18px */
   --text-small: 1rem;        /* 16px */
   --text-stat: 3rem;         /* 48px */
+  --text-stat-label: 1.125rem; /* 18px */
   --text-quote: 1.5rem;      /* 24px */
+  --text-tagline: 1.25rem;   /* 20px, sottotitolo dell'apertura */
+  --text-button: 1.125rem;   /* 18px */
+  --text-icon-label: 1.125rem; /* 18px, nomi sotto le icone (visual 18,9) */
 
   /* Spaziature */
   --gutter: 1.5625rem;       /* 25px: margini laterali mobile (tabella p. 2) */
@@ -57,14 +67,46 @@
   --tap: 2.75rem;            /* 44px: area minima cliccabile */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
+  --space-3: 0.75rem;
   --space-4: 1rem;
+  --space-5: 1.25rem;
   --space-6: 1.5rem;
   --space-8: 2rem;
   --space-12: 3rem;
+  --space-14: 3.5rem;
   --space-16: 4rem;
   --space-20: 5rem;
+  --space-24: 6rem;
+  --space-28: 7rem;
+  --space-32: 8rem;
   --space-36: 9rem;
   --space-40: 10rem;
+  --space-44: 11rem;
+  --space-60: 15rem;
+
+  /* Spazi della home, dall'audit (tabella "Testi troppo vicini o troppo lontani", colonna "Ora").
+     Su mobile il testo è circa 1,3 volte il visual, quindi anche gli spazi sono "visual × 1,3". */
+  --gap-heading-text: var(--space-5);  /* titolo → testo (visual desktop 65px, da tablet) */
+  --gap-paragraph: var(--space-4);     /* paragrafo → paragrafo */
+  --gap-text-action: var(--space-14);  /* testo → pulsante o numeri */
+  --text-column: 31.25rem;             /* 500px: colonna del testo (audit) */
+  --stat-min-width: 11rem;             /* 176px: larghezza minima di ogni numero, da lg */
+
+  /* Apertura con slideshow */
+  --intro-ratio: 19 / 20;                   /* mobile: riquadro quasi quadrato (visual) */
+  --intro-max-height: 80svh;                 /* mobile: mai più alto dello schermo */
+  --intro-height: clamp(26rem, 38vw, 34rem); /* da tablet: altezza della foto a tutta larghezza */
+  --intro-controls: var(--tap);              /* striscia riservata ai comandi: non coprono il testo */
+  --intro-rule: 5rem;                         /* trattino sotto i titoli (visual) */
+  --rule-height: 3px;
+
+  /* Mappa */
+  --map-ratio: 4 / 5;
+  --treatment-icon: 8.5rem;   /* 136px: visual mobile circa 100px × 1,3, come il testo */
+  --treatment-label-width: 16rem;
+  --hover-scale: 1.05;        /* icona dei trattamenti all'hover */
+  --border-thin: 1px;
+  --border-stat: 2px;         /* separatori tra i numeri */
 
   /* Raggi */
   --radius-sm: 0.25rem;
@@ -90,6 +132,16 @@
     --text-quote: 2.25rem;    /* 36px */
     --logo-footer: 24rem;     /* 384px */
     --icon-social: 2rem;      /* 32px */
+    --text-h1: 3rem;          /* 48px */
+    --text-h2: 2.5rem;        /* 40px */
+    --text-tagline: 1.875rem; /* 30px */
+    --text-button: 1.25rem;   /* 20px */
+    --text-stat: 4.5rem;      /* 72px */
+    --gap-heading-text: var(--space-16); /* 64px: tabella p. 2 "Spazi tra titoli e testo 65px" */
+    --gap-paragraph: var(--space-6);
+    --gap-text-action: var(--space-20);
+    --map-ratio: 8 / 3;
+    --treatment-icon: 12rem;  /* 192px */
   }
 }
 
@@ -107,7 +159,10 @@
     --text-h4: 2.1875rem;     /* 35px */
     --text-footer: 1.875rem;  /* 30px (audit: footer 29,9 / 28–29,8) */
     --text-stat: 5.125rem;    /* 82px */
+    --text-stat-label: 1.25rem; /* 20px (visual 20,9 light) */
     --text-quote: 4.0625rem;  /* 65px */
+    --text-tagline: 2.5rem;   /* 40px: H3 light della tabella */
+    --text-button: 1.5625rem; /* 25px (visual 25) */
   }
 }
 
@@ -564,8 +619,520 @@ main {
 }
 
 
+/* Pulsante a pillola con freccia (snippet button.php) ------------------------ */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--space-12);
+  padding: var(--space-2) var(--space-8);
+  border-radius: var(--radius-pill);
+  background: var(--color-brand-strong); /* bianco 4,61:1 (visual #7bacd7: 2,41:1) */
+  color: var(--color-paper);
+  box-shadow: var(--shadow-button);
+  font-size: var(--text-button);
+  font-weight: var(--weight-regular); /* visual 300: 400 per leggibilità (DESIGN.md) */
+  line-height: var(--leading-heading);
+  text-decoration: none;
+  white-space: nowrap; /* il testo del pulsante non va mai a capo */
+  transition: background-color var(--duration) var(--ease);
+}
+
+.button:hover {
+  background: var(--color-brand);
+}
+
+/* La freccia scorre di 4px a destra: segnala che il pulsante porta altrove. */
+.button__arrow {
+  flex-shrink: 0;
+  transition: transform var(--duration) var(--ease);
+}
+
+.button:hover .button__arrow,
+.button:focus-visible .button__arrow {
+  transform: translateX(var(--space-1));
+}
+
+@media (min-width: 48rem) {
+  .button {
+    min-height: var(--space-14);
+    padding-inline: var(--space-8);
+  }
+}
+
+/* Apertura con slideshow (snippet page-intro.php e slideshow.php) ------------ */
+
+/* Mobile: riquadro staccato dai bordi con angoli arrotondati, testo centrato (visual). */
+.page-intro {
+  padding: var(--space-5) var(--gutter) 0;
+}
+
+.page-intro__frame {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: var(--intro-ratio);
+  max-height: var(--intro-max-height);
+  /* clip (non hidden): taglia le foto agli angoli arrotondati, ma se il testo non ci sta
+     il riquadro si allunga invece di tagliarlo. */
+  overflow: clip;
+  border-radius: var(--radius-sm);
+  background: var(--color-brand); /* si vede solo finché la foto non è caricata */
+  color: var(--color-paper);
+}
+
+/* Velo scuro sopra le foto e sotto il testo. */
+.page-intro__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--gradient-photo);
+}
+
+.page-intro__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  /* In basso c'è la striscia dei comandi dello slideshow: il testo resta sopra, mai coperto. */
+  padding-bottom: calc(var(--intro-controls) + var(--space-4));
+  /* Su mobile il riquadro ha già i margini della pagina: dentro basta poco spazio. */
+  padding-inline: var(--space-4);
+  text-align: center;
+}
+
+.page-intro__title {
+  font-size: var(--text-h1);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-heading);
+}
+
+.page-intro__title strong {
+  font-weight: var(--weight-bold);
+}
+
+/* Trattino bianco tra titolo e sottotitolo (visual). */
+.page-intro__title::after {
+  content: "";
+  display: block;
+  width: var(--intro-rule);
+  height: var(--rule-height);
+  margin: var(--space-2) auto;
+  background: currentColor;
+}
+
+.page-intro__tagline {
+  font-size: var(--text-tagline);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-heading);
+}
+
+.page-intro__action {
+  flex-shrink: 0;
+}
+
+/* Da tablet: foto a tutta larghezza, testo in basso a sinistra e pulsante a destra. */
+@media (min-width: 48rem) {
+  .page-intro {
+    padding: 0;
+  }
+
+  .page-intro__frame {
+    aspect-ratio: auto;
+    height: var(--intro-height);
+    max-height: none;
+    border-radius: 0;
+  }
+
+  .page-intro__content {
+    padding-inline: var(--gutter);
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .page-intro__title::after {
+    margin-inline: 0;
+  }
+}
+
+.slideshow__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity calc(3 * var(--duration)) var(--ease);
+}
+
+/* Senza JavaScript resta questa classe solo sulla prima foto. */
+.slideshow__slide.is-active {
+  opacity: 1;
+}
+
+.slideshow__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Comandi nella striscia in basso: pallini al centro, pausa a destra. */
+.slideshow__controls {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--intro-controls);
+}
+
+.slideshow__dots {
+  display: flex;
+}
+
+.slideshow__dot {
+  display: grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Il pallino visibile è piccolo; l'area cliccabile è di 44px. */
+.slideshow__dot::before {
+  content: "";
+  width: var(--space-2);
+  height: var(--space-2);
+  border: var(--border-thin) solid var(--color-paper);
+  border-radius: var(--radius-pill);
+  background: var(--color-dot-off);
+}
+
+.slideshow__dot[aria-current]::before {
+  background: var(--color-paper);
+}
+
+.slideshow__pause {
+  position: absolute;
+  right: var(--space-2);
+  display: grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--color-control);
+  color: var(--color-paper);
+  cursor: pointer;
+}
+
+.slideshow__icon-play,
+.slideshow__pause.is-paused .slideshow__icon-pause {
+  display: none;
+}
+
+.slideshow__pause.is-paused .slideshow__icon-play {
+  display: block;
+}
+
+@media (min-width: 48rem) {
+  .slideshow__pause {
+    right: var(--gutter);
+  }
+}
+
+/* Sezioni ------------------------------------------------------------------ */
+
+.section {
+  padding-block: var(--space-16);
+}
+
+.section__action {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--gap-text-action);
+}
+
+/* Titolo di sezione con trattino (snippet section-heading.php) */
+.section-heading {
+  color: var(--color-accent);
+  font-size: var(--text-h2);
+  text-align: center;
+}
+
+.section-heading::after {
+  content: "";
+  display: block;
+  width: var(--intro-rule);
+  height: var(--rule-height);
+  margin: var(--space-2) auto 0;
+  background: currentColor;
+}
+
+/* "Un plus: servizi a domicilio": la parte dopo i due punti in corsivo light,
+   a capo su mobile come nel visual. */
+.section-heading em {
+  display: block;
+  font-weight: var(--weight-light);
+}
+
+@media (min-width: 48rem) {
+  .section-heading {
+    text-align: left;
+  }
+
+  .section-heading::after {
+    margin-inline: 0;
+  }
+
+  .section-heading em {
+    display: inline;
+  }
+}
+
+/* Paragrafo guida + testo (snippet lead-text.php) */
+.lead-text {
+  max-width: var(--text-column);
+  margin-top: var(--gap-heading-text);
+}
+
+.lead-text__lead {
+  font-weight: var(--weight-bold);
+}
+
+.lead-text__body p {
+  margin-top: var(--gap-paragraph);
+}
+
+/* Banda azzurra (snippet band.php): titoli più scuri per il contrasto (4,62:1). */
+.band {
+  padding-block: var(--space-16) var(--space-24);
+  background: var(--color-tint);
+}
+
+.band .section-heading {
+  color: var(--color-accent-on-tint);
+}
+
+@media (min-width: 48rem) {
+  .band {
+    padding-bottom: var(--space-44);
+  }
+}
+
+/* Home ------------------------------------------------------------------- */
+
+.home-about__footer {
+  display: flex;
+  flex-direction: column-reverse; /* su mobile prima i numeri, poi il pulsante (visual) */
+  align-items: center;
+  gap: var(--space-14);
+  margin-top: var(--gap-text-action);
+}
+
+/* Numeri: su mobile 2 + 1 centrato, da desktop in riga con separatori (visual). */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8) 0;
+  width: 100%;
+  text-align: center;
+}
+
+.stats__item:last-child {
+  grid-column: span 2;
+}
+
+.stats__value {
+  display: block;
+  color: var(--color-accent);
+  font-size: var(--text-stat);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+}
+
+.stats__label {
+  display: block;
+  margin-top: var(--space-3);
+  font-size: var(--text-stat-label);
+  font-weight: var(--weight-light);
+}
+
+.home-treatments__list {
+  display: grid;
+  gap: var(--space-12);
+  margin-top: var(--space-14);
+}
+
+.treatment-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: center;
+  text-decoration: none;
+}
+
+.treatment-link__icon {
+  width: var(--treatment-icon);
+  transition: transform var(--duration) var(--ease);
+}
+
+.treatment-link:hover .treatment-link__icon {
+  transform: scale(var(--hover-scale));
+}
+
+.treatment-link__label {
+  max-width: var(--treatment-label-width);
+  font-size: var(--text-icon-label);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-heading);
+}
+
+.treatment-link:hover .treatment-link__label {
+  text-decoration: underline;
+}
+
+/* Un plus: su mobile c'è molto spazio prima del titolo (audit: 230px dal pulsante sopra). */
+.home-visits {
+  padding-block: var(--space-40) var(--space-28);
+}
+
+@media (min-width: 40rem) {
+  .home-treatments__list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 48rem) {
+  .home-about {
+    padding-block: var(--space-40) var(--space-12);
+  }
+
+  .home-treatments {
+    padding-block: var(--space-28);
+  }
+
+  .home-treatments__list {
+    margin-top: var(--space-32); /* audit: dal trattino alle icone 155px */
+  }
+
+  .treatment-link {
+    gap: var(--space-6);
+  }
+
+  .home-visits {
+    padding-block: var(--space-28) var(--space-60); /* audit: dal pulsante alla banda 241px */
+  }
+
+  .section__action {
+    margin-top: var(--space-24);
+  }
+
+  .home-visits__action {
+    justify-content: flex-start;
+  }
+}
+
+@media (min-width: 64rem) {
+  .home-about__footer {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: var(--space-8);
+  }
+
+  .stats {
+    display: flex;
+    width: auto;
+  }
+
+  .stats__item {
+    min-width: var(--stat-min-width);
+    padding: var(--space-3) var(--space-8);
+    border-left: var(--border-stat) solid var(--color-accent);
+  }
+
+  .stats__item:first-child {
+    border-left: 0;
+  }
+
+  .home-treatments__list {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-8);
+  }
+
+  .treatment-link {
+    gap: var(--space-8); /* audit: dalle icone alle etichette 36px */
+  }
+}
+
+/* Mappa (snippet map.php) --------------------------------------------------- */
+
+/* L'indirizzo grande sopra la mappa c'è solo da tablet (su mobile il visual non lo mostra). */
+.map__address {
+  display: none;
+}
+
+.map__frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: var(--map-ratio); /* proporzioni fisse: niente salti mentre si carica */
+  margin-top: var(--space-14);
+  border: 0;
+}
+
+.map__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  margin-top: var(--space-2);
+  color: var(--color-accent-on-tint);
+  font-weight: var(--weight-bold);
+}
+
+@media (min-width: 48rem) {
+  .map__address {
+    display: block;
+    margin-top: var(--space-20);
+    color: var(--color-accent-on-tint);
+    font-size: var(--text-h3);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-heading);
+  }
+
+  .map__frame {
+    margin-top: var(--space-8);
+  }
+}
+
+/* Pagina non trovata --------------------------------------------------------- */
+
+.error-page__text {
+  margin-top: var(--gap-heading-text);
+}
+
+
 /* 7. Utilità
    ========================================================================== */
+
+/* Testo letto dagli screen reader ma non visibile (es. "si apre in una nuova scheda"). */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
 
 /* Chi ha chiesto meno movimento al sistema operativo non vede animazioni né transizioni. */
 @media (prefers-reduced-motion: reduce) {

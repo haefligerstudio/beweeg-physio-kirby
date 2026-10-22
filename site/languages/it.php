@@ -44,6 +44,8 @@ return [
         'a11y.slideGo' => 'Vai all’immagine',
         'a11y.mainNav' => 'Navigazione principale',
         'a11y.home' => 'Beweeg physio, pagina iniziale',
+        // Aggiunto in K4b: avvisa che un link apre una scheda nuova (link della mappa).
+        'a11y.newTab' => 'si apre in una nuova scheda',
 
         // Nomi delle icone social, letti dagli screen reader (nel progetto Next erano scritti nel codice)
         'social.facebook' => 'Facebook',
