@@ -1,0 +1,579 @@
+/* ==========================================================================
+   Beweeg physio · foglio di stile unico
+   Ordine: variabili → font → reset → base → layout → componenti → utilità.
+   I valori vengono dal progetto Next (app/globals.css) e dai documenti
+   AUDIT-TIPOGRAFIA.md e CAMBIAMENTI-RISPETTO-AL-VISUAL.md.
+   Nei componenti si usano solo le variabili, mai valori fissi.
+
+   Breakpoint (le variabili CSS non funzionano dentro @media, quindi sono scritti a mano):
+     md = 48rem (768px)   tablet
+     lg = 64rem (1024px)  desktop, da qui valgono le misure della tabella a pagina 2 del visual
+   ========================================================================== */
+
+
+/* 1. Variabili
+   ========================================================================== */
+
+:root {
+  /* Colori. Quelli cambiati rispetto al visual (per il contrasto) sono spiegati
+     in CAMBIAMENTI-RISPETTO-AL-VISUAL.md, da far approvare a Sara. */
+  --color-brand: #4c7a9c;          /* header e footer · testo bianco 4,59:1 (visual #4f7ca3, 4,43:1) */
+  --color-brand-strong: #547996;   /* pulsanti · testo bianco 4,61:1 (visual #7bacd7, 2,41:1) */
+  --color-tint: #a5d0f3;           /* bande azzurre */
+  --color-accent: #007db6;         /* titoli e numeri su bianco · 4,56:1 */
+  --color-accent-on-tint: #005a84; /* titoli sulla banda azzurra · 4,62:1 (visual: bianco, 1,63:1) */
+  --color-pin: #9b1514;            /* segnaposto della mappa */
+  --color-ink: #000;               /* testo */
+  --color-paper: #fff;             /* sfondo */
+  --color-focus: #000;             /* contorno del focus, con anello bianco: 3:1 su ogni sfondo */
+
+  /* Font: due famiglie al massimo (pagina 2 del visual). */
+  --font-sans: "Roboto", system-ui, sans-serif;
+  --font-hand: "Reenie Beanie", cursive; /* solo la frase scritta a mano di Jan */
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-bold: 700;
+
+  /* Scala tipografica, mobile. Il visual mobile ha il testo a circa 13,6px:
+     qui 18px perché il pubblico è anche anziano (deviazione già in DESIGN.md). */
+  --text-body: 1.125rem;     /* 18px */
+  --leading-body: 1.65;
+  --text-h1: 2.25rem;        /* 36px */
+  --text-h2: 1.875rem;       /* 30px */
+  --text-h3: 1.25rem;        /* 20px */
+  --text-h4: 1.25rem;        /* 20px */
+  --leading-heading: 1.2;
+  --text-menu: 1rem;         /* 16px: il visual ha 15px, +1 per leggibilità (audit) */
+  --text-menu-mobile: 1.5rem;/* 24px, menu a tutto schermo */
+  --text-footer: 1.125rem;   /* 18px */
+  --text-small: 1rem;        /* 16px */
+  --text-stat: 3rem;         /* 48px */
+  --text-quote: 1.5rem;      /* 24px */
+
+  /* Spaziature */
+  --gutter: 1.5625rem;       /* 25px: margini laterali mobile (tabella p. 2) */
+  --container: 71.25rem;     /* 1140px: frame del visual, margini compresi */
+  --header-height: 4rem;     /* 64px */
+  --tap: 2.75rem;            /* 44px: area minima cliccabile */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-36: 9rem;
+  --space-40: 10rem;
+
+  /* Raggi */
+  --radius-sm: 0.25rem;
+  --radius-pill: 999px;
+
+  /* Movimento: solo funzionale, breve. */
+  --duration: 200ms;
+  --ease: ease-out;
+
+  /* Misure dei componenti */
+  --logo-header: 8.5rem;      /* 136px */
+  --logo-footer: 12rem;       /* 192px */
+  --icon-social: 1.75rem;     /* 28px */
+  --focus-width: 3px;
+}
+
+/* md: tablet */
+@media (min-width: 48rem) {
+  :root {
+    --gutter: 2rem;           /* 32px */
+    --header-height: 6rem;    /* 96px */
+    --text-footer: 1.25rem;   /* 20px */
+    --text-quote: 2.25rem;    /* 36px */
+    --logo-footer: 24rem;     /* 384px */
+    --icon-social: 2rem;      /* 32px */
+  }
+}
+
+/* lg: desktop, misure della tabella a pagina 2 del visual (frame 1140px) */
+@media (min-width: 64rem) {
+  :root {
+    --gutter: 3.125rem;       /* 50px */
+    --text-body: 1.5625rem;   /* 25px */
+    /* 29/25 = 1,16: interlinea della tabella a pagina 2 ("Interlinea 29 px").
+       DA DISCUTERE con Sara: è stretta per un pubblico anziano. */
+    --leading-body: 1.16;
+    --text-h1: 3.75rem;       /* 60px */
+    --text-h2: 2.8125rem;     /* 45px */
+    --text-h3: 2.5rem;        /* 40px */
+    --text-h4: 2.1875rem;     /* 35px */
+    --text-footer: 1.875rem;  /* 30px (audit: footer 29,9 / 28–29,8) */
+    --text-stat: 5.125rem;    /* 82px */
+    --text-quote: 4.0625rem;  /* 65px */
+  }
+}
+
+
+/* 2. Font (locali: nessuna richiesta a servizi esterni)
+   ========================================================================== */
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/roboto-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 900; /* font variabile: un solo file per tutti i pesi */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Reenie Beanie";
+  src: url("../fonts/reenie-beanie-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* 3. Reset minimo
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1, h2, h3, h4,
+p, ul, ol, dl, dd, figure, address {
+  margin: 0;
+}
+
+ul[class],
+ol[class] {
+  padding: 0;
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* "hidden" deve vincere sempre, anche su elementi a cui il CSS dà un display. */
+[hidden] {
+  display: none !important;
+}
+
+
+/* 4. Base
+   ========================================================================== */
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-body);
+  /* Rete di sicurezza: si spezza solo una parola che da sola non sta nella riga. */
+  overflow-wrap: break-word;
+}
+
+h1, h2, h3, h4 {
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-heading);
+}
+
+h1 { font-size: var(--text-h1); }
+h2 { font-size: var(--text-h2); }
+h3 { font-size: var(--text-h3); }
+h4 { font-size: var(--text-h4); }
+
+a {
+  color: inherit;
+}
+
+address {
+  font-style: normal;
+}
+
+/* Focus da tastiera: nero con un anello bianco, visibile sia sul bianco sia sul blu. */
+:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-width);
+  box-shadow: 0 0 0 var(--focus-width) var(--color-paper);
+}
+
+
+/* 5. Layout
+   ========================================================================== */
+
+/* Contenitore: larghezza del visual, margini laterali dalla tabella a pagina 2. */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+main {
+  flex: 1; /* il footer resta in fondo anche nelle pagine corte */
+}
+
+
+/* 6. Componenti
+   ========================================================================== */
+
+/* Skip link: fuori dallo schermo finché non riceve il focus (primo Tab). */
+.skip-link {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* Header ------------------------------------------------------------------ */
+
+.site-header {
+  position: sticky; /* visual: "Menu desktop: sticky" */
+  top: 0;
+  z-index: 40;
+  background: var(--color-brand);
+  color: var(--color-paper);
+}
+
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap; /* senza JavaScript, su mobile il menu va a capo sotto il logo */
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 var(--space-6);
+  min-height: var(--header-height);
+}
+
+.site-header__logo {
+  display: block;
+  width: var(--logo-header);
+}
+
+/* Menu -------------------------------------------------------------------- */
+
+.menu__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-6);
+}
+
+.menu__link {
+  /* In colonna: sotto il testo c'è la copia in grassetto (::after) che decide la larghezza. */
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap);
+  font-size: var(--text-menu);
+  font-weight: var(--weight-light);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Copia invisibile in grassetto: riserva la larghezza del testo in grassetto,
+   così hover e pagina corrente non spostano le voci vicine. Gli screen reader la ignorano. */
+.menu__link::after {
+  content: attr(data-label);
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  font-weight: var(--weight-bold);
+}
+
+.menu__link:hover,
+.menu__link:focus-visible,
+.menu__link[aria-current] {
+  font-weight: var(--weight-bold);
+}
+
+/* Le icone social nel menu servono solo nel pannello mobile (come nel visual). */
+.menu__social {
+  display: none;
+}
+
+/* Pulsante del menu mobile: hamburger, che da aperto diventa il cerchio bianco con la X del visual. */
+.menu-toggle {
+  position: relative;
+  z-index: 60; /* sopra il pannello del menu aperto */
+  display: grid;
+  place-items: center;
+  width: var(--space-12);
+  height: var(--space-12);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  cursor: pointer;
+}
+
+.menu-toggle[aria-expanded="true"] {
+  background: var(--color-paper);
+  color: var(--color-brand);
+}
+
+.menu-toggle__close,
+.menu-toggle[aria-expanded="true"] .menu-toggle__open {
+  display: none;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__close {
+  display: block;
+}
+
+@media (max-width: 47.99rem) {
+  /* Senza JavaScript: il menu occupa una riga intera sotto il logo. */
+  .menu {
+    width: 100%;
+    padding-bottom: var(--space-2);
+  }
+
+  /* Con JavaScript: il menu si apre dal pulsante come pannello a tutto schermo. */
+  .js .menu {
+    display: none;
+  }
+
+  .js .menu.is-open {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    padding: calc(var(--header-height) + var(--space-8)) var(--gutter) var(--space-12);
+    overflow-y: auto;
+    background: var(--color-brand);
+  }
+
+  .js .menu.is-open .menu__list {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .js .menu.is-open .menu__link {
+    align-items: flex-start;
+    font-size: var(--text-menu-mobile);
+  }
+
+  .js .menu.is-open .menu__social {
+    display: block;
+    margin-top: auto; /* icone in basso, come nel visual */
+  }
+
+  /* Mentre il menu è aperto la pagina sotto non scorre. */
+  .menu-open {
+    overflow: hidden;
+  }
+}
+
+/* Da tablet in su il menu è sempre in riga e il pulsante non serve. */
+@media (min-width: 48rem) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .menu__list {
+    gap: var(--space-6);
+  }
+}
+
+@media (min-width: 64rem) {
+  .menu__list {
+    gap: var(--space-8);
+  }
+}
+
+/* Selettore lingua (visibile solo con più lingue attive) -------------------- */
+
+.language-switch {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.language-switch a {
+  display: grid;
+  place-items: center;
+  min-width: var(--tap);
+  min-height: var(--tap);
+  font-size: var(--text-menu);
+  font-weight: var(--weight-light);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.language-switch [aria-current] {
+  font-weight: var(--weight-bold);
+}
+
+/* Icone social ------------------------------------------------------------ */
+
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(-1 * var(--space-2)); /* l'icona resta allineata al testo, l'area cliccabile no */
+}
+
+.social__link {
+  display: grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+}
+
+.social__link img {
+  /* Altezza fissa: le icone hanno proporzioni diverse (Facebook è stretta e alta). */
+  width: var(--icon-social);
+  height: var(--icon-social);
+  object-fit: contain;
+}
+
+/* Footer ------------------------------------------------------------------ */
+
+.site-footer {
+  padding-block: var(--space-20) var(--space-12);
+  background: var(--color-brand);
+  color: var(--color-paper);
+  font-size: var(--text-footer);
+}
+
+.site-footer__logo {
+  width: var(--logo-footer);
+}
+
+/* Due colonne anche su mobile, come nel visual: contatti | orari.
+   Gli orari prendono solo la larghezza che serve, così le 4 icone social (44px l'una) stanno in riga anche a 360px. */
+.site-footer__columns {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-4);
+  margin-top: var(--space-12);
+}
+
+.site-footer__contacts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.site-footer__label {
+  font-weight: var(--weight-bold);
+}
+
+.site-footer address p:not(.site-footer__label),
+.site-footer__phone {
+  font-weight: var(--weight-light);
+}
+
+.site-footer__phone {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  text-decoration: none;
+}
+
+.site-footer__phone:hover {
+  text-decoration: underline;
+}
+
+.site-footer__copyright {
+  margin-top: var(--space-12);
+  font-size: var(--text-small);
+  font-weight: var(--weight-light);
+}
+
+@media (min-width: 48rem) {
+  .site-footer {
+    padding-block: var(--space-40);
+  }
+
+  .site-footer__columns {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    margin-top: var(--space-36);
+  }
+
+  .site-footer__contacts {
+    gap: var(--space-8);
+  }
+}
+
+/* Orari ------------------------------------------------------------------- */
+
+.hours {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.hours__days {
+  font-weight: var(--weight-bold);
+}
+
+.hours__slots {
+  font-weight: var(--weight-light);
+}
+
+/* Da tablet: tabella a due colonne, giorni | fasce orarie. */
+@media (min-width: 48rem) {
+  .hours {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-content: start;
+    gap: var(--space-8) var(--space-8);
+  }
+
+  .hours__group {
+    display: contents; /* dt e dd diventano celle della tabella */
+  }
+}
+
+@media (min-width: 64rem) {
+  .hours {
+    column-gap: var(--space-16);
+  }
+}
+
+
+/* 7. Utilità
+   ========================================================================== */
+
+/* Chi ha chiesto meno movimento al sistema operativo non vede animazioni né transizioni. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

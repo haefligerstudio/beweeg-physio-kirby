@@ -2,12 +2,11 @@
 /*
   Template di riserva: Kirby lo usa per ogni pagina che non ha un template con il suo nome,
   per questo non va cancellato (https://getkirby.com/docs/guide/templates/basics).
-  Per ora serve anche alla home e alla pagina di errore.
+  Il titolo della pagina è l'unico H1.
 */
 ?>
-<?php snippet('header') ?>
-
-<h1><?= $page->title()->esc() ?></h1>
-<?= $page->text()->kt() ?>
-
-<?php snippet('footer') ?>
+<?php snippet('layout', slots: true) ?>
+  <div class="container">
+    <h1><?= $page->title()->esc() ?></h1>
+  </div>
+<?php endsnippet() ?>

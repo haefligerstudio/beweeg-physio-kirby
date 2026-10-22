@@ -103,5 +103,7 @@ php -S localhost:8000 kirby/router.php     # sito:     http://localhost:8000
 
 ## Stato
 K1 e K2 fatti: multilingua attivo (solo `it`, URL con `/it`), blueprint di tutte le pagine e della scheda
-"Impostazioni sito", pagine create con il solo titolo. Template ancora provvisori. Prossimo passo: K3 (import dei testi). Mancano ancora: foto di Jan, diplomi, mappa statica,
+"Impostazioni sito". K3: testi, foto, dati dello studio e orari importati (`scripts/importa-contenuti.php`).
+K4a: layout comune (`site/snippets/layout.php`), header, menu, footer, `assets/css/main.css`, `assets/js/main.js`, font locali.
+Prossimo passo: K4b (home). Mancano ancora: foto di Jan, diplomi, mappa statica,
 email e social dello studio, strumento di prenotazione, testi legali (vedi `../beweeg-physio/docs/MATERIALE.md`).

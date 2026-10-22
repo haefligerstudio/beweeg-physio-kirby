@@ -67,19 +67,49 @@ tabs:
       other:
         width: 1/2
         fields:
+          # Una riga per ogni gruppo di giorni, come nel footer.
+          # Le caselle dei giorni e le fasce orarie servono anche ai dati per Google (K5):
+          # così gli orari si scrivono una volta sola.
           hours:
             label: Orari
             type: structure
+            columns:
+              label:
+                width: 1/3
+              slots:
+                width: 2/3
             fields:
+              label:
+                label: Giorni (come appare sul sito)
+                type: text
+                help: Per esempio "lu–ma e gi–ve".
               days:
                 label: Giorni
-                type: text
+                type: checkboxes
+                columns: 4
+                options:
+                  Monday: lunedì
+                  Tuesday: martedì
+                  Wednesday: mercoledì
+                  Thursday: giovedì
+                  Friday: venerdì
+                  Saturday: sabato
+                  Sunday: domenica
               slots:
-                label: Orari
-                type: textarea
-                buttons: false
-                size: small
-                help: Una fascia oraria per riga, oppure "chiuso".
+                label: Fasce orarie
+                type: structure
+                help: Lascia vuoto se lo studio è chiuso in questi giorni.
+                fields:
+                  opens:
+                    label: Apre
+                    type: time
+                    step: 15
+                    width: 1/2
+                  closes:
+                    label: Chiude
+                    type: time
+                    step: 15
+                    width: 1/2
           bookingUrl:
             label: Link di prenotazione
             type: url
