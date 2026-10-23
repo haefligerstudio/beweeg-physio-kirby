@@ -106,5 +106,7 @@ K1 e K2 fatti: multilingua attivo (solo `it`, URL con `/it`), blueprint di tutte
 "Impostazioni sito". K3: testi, foto, dati dello studio e orari importati (`scripts/importa-contenuti.php`).
 K4a: layout comune (`site/snippets/layout.php`), header, menu, footer, `assets/css/main.css`, `assets/js/main.js`, font locali.
 K4b: home, pagina 404, componenti riusabili (page-intro con slideshow, button, section-heading, band,
-lead-text, picture, map). Prossimo passo: K4c (chi sono e trattamenti; lì nasce `treatment-card`). Mancano ancora: foto di Jan, diplomi, mappa statica,
+lead-text, picture, map). K4c: chi sono, trattamenti, trattamento, `treatment-card`, `placeholder`.
+Da K4c `docs/DESIGN.md` e `docs/CAMBIAMENTI-RISPETTO-AL-VISUAL.md` sono le versioni valide (copie aggiornate di
+quelle del progetto Next): le deviazioni nuove si scrivono lì. Prossimo passo: K4d (servizio a domicilio e prenota). Mancano ancora: foto di Jan, diplomi, mappa statica,
 email e social dello studio, strumento di prenotazione, testi legali (vedi `../beweeg-physio/docs/MATERIALE.md`).

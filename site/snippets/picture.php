@@ -5,9 +5,11 @@
   https://getkirby.com/docs/cookbook/performance/responsive-images
 
   Parametri: $image (la foto), $srcset (nome del preset), $sizes (larghezza a schermo),
-  $width (misura di riferimento per width/height), $lazy (true per le foto non subito visibili).
+  $width (misura di riferimento per width/height), $lazy (true per le foto non subito visibili),
+  $decorative (true: alt vuoto, quando il testo accanto dice già tutto, come nelle schede dei trattamenti).
 */
 $reference = $image->resize($width);
+$alt = ($decorative ?? false) ? '' : $image->alt()->esc('attr');
 ?>
 <picture>
   <?php if (option('beweeg.webp')): ?>
@@ -18,6 +20,6 @@ $reference = $image->resize($width);
        sizes="<?= $sizes ?>"
        width="<?= $reference->width() ?>"
        height="<?= $reference->height() ?>"
-       alt="<?= $image->alt()->esc('attr') ?>"
+       alt="<?= $alt ?>"
        <?= $lazy ? 'loading="lazy"' : 'fetchpriority="high"' ?>>
 </picture>

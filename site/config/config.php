@@ -39,6 +39,17 @@ return [
                 '1920w' => ['width' => 1920, 'format' => 'webp'],
                 '2560w' => ['width' => 2560, 'format' => 'webp'],
             ],
+            // Foto più piccole: schede dei trattamenti, foto di Jan, diplomi
+            'card' => [
+                '400w' => ['width' => 400],
+                '800w' => ['width' => 800],
+                '1200w' => ['width' => 1200],
+            ],
+            'card-webp' => [
+                '400w' => ['width' => 400, 'format' => 'webp'],
+                '800w' => ['width' => 800, 'format' => 'webp'],
+                '1200w' => ['width' => 1200, 'format' => 'webp'],
+            ],
         ],
     ],
 

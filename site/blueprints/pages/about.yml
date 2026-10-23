@@ -23,6 +23,7 @@ tabs:
         type: text
       text:
         extends: fields/text
+        help: Sul sito il testo si divide a metà in due blocchi, ognuno accanto a una foto (la prima metà ha un paragrafo in più se sono dispari). Con un numero pari di paragrafi i due blocchi restano bilanciati.
 
       quote:
         label: Citazione

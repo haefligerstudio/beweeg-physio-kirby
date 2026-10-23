@@ -18,7 +18,9 @@ $treatments = page('trattamenti');
       <?php snippet('lead-text', ['lead' => $page->aboutLead(), 'text' => $page->aboutText()]) ?>
 
       <div class="home-about__footer">
-        <?php snippet('button', ['url' => $about->url(), 'text' => t('buttons.learnMore')]) ?>
+        <div class="home-about__button">
+          <?php snippet('button', ['url' => $about->url(), 'text' => t('buttons.learnMore')]) ?>
+        </div>
         <ul class="stats">
           <?php foreach ($page->stats()->toStructure() as $stat): ?>
           <li class="stats__item">
