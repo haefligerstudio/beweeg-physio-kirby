@@ -14,7 +14,7 @@ $others = $page->siblings(false)->listed();
     <div class="container">
       <?php snippet('section-heading', ['text' => $page->title(), 'level' => 'h1', 'size' => 'h4']) ?>
       <?php snippet('lead-text', ['lead' => $page->lead(), 'text' => $page->text()]) ?>
-      <div class="section__action treatment-page__action">
+      <div class="section__action section__action--start">
         <?php snippet('button', ['url' => page('prenota')->url(), 'text' => t('buttons.book')]) ?>
       </div>
     </div>

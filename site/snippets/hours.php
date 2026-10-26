@@ -3,6 +3,9 @@
   Orari dalla tabella "Orari" delle Impostazioni sito: testo dei giorni e fasce orarie.
   Un gruppo senza fasce è un giorno di chiusura.
 */
+if ($site->hours()->toStructure()->isEmpty()) {
+    return; // tabella vuota: niente <dl> vuota nella pagina
+}
 ?>
 <dl class="hours">
   <?php foreach ($site->hours()->toStructure() as $group): ?>

@@ -2,9 +2,6 @@
 /*
   Footer: logo, indirizzo, contatti e orari. Tutti i dati vengono dalle Impostazioni sito.
 */
-
-// Il link tel: vuole il numero senza spazi (+41 77 … → +4177…).
-$phoneLink = str_replace(' ', '', $site->phone()->value());
 ?>
 <footer class="site-footer">
   <div class="container">
@@ -21,7 +18,7 @@ $phoneLink = str_replace(' ', '', $site->phone()->value());
         <div>
           <p class="site-footer__label"><?= esc(t('footer.contacts')) ?></p>
           <?php if ($site->phone()->isNotEmpty()): ?>
-          <a class="site-footer__phone" href="tel:<?= esc($phoneLink, 'attr') ?>"><?= $site->phone()->esc() ?></a>
+          <a class="site-footer__phone" href="tel:<?= esc($site->phoneLink(), 'attr') ?>"><?= $site->phone()->esc() ?></a>
           <?php endif ?>
           <?php snippet('social') ?>
         </div>

@@ -108,5 +108,7 @@ K4a: layout comune (`site/snippets/layout.php`), header, menu, footer, `assets/c
 K4b: home, pagina 404, componenti riusabili (page-intro con slideshow, button, section-heading, band,
 lead-text, picture, map). K4c: chi sono, trattamenti, trattamento, `treatment-card`, `placeholder`.
 Da K4c `docs/DESIGN.md` e `docs/CAMBIAMENTI-RISPETTO-AL-VISUAL.md` sono le versioni valide (copie aggiornate di
-quelle del progetto Next): le deviazioni nuove si scrivono lì. Prossimo passo: K4d (servizio a domicilio e prenota). Mancano ancora: foto di Jan, diplomi, mappa statica,
+quelle del progetto Next): le deviazioni nuove si scrivono lì. K4d: servizio a domicilio, prenota (link esterno
+o testo di riserva, sempre con contatti e orari), header sticky con `scroll-padding-top`. Tutte le pagine hanno
+il loro template. Prossimo passo: K4e (rifinitura grafica). Mancano ancora: foto di Jan, diplomi, mappa statica,
 email e social dello studio, strumento di prenotazione, testi legali (vedi `../beweeg-physio/docs/MATERIALE.md`).
