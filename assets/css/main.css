@@ -63,7 +63,15 @@
   /* Spaziature */
   --gutter: 1.5625rem;       /* 25px: margini laterali mobile (tabella p. 2) */
   --container: 71.25rem;     /* 1140px: frame del visual, margini compresi */
-  --header-height: 4rem;     /* 64px */
+  /* Header (regole di Sara: logo con 5px sopra e sotto; dopo lo scorrimento si riduce).
+     --header-height è l'altezza grande: lo spazio che l'header occupa nella pagina non cambia mai,
+     si riduce solo la barra visibile, così il contenuto non salta. */
+  --header-height: 3.75rem;         /* 60px su mobile */
+  --header-height-compact: 3.125rem;/* 50px */
+  --logo-height: 3.125rem;          /* 50px */
+  --logo-height-compact: 2.5rem;    /* 40px */
+  --header-logo-padding: 0.3125rem; /* 5px sopra e sotto il logo */
+  --header-compact-after: 7.5rem;   /* l'header si riduce dopo 120px di scorrimento */
   --tap: 2.75rem;            /* 44px: area minima cliccabile */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -138,12 +146,21 @@
   --radius-md: 0.375rem;        /* schede dei trattamenti */
   --radius-pill: 999px;
 
+  /* Pulsanti (regole di Sara: raggio 20px, freccia che scorre di più, nessun movimento verticale).
+     I tre colori sono ancora quelli scelti per il contrasto (CAMBIAMENTI-RISPETTO-AL-VISUAL.md):
+     aspettano la risposta di Sara e si cambiano solo qui. */
+  --radius-button: 1.25rem;       /* 20px */
+  --button-arrow-shift: 0.5rem;   /* 8px: quanto scorre la freccia all'hover e al focus */
+  --button-arrow-duration: 300ms; /* un po' più lenta delle altre transizioni */
+  --button-bg: var(--color-brand-strong);  /* #547996 · testo bianco 4,61:1 */
+  --button-bg-hover: var(--color-brand);   /* #4c7a9c */
+  --button-text: var(--color-paper);
+
   /* Movimento: solo funzionale, breve. */
   --duration: 200ms;
   --ease: ease-out;
 
   /* Misure dei componenti */
-  --logo-header: 8.5rem;      /* 136px */
   --logo-footer: 12rem;       /* 192px */
   --footer-padding: 3.125rem; /* 50px sopra e sotto, da tablet (regole di Sara) */
   --footer-gap-top: 4.375rem; /* 70px dal logo ai blocchi, da tablet (regole di Sara) */
@@ -155,7 +172,10 @@
 @media (min-width: 48rem) {
   :root {
     --gutter: 2rem;           /* 32px */
-    --header-height: 6rem;    /* 96px */
+    --header-height: 4.375rem;         /* 70px su tablet */
+    --header-height-compact: 3.5rem;   /* 56px */
+    --logo-height: 3.75rem;            /* 60px */
+    --logo-height-compact: 2.875rem;   /* 46px */
     --text-footer: var(--text-menu); /* 16px: come il menu (regole di Sara); su mobile resta 18px */
     --text-quote: 2.25rem;    /* 36px */
     --logo-footer: 24rem;     /* 384px */
@@ -181,6 +201,10 @@
 @media (min-width: 64rem) {
   :root {
     --gutter: 3.125rem;       /* 50px */
+    --header-height: 5rem;             /* 80px: logo 70px + 5px sopra e sotto (Sara) */
+    --header-height-compact: 3.75rem;  /* 60px */
+    --logo-height: 4.375rem;           /* 70px */
+    --logo-height-compact: 3.125rem;   /* 50px (Sara) */
     --text-body: 1.5625rem;   /* 25px */
     /* 29/25 = 1,16: interlinea della tabella a pagina 2 ("Interlinea 29 px").
        DA DISCUTERE con Sara: è stretta per un pubblico anziano. */
@@ -352,35 +376,69 @@ main {
    pulsante del menu 60 (sopra il pannello, per chiuderlo), skip link 100. */
 
 /* Sticky a tutte le larghezze: il menu resta sempre a portata (visual: "segue… più semplice
-   per le persone anziane"). */
+   per le persone anziane").
+   L'esterno occupa sempre l'altezza grande ed è trasparente e "non cliccabile": quando la barra
+   blu si riduce, il contenuto sotto non si sposta e resta cliccabile nella striscia che si libera. */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: var(--color-brand);
+  height: var(--header-height);
   color: var(--color-paper);
+  pointer-events: none;
 }
 
 /* Senza JavaScript, su mobile il menu va a capo e l'header diventa alto:
-   lì non resta fisso, altrimenti coprirebbe metà dello schermo. */
+   lì non resta fisso (coprirebbe metà dello schermo) e prende l'altezza che serve. */
 @media (max-width: 47.99rem) {
   html:not(.js) .site-header {
     position: static;
+    height: auto;
   }
 }
 
+/* La barra blu vera, a tutta larghezza (regole di Sara): restano solo i margini laterali. */
 .site-header__inner {
   display: flex;
   flex-wrap: wrap; /* senza JavaScript, su mobile il menu va a capo sotto il logo */
   align-items: center;
   justify-content: space-between;
   gap: 0 var(--space-6);
+  max-width: none;
   min-height: var(--header-height);
+  background: var(--color-brand);
+  pointer-events: auto;
+  transition: min-height var(--duration) var(--ease);
 }
 
 .site-header__logo {
   display: block;
-  width: var(--logo-header);
+  padding-block: var(--header-logo-padding);
+}
+
+.site-header__logo img {
+  width: auto;
+  height: var(--logo-height);
+  transition: height var(--duration) var(--ease);
+}
+
+/* Dopo lo scorrimento (classe aggiunta da main.js): barra e logo più bassi. */
+.site-header.is-compact .site-header__inner {
+  min-height: var(--header-height-compact);
+}
+
+.site-header.is-compact .site-header__logo img {
+  height: var(--logo-height-compact);
+}
+
+/* Sentinella invisibile creata da main.js: quando esce dallo schermo, l'header si riduce. */
+.header-sentinel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: var(--header-compact-after);
+  pointer-events: none;
 }
 
 /* Menu -------------------------------------------------------------------- */
@@ -688,7 +746,7 @@ main {
 }
 
 
-/* Pulsante a pillola con freccia (snippet button.php) ------------------------ */
+/* Pulsante con freccia (snippet button.php) ---------------------------------- */
 
 .button {
   display: inline-flex;
@@ -696,9 +754,9 @@ main {
   gap: var(--space-3);
   min-height: var(--space-12);
   padding: var(--space-2) var(--space-8);
-  border-radius: var(--radius-pill);
-  background: var(--color-brand-strong); /* bianco 4,61:1 (visual #7bacd7: 2,41:1) */
-  color: var(--color-paper);
+  border-radius: var(--radius-button);
+  background: var(--button-bg);
+  color: var(--button-text);
   box-shadow: var(--shadow-button);
   font-size: var(--text-button);
   font-weight: var(--weight-regular); /* visual 300: 400 per leggibilità (DESIGN.md) */
@@ -708,19 +766,21 @@ main {
   transition: background-color var(--duration) var(--ease);
 }
 
+/* All'hover cambia solo lo sfondo: niente movimento verticale (regola di Sara). */
 .button:hover {
-  background: var(--color-brand);
+  background: var(--button-bg-hover);
 }
 
-/* La freccia scorre di 4px a destra: segnala che il pulsante porta altrove. */
+/* La freccia scorre a destra: segnala che il pulsante porta altrove.
+   Con "riduci movimento" la regola globale in fondo al file azzera la transizione. */
 .button__arrow {
   flex-shrink: 0;
-  transition: transform var(--duration) var(--ease);
+  transition: transform var(--button-arrow-duration) var(--ease);
 }
 
 .button:hover .button__arrow,
 .button:focus-visible .button__arrow {
-  transform: translateX(var(--space-1));
+  transform: translateX(var(--button-arrow-shift));
 }
 
 @media (min-width: 48rem) {
@@ -1310,12 +1370,12 @@ main {
 
 /* Il pulsante dentro la scheda reagisce alla scheda intera, che è il link. */
 .treatment-card:hover .button {
-  background: var(--color-brand);
+  background: var(--button-bg-hover);
 }
 
 .treatment-card:hover .button__arrow,
 .treatment-card:focus-visible .button__arrow {
-  transform: translateX(var(--space-1));
+  transform: translateX(var(--button-arrow-shift));
 }
 
 /* Griglia delle schede: una colonna su mobile, due da tablet. */

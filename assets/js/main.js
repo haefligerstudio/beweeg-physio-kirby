@@ -1,11 +1,34 @@
 /*
-  Menu mobile.
-  Senza questo file il sito funziona lo stesso: il menu resta visibile sotto il logo (vedi main.css).
+  Menu mobile e header compatto. Caricato in tutte le pagine dal layout.
+  Senza questo file il sito funziona lo stesso: il menu resta visibile sotto il logo
+  e l'header resta nella versione grande (vedi main.css).
 */
 
 // Subito, prima che la pagina venga disegnata: il CSS sa che il JavaScript c'è
 // e su mobile può chiudere il menu dietro al pulsante senza far lampeggiare la pagina.
 document.documentElement.classList.add('js');
+
+/*
+  Header compatto: dopo circa 120px di scorrimento l'header si riduce (classe is-compact, misure in main.css).
+  Invece di ascoltare ogni scroll, si osserva una "sentinella" invisibile alta 120px in cima alla pagina:
+  il browser avvisa solo quando entra o esce dallo schermo. Senza IntersectionObserver l'header resta grande.
+*/
+document.addEventListener('DOMContentLoaded', function () {
+  const header = document.querySelector('.site-header');
+
+  if (!header || !('IntersectionObserver' in window)) {
+    return;
+  }
+
+  const sentinel = document.createElement('div');
+  sentinel.className = 'header-sentinel';
+  sentinel.setAttribute('aria-hidden', 'true');
+  document.body.prepend(sentinel);
+
+  new IntersectionObserver(function (entries) {
+    header.classList.toggle('is-compact', !entries[0].isIntersecting);
+  }).observe(sentinel);
+});
 
 document.addEventListener('DOMContentLoaded', function () {
   const button = document.querySelector('.menu-toggle');

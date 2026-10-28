@@ -6,7 +6,7 @@
 <header class="site-header">
   <div class="container site-header__inner">
     <a class="site-header__logo" href="<?= $site->url() ?>" aria-label="<?= esc(t('a11y.home'), 'attr') ?>">
-      <img src="<?= url('assets/images/logo-white.svg') ?>" alt="" width="136" height="48">
+      <img src="<?= url('assets/images/logo-white.svg') ?>" alt="" width="201" height="70">
     </a>
 
     <!-- Nascosto finché il JavaScript non lo attiva: senza JS il menu resta visibile sotto il logo. -->
