@@ -49,9 +49,12 @@ Valori del visual campionati sui pixel dei PDF; palette ufficiale dalla pagina 2
 |---|---|---|---|
 | Interlinea del testo corrente, mobile | circa 1,2 (testo a circa 13,6px) | **1,65** (testo a 18px) | leggibilità: il pubblico è anche anziano, e su schermo piccolo righe più distanziate si seguono meglio. Anche la pagina risulta più lunga del visual |
 | Interlinea del testo corrente, desktop (da 1024px) | 1,16 (29px su 25px, tabella a pagina 2) | 1,16, come il visual | **da discutere con il cliente**: è stretta per un pubblico anziano; WCAG 1.4.12 chiede che il sito regga fino a 1,5 |
+| Testo del footer, da 768px | circa 30px su desktop (audit) | **16px**, come il menu (`--text-menu`); su mobile resta 18px | richiesta di Sara (regole del 27 ottobre): footer più leggero, stessa misura del menu |
 
 ## Comportamenti
 
 | Dove | Visual | Sito | Motivo |
 |---|---|---|---|
-| Diplomi (Chi sono), mobile | solo didascalie con il link "clicca per visualizzare" | immagini impilate con la didascalia; ogni diploma è un link al file intero, in una nuova scheda | nessun testo nuovo da scrivere e tradurre; il diploma si può ingrandire su ogni schermo. Su desktop stesso comportamento |
+| Diplomi (Chi sono), mobile | solo didascalie con il link "clicca per visualizzare" | immagini impilate con la didascalia; ogni diploma è un link a una versione grande (circa 2000px), in una nuova scheda | nessun testo nuovo da scrivere e tradurre; il diploma si può ingrandire su ogni schermo. Su desktop stesso comportamento |
+| Footer, mobile | due colonne (contatti · orari) | **una colonna**: logo, indirizzo, contatti, orari, icone social in fondo | richiesta di Sara (foto "Footer Mobile" del 27 ottobre) |
+| Footer, da 768px | contenitore e spazi del visual | padding 50px, contenitore a tutta larghezza, blocchi a 70px dal logo, orari a destra | regole di Sara (27 ottobre) |

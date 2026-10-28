@@ -71,7 +71,9 @@ $diplomaSlots = max(2, count($diplomas));
           <li class="diplomas__item">
             <?php if ($diploma): ?>
             <?php // Il diploma si apre intero in una nuova scheda (DESIGN.md). Nome del link: didascalia, o testo alternativo. ?>
-            <a class="diplomas__link" href="<?= $diploma->url() ?>" target="_blank" rel="noopener noreferrer">
+            <?php // Il link apre una copia creata da Kirby con il lato lungo di 2000px (anche per il diploma verticale),
+                // non il file caricato, più pesante. ?>
+          <a class="diplomas__link" href="<?= $diploma->resize(2000, 2000)->url() ?>" target="_blank" rel="noopener noreferrer">
               <?php snippet('picture', [
                   'image' => $diploma,
                   'srcset' => 'card',

@@ -145,6 +145,8 @@
   /* Misure dei componenti */
   --logo-header: 8.5rem;      /* 136px */
   --logo-footer: 12rem;       /* 192px */
+  --footer-padding: 3.125rem; /* 50px sopra e sotto, da tablet (regole di Sara) */
+  --footer-gap-top: 4.375rem; /* 70px dal logo ai blocchi, da tablet (regole di Sara) */
   --icon-social: 1.75rem;     /* 28px */
   --focus-width: 3px;
 }
@@ -154,7 +156,7 @@
   :root {
     --gutter: 2rem;           /* 32px */
     --header-height: 6rem;    /* 96px */
-    --text-footer: 1.25rem;   /* 20px */
+    --text-footer: var(--text-menu); /* 16px: come il menu (regole di Sara); su mobile resta 18px */
     --text-quote: 2.25rem;    /* 36px */
     --logo-footer: 24rem;     /* 384px */
     --icon-social: 2rem;      /* 32px */
@@ -187,7 +189,6 @@
     --text-h2: 2.8125rem;     /* 45px */
     --text-h3: 2.5rem;        /* 40px */
     --text-h4: 2.1875rem;     /* 35px */
-    --text-footer: 1.875rem;  /* 30px (audit: footer 29,9 / 28–29,8) */
     --text-stat: 5.125rem;    /* 82px */
     --text-stat-label: 1.25rem; /* 20px (visual 20,9 light) */
     --text-quote: 4.0625rem;  /* 65px */
@@ -554,15 +555,15 @@ main {
 .social__link {
   display: grid;
   place-items: center;
-  width: var(--tap);
+  min-width: var(--tap); /* l'icona dell'email è più larga: l'area cresce, non si stringe sotto i 44px */
   height: var(--tap);
 }
 
+/* Stessa altezza per tutte, larghezza dalle proporzioni di ogni SVG (Facebook stretta, email larga):
+   così nessuna si deforma o rimpicciolisce per stare in un quadrato. */
 .social__link img {
-  /* Altezza fissa: le icone hanno proporzioni diverse (Facebook è stretta e alta). */
-  width: var(--icon-social);
+  width: auto;
   height: var(--icon-social);
-  object-fit: contain;
 }
 
 /* Desktop: icone più distanziate, come nel visual (passo di circa 62px). */
@@ -585,19 +586,12 @@ main {
   width: var(--logo-footer);
 }
 
-/* Due colonne anche su mobile, come nel visual: contatti | orari.
-   Gli orari prendono solo la larghezza che serve, così le 4 icone social (44px l'una) stanno in riga anche a 360px. */
-.site-footer__columns {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: var(--space-4);
-  margin-top: var(--space-12);
-}
-
-.site-footer__contacts {
+/* Mobile: una sola colonna, come nella foto di Sara: indirizzo, contatti, orari, icone in fondo. */
+.site-footer__blocks {
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
+  margin-top: var(--space-12);
 }
 
 .site-footer__label {
@@ -626,20 +620,35 @@ main {
   font-weight: var(--weight-light);
 }
 
+/* Da tablet, regole di Sara: padding 50px, contenitore a tutta larghezza, blocchi a 70px dal logo.
+   A sinistra indirizzo, contatti e icone uno sotto l'altro (visual), a destra gli orari;
+   space-between porta le due colonne ai lati. */
 @media (min-width: 48rem) {
   .site-footer {
-    padding-block: var(--space-40);
+    padding-block: var(--footer-padding);
   }
 
-  .site-footer__columns {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-8);
-    margin-top: var(--space-36);
+  .site-footer__inner {
+    max-width: none;
   }
 
-  .site-footer__contacts {
-    gap: var(--space-8);
+  .site-footer__blocks {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas:
+      "address  hours"
+      "contacts hours"
+      "social   hours";
+    justify-content: space-between;
+    align-content: start;
+    gap: var(--space-6) var(--space-8);
+    margin-top: var(--footer-gap-top);
   }
+
+  .site-footer__address { grid-area: address; }
+  .site-footer__contacts { grid-area: contacts; }
+  .site-footer .hours { grid-area: hours; }
+  .site-footer .social { grid-area: social; }
 }
 
 /* Orari ------------------------------------------------------------------- */

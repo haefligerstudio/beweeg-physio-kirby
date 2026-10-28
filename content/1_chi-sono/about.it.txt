@@ -30,7 +30,10 @@ Diplomastitle: Diplomi principali
 
 ----
 
-Diplomas: []
+Diplomas:
+
+- 'file://tdvkwqyqleunqtv3'
+- 'file://fa8cqczlk6nynapa'
 
 ----
 

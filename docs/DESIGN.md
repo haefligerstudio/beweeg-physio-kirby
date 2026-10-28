@@ -40,7 +40,7 @@ Colori cambiati per la leggibilità, con valori e rapporti di contrasto: **`docs
 - Footer mobile: testo a 18px (visual ≈ 12px), quindi l'indirizzo va a capo nella colonna stretta.
 - Didascalie dei diplomi e titolo "Dai un'occhiata agli altri trattamenti": bianco sulla banda nel visual (1.6:1) → `--accent-on-tint`.
 - Diplomi su mobile (Kirby): il visual mostra solo le didascalie con il link "clicca per visualizzare" (immagine a parte).
-  Qui i diplomi sono immagini impilate, ognuna con la sua didascalia; **ogni diploma è un link al file intero** che si apre
+  Qui i diplomi sono immagini impilate, ognuna con la sua didascalia; **ogni diploma è un link a una versione grande (circa 2000px)** che si apre
   in una nuova scheda (nome accessibile: didascalia + "si apre in una nuova scheda"). Nessun testo nuovo da tradurre.
   Il link c'è anche su desktop, per avere un solo comportamento. Finché le foto non arrivano: riquadri neutri senza didascalia.
 - Card trattamenti su mobile: il visual scrive "scopri di più", su desktop "scopri ora": usato "scopri ora" ovunque.

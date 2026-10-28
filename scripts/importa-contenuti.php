@@ -51,7 +51,20 @@ const ALT_PROVVISORI = [
     'treatment-2.jpg' => 'Medico che misura la pressione a una paziente anziana',
     'treatment-3.jpg' => 'Fisioterapista che muove il ginocchio di un paziente sdraiato',
     'treatment-4.jpg' => 'Terapista che sostiene con delicatezza la testa di una paziente anziana sdraiata',
+    // Diplomi: PROVVISORI anche questi, da far approvare.
+    'diploma-1.jpg' => 'Diploma di fisioterapista di Johannes de Wild, Accademia di fisioterapia di Arnhem, 1985',
+    'diploma-2.jpg' => 'Diploma di Herztherapeut SAKR di Johannes de Wild, Berna, 2010',
 ];
+
+// Diplomi: gli originali del cliente (PNG pesanti) restano fuori dal progetto e non si toccano;
+// nella pagina va una copia JPEG con il lato lungo al massimo di LATO_MASSIMO px.
+// Il numero è l'ordine nel layout: 1 orizzontale, 2 verticale.
+const CARTELLA_DIPLOMI = '/../../00-materiale-cliente/x Amos progresso BIS quasi DEF quasi FINAL/Diplomi';
+const DIPLOMI = [
+    1 => 'Diploma Fisio Base - Johannes de Wild.png',
+    2 => 'Diploma cuore - Johannes de Wild.png',
+];
+const LATO_MASSIMO = 2400;
 
 // Giorni della settimana come li salva il campo "Giorni" degli orari (gli stessi nomi di site.ts e di Google).
 const GIORNI = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -107,10 +120,14 @@ function aggiorna(Kirby\Cms\Page|Kirby\Cms\Site $modello, array $campi, string $
 }
 
 // Copia una foto nella pagina (o nel sito), se non c'è già, e restituisce il riferimento per i campi file.
-// Il testo alternativo viene sempre riscritto con quello di ALT_PROVVISORI.
-function foto(Kirby\Cms\Page|Kirby\Cms\Site $modello, string $sorgente, string $nome): string
+// Il testo alternativo (da ALT_PROVVISORI) viene sempre riscritto, la didascalia solo se lo script ne ha una:
+// rilanciando non si creano doppioni.
+function foto(Kirby\Cms\Page|Kirby\Cms\Site $modello, string $sorgente, string $nome, string $didascalia = ''): string
 {
     $alt = ['alt' => ALT_PROVVISORI[$nome]];
+    if ($didascalia !== '') {
+        $alt['caption'] = $didascalia;
+    }
     $file = $modello->file($nome);
 
     if ($file === null) {
@@ -125,6 +142,21 @@ function foto(Kirby\Cms\Page|Kirby\Cms\Site $modello, string $sorgente, string $
     }
 
     return $file->uuid()->toString();
+}
+
+// Crea in un file temporaneo una copia JPEG di un'immagine grande, con il lato lungo al massimo di LATO_MASSIMO px.
+// Usa GD, la stessa libreria che Kirby usa per le miniature: nessuna dipendenza in più.
+function copiaOttimizzata(string $originale): string
+{
+    $immagine = imagecreatefromstring(file_get_contents($originale));
+    $latoLungo = max(imagesx($immagine), imagesy($immagine));
+    if ($latoLungo > LATO_MASSIMO) {
+        // Con solo la larghezza, imagescale mantiene le proporzioni.
+        $immagine = imagescale($immagine, (int)round(imagesx($immagine) * LATO_MASSIMO / $latoLungo));
+    }
+    $copia = tempnam(sys_get_temp_dir(), 'diploma') . '.jpg';
+    imagejpeg($immagine, $copia, 85);
+    return $copia;
 }
 
 // Titolo e, nelle lingue diverse dall'italiano, indirizzo della pagina.
@@ -242,17 +274,44 @@ aggiorna($kirby->page('home'), [
 echo "Chi sono\n";
 $usate[] = 'about.title';
 $chiSono = titoloEIndirizzo($kirby->page('chi-sono'), $testo('ui.nav.about'), $testo('routes.about'), $linguaPrincipale, $lingua);
-aggiorna($chiSono, [
+
+// Diplomi con le didascalie del JSON. Nella lingua principale si copia la foto (se manca) e si riempie il campo;
+// nelle altre lingue si traduce solo la didascalia dei diplomi già presenti.
+$diplomi = [];
+$didascalie = $testo('about.diplomas.captions');
+$cartellaDiplomi = $radice . CARTELLA_DIPLOMI;
+foreach (DIPLOMI as $numero => $originale) {
+    $nome = "diploma-$numero.jpg";
+    $didascalia = $didascalie[$numero - 1] ?? '';
+    $file = $chiSono->file($nome);
+
+    if ($linguaPrincipale === false) {
+        $file?->update(['caption' => $didascalia], $lingua);
+        continue;
+    }
+    if ($file === null && is_file("$cartellaDiplomi/$originale") === false) {
+        echo "  diploma $numero: originale non trovato in $cartellaDiplomi, saltato\n";
+        continue;
+    }
+    // La copia ottimizzata serve solo se il diploma non è ancora nella pagina.
+    $sorgente = $file === null ? copiaOttimizzata("$cartellaDiplomi/$originale") : '';
+    $diplomi[] = foto($chiSono, $sorgente, $nome, $didascalia);
+}
+
+$campi = [
     'tagline' => $testo('about.tagline'),
     'heading' => $testo('about.section.title'),
     'text' => paragrafi($testo('about.section.paragraphs')),
     'quote' => $testo('ui.quote.text'),
     'signature' => $testo('ui.quote.signature'),
     'diplomasTitle' => $testo('about.diplomas.title'),
-    // Foto di Jan e diplomi non ci sono ancora: le didascalie dei diplomi restano fuori (vedi elenco finale).
     'seoTitle' => $testo('seo.about.title'),
     'seoDescription' => $testo('seo.about.description'),
-], $lingua);
+];
+if ($diplomi !== []) {
+    $campi['diplomas'] = $diplomi;
+}
+aggiorna($chiSono, $campi, $lingua);
 
 // --- Trattamenti -----------------------------------------------------------------------
 
