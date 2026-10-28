@@ -62,7 +62,7 @@
 
   /* Spaziature */
   --gutter: 1.5625rem;       /* 25px: margini laterali mobile (tabella p. 2) */
-  --container: 71.25rem;     /* 1140px: frame del visual, margini compresi */
+  --container: 87.5rem;      /* 1400px, margini compresi (regole di Sara; il visual era 1140) */
   /* Header (regole di Sara: logo con 5px sopra e sotto; dopo lo scorrimento si riduce).
      --header-height è l'altezza grande: lo spazio che l'header occupa nella pagina non cambia mai,
      si riduce solo la barra visibile, così il contenuto non salta. */
@@ -118,7 +118,7 @@
   --gap-heading-text: var(--space-5);  /* titolo → testo (visual desktop 65px, da tablet) */
   --gap-paragraph: var(--space-4);     /* paragrafo → paragrafo */
   --gap-text-action: var(--space-14);  /* testo → pulsante o numeri */
-  --text-column: 31.25rem;             /* 500px: colonna del testo (audit) */
+  --text-column: 100%;                 /* colonna del testo: 100% su mobile, 75% da md, 50% da lg (Sara) */
   /* Griglia del visual (tabella p. 2): 4 colonne con 20px tra l'una e l'altra.
      Larghezza di una colonna, dentro il contenitore e i suoi margini. */
   --grid-gap: 1.25rem;
@@ -132,10 +132,12 @@
   --intro-controls: var(--tap);              /* striscia riservata ai comandi: non coprono il testo */
   --intro-rule: 5rem;                         /* trattino sotto i titoli (visual) */
   --rule-height: 3px;
+  --rule-gap: 0.625rem;                       /* 10px tra il titolo e il trattino (Sara) */
 
   /* Mappa */
   --map-ratio: 4 / 5;
-  --treatment-icon: 8.5rem;   /* 136px: visual mobile circa 100px × 1,3, come il testo */
+  --treatment-icon: 8.5rem;   /* altezza delle icone di "Cosa faccio": 136px su mobile (visual circa 100px × 1,3) */
+  --icons-gap: 1.875rem;      /* 30px tra le colonne delle icone, da lg (Sara) */
   --treatment-label-width: 16rem;
   --hover-scale: 1.05;        /* icona dei trattamenti all'hover */
   --border-thin: 1px;
@@ -190,6 +192,7 @@
     --gap-text-action: var(--space-20);
     --map-ratio: 8 / 3;
     --treatment-icon: 12rem;  /* 192px */
+    --text-column: 75%;
     --text-card-label: 1.5rem;  /* 24px */
     --text-caption: 1.25rem;    /* 20px */
     --text-subheading: 1.875rem; /* 30px */
@@ -219,6 +222,8 @@
     --text-tagline: 2.5rem;   /* 40px: H3 light della tabella */
     --text-button: 1.5625rem; /* 25px (visual 25) */
     --icon-social: 2.5rem;    /* 40px: icone del footer nel visual desktop */
+    --text-column: 50%;
+    --treatment-icon: 14.375rem; /* 230px (Sara) */
     --text-card-label: 1.5625rem; /* 25px: testo in grassetto (audit) */
     --text-caption: 1.5625rem;    /* 25px: didascalie dei diplomi (audit) */
     --text-subheading: 2.1875rem; /* 35px: H4 della tabella (audit) */
@@ -851,7 +856,7 @@ main {
   display: block;
   width: var(--intro-rule);
   height: var(--rule-height);
-  margin: var(--space-2) auto;
+  margin: var(--rule-gap) auto var(--space-2);
   background: currentColor;
 }
 
@@ -1008,8 +1013,8 @@ main {
   display: block;
   width: var(--intro-rule);
   height: var(--rule-height);
-  margin: var(--space-2) auto 0;
-  background: currentColor;
+  margin: var(--rule-gap) auto 0;
+  background: currentColor; /* stesso colore del titolo: si cambia in un punto solo */
 }
 
 /* "Un plus: servizi a domicilio": la parte dopo i due punti in corsivo light.
@@ -1137,8 +1142,12 @@ main {
   text-decoration: none;
 }
 
+/* Comanda l'altezza (Sara: 230px da lg); se la colonna è più stretta l'icona si rimpicciolisce senza deformarsi. */
 .treatment-link__icon {
-  width: var(--treatment-icon);
+  width: auto;
+  height: var(--treatment-icon);
+  max-width: 100%;
+  object-fit: contain;
   transition: transform var(--duration) var(--ease);
 }
 
@@ -1151,10 +1160,6 @@ main {
   font-size: var(--text-icon-label);
   font-weight: var(--weight-bold);
   line-height: var(--leading-heading);
-}
-
-.treatment-link:hover .treatment-link__label {
-  text-decoration: underline;
 }
 
 /* Un plus: su mobile c'è molto spazio prima del titolo (audit: 230px dal pulsante sopra). */
@@ -1227,9 +1232,10 @@ main {
     border-left: 0;
   }
 
+  /* 4 colonne uguali con 30px di spazio (Sara). */
   .home-treatments__list {
     grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-8);
+    gap: var(--space-8) var(--icons-gap);
   }
 
   .treatment-link {
@@ -1769,6 +1775,7 @@ main {
 /* Pagina non trovata --------------------------------------------------------- */
 
 .error-page__text {
+  max-width: var(--text-column);
   margin-top: var(--gap-heading-text);
 }
 
