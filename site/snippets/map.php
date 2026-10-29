@@ -3,7 +3,8 @@
   Mappa di Google incorporata, senza chiave API, con l'indirizzo delle Impostazioni sito.
   - L'iframe usa l'indirizzo "maps?q=…&output=embed": funziona senza chiave ma Google non lo documenta.
   - Il link usa invece l'indirizzo ufficiale (https://developers.google.com/maps/documentation/urls).
-  Attenzione: l'iframe carica cookie di Google → da citare nella Privacy (K6) e nella CSP (K7).
+  Attenzione: l'iframe carica cookie di Google → da citare nella Privacy (K6).
+  Sul server la CSP del .htaccess lo blocca finché non si completa il punto "MAPPA".
 */
 $address = $site->street() . ', ' . $site->zip() . ' ' . $site->city();
 // hl = lingua dei comandi della mappa, la stessa della pagina.

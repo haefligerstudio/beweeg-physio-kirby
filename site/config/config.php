@@ -11,6 +11,11 @@ return [
     // Spento di base: sul server pubblico mostrare gli errori PHP è un rischio di sicurezza.
     'debug' => false,
 
+    // Su un server pubblico Kirby non permette di creare il primo account dal pannello: è già il comportamento
+    // di base, qui scritto per chiarezza. Se servisse, metterlo a true solo per il tempo della creazione.
+    // https://getkirby.com/docs/reference/system/options/panel
+    'panel.install' => false,
+
     // L'unico interruttore per Google. false: ogni pagina ha "noindex" e robots.txt blocca tutto.
     // Metti true solo quando il cliente approva la pubblicazione (vedi docs/GUIDA-SARA.md).
     'beweeg.indexable' => false,

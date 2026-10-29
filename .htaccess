@@ -1,51 +1,53 @@
-# Kirby .htaccess
-# revision 2023-07-22
+# .htaccess del sito Beweeg physio (server Apache di Hostpoint)
+# Base: il .htaccess di Kirby (revision 2023-07-22), più HTTPS e header di sicurezza.
+# Fonti: https://getkirby.com/docs/guide/security
+#        https://support.hostpoint.ch/en/products/security/freessl/what-do-i-have-to-do-for-my-website-to-work-with-https
+#        https://support.hostpoint.ch/en/products/webhosting/frequently-asked-questions/http-security-headers
+# In locale (php -S … kirby/router.php) questo file non viene letto.
 
-# rewrite rules
+# Niente elenco dei file quando una cartella non ha index (consiglio della guida sicurezza di Kirby)
+Options -Indexes
+
 <IfModule mod_rewrite.c>
 
-# enable awesome urls. i.e.:
-# http://yourdomain.com/about-us/team
 RewriteEngine on
 
-# make sure to set the RewriteBase correctly
-# if you are running the site in a subfolder;
-# otherwise links or the entire site will break.
-#
-# If your homepage is http://yourdomain.com/mysite,
-# set the RewriteBase to:
-#
-# RewriteBase /mysite
-
-# In some environments it's necessary to
-# set the RewriteBase to:
-#
+# Se il sito finisse in una sottocartella, qui va il suo nome (es. RewriteBase /beweeg).
 # RewriteBase /
 
-# block files and folders beginning with a dot, such as .git
-# except for the .well-known folder, which is used for Let's Encrypt and security.txt
+# Tutto su HTTPS: senza, la password del pannello viaggerebbe in chiaro.
+# È la regola indicata da Hostpoint; funziona solo se il certificato (FreeSSL) è attivo.
+RewriteCond %{SERVER_PORT} !=443
+RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+
+# File e cartelle che iniziano con un punto (.git, .license, .lock…): mai leggibili.
+# Resta aperta solo .well-known, che serve ai certificati.
 RewriteRule (^|/)\.(?!well-known\/) index.php [L]
 
-# block all files in the content folder from being accessed directly
+# Cartelle con dati, configurazione e codice: chi le apre riceve la pagina 404 del sito.
+# content: testi; site: configurazione, account e sessioni; kirby: motore e pannello;
+# vendor: librerie PHP di Kirby; storage: non esiste oggi, ma è il nome che Kirby usa
+# per account, sessioni e cache nella struttura con cartella "public".
 RewriteRule ^content/(.*) index.php [L]
-
-# block all files in the site folder from being accessed directly
 RewriteRule ^site/(.*) index.php [L]
-
-# block direct access to Kirby and the Panel sources
 RewriteRule ^kirby/(.*) index.php [L]
+RewriteRule ^vendor/(.*) index.php [L]
+RewriteRule ^storage/(.*) index.php [L]
 
-# make site links work
+# composer.json e composer.lock elencano le versioni delle librerie: informazione utile solo a chi attacca
+RewriteRule ^composer\.(json|lock)$ index.php [L]
+
+# Indirizzi delle pagine: tutto ciò che non è un file vero passa a Kirby
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*) index.php [L]
 
 </IfModule>
 
-# pass the Authorization header to PHP
+# Il pannello riceve l'intestazione Authorization (accesso con token)
 SetEnvIf Authorization "(.+)" HTTP_AUTHORIZATION=$1
 
-# compress text file responses
+# Compressione dei file di testo
 <IfModule mod_deflate.c>
 AddOutputFilterByType DEFLATE text/plain
 AddOutputFilterByType DEFLATE text/html
@@ -54,14 +56,54 @@ AddOutputFilterByType DEFLATE text/javascript
 AddOutputFilterByType DEFLATE application/json
 AddOutputFilterByType DEFLATE application/javascript
 AddOutputFilterByType DEFLATE application/x-javascript
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE image/svg+xml
 </IfModule>
 
-# set security headers in all responses
+# Header di sicurezza. "always": valgono anche per la pagina 404 e gli altri errori.
 <IfModule mod_headers.c>
 
-# serve files as plain text if the actual content type is not known
-# (hardens against attacks from malicious file uploads)
+# File di tipo sconosciuto mostrati come testo e mai "indovinati" dal browser
+# (protegge da file caricati con contenuto nascosto)
 Header set Content-Type "text/plain" "expr=-z %{CONTENT_TYPE}"
-Header set X-Content-Type-Options "nosniff"
+Header always set X-Content-Type-Options "nosniff"
+
+# Non dire a tutti quale versione di PHP gira sul server
+Header always unset X-Powered-By
+
+# HSTS: per un anno il browser apre il sito solo in HTTPS. Solo sulle risposte HTTPS, come indica Hostpoint.
+# Niente includeSubDomains né preload: il dominio non è ancora deciso e non sappiamo
+# se altri sottodomini dello studio hanno HTTPS. Si possono aggiungere dopo, toglierli è difficile.
+Header always set Strict-Transport-Security "max-age=31536000" env=HTTPS
+
+# Agli altri siti non arriva nessuna informazione sulla pagina di provenienza; dentro il sito sì
+Header always set Referrer-Policy "same-origin"
+
+# Il sito non può essere mostrato dentro un riquadro di un altro sito (clickjacking).
+# SAMEORIGIN e non DENY: l'anteprima del pannello mostra le pagine in un riquadro del sito stesso.
+Header always set X-Frame-Options "SAMEORIGIN"
+
+# Funzioni del browser che il sito non usa: spente per il sito e per ciò che incorpora (mappa, prenotazione)
+Header always set Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
+
+# CSP: il browser carica solo ciò che è elencato. Tutto viene dal sito stesso ('self'):
+# CSS, JavaScript, font locali, foto e icone. Nessuno stile o script scritto nella pagina.
+# Il blocco JSON-LD dei dati strutturati non viene eseguito, quindi non serve permetterlo.
+# frame-ancestors 'self': come SAMEORIGIN sopra, per l'anteprima del pannello.
+#
+# >>> MAPPA (da completare): la mappa Google è un iframe; finché qui non c'è "frame-src"
+#     il browser la blocca. Aggiungere: frame-src con l'indirizzo esatto del servizio della mappa.
+#     Se la mappa nuova usa una chiave Google limitata per dominio, Google deve ricevere il dominio:
+#     allora Referrer-Policy diventa "strict-origin-when-cross-origin".
+# >>> PRENOTAZIONE (da completare, K6): se lo strumento di prenotazione viene incorporato
+#     in un iframe, aggiungere il suo dominio alla stessa direttiva frame-src.
+#     Se è solo un link esterno, non serve nulla.
+#
+# Il pannello (/panel e /api) è escluso: usa script con un codice monouso (nonce) generato da Kirby
+# a ogni pagina e manda già da solo "frame-ancestors 'none'". %{THE_REQUEST} è l'indirizzo chiesto
+# dal browser, prima che Kirby lo passi a index.php.
+<If "%{THE_REQUEST} !~ m#^\S+ /(panel|api)(/|\?|\s)#">
+Header always set Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'self'"
+</If>
 
 </IfModule>
