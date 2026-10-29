@@ -7,7 +7,9 @@
 */
 
 // Titolo della scheda: quello per Google se compilato nel pannello, altrimenti "pagina · sito".
-$title = $page->seoTitle()->or($page->title() . ' · ' . $site->title());
+// La 404 usa il suo titolo tradotto ("Pagina non trovata"), non il titolo tecnico della pagina "error".
+$pageTitle = $page->isErrorPage() ? t('error.title') : $page->title()->value();
+$title = $page->seoTitle()->or($pageTitle . ' · ' . $site->title());
 ?>
 <!DOCTYPE html>
 <html lang="<?= $kirby->language()->code() ?>">
@@ -15,9 +17,7 @@ $title = $page->seoTitle()->or($page->title() . ' · ' . $site->title());
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?= $title->esc() ?></title>
-
-  <!-- Anteprima: nessuna pagina va su Google finché non si decide di pubblicare (K5). -->
-  <meta name="robots" content="noindex, nofollow">
+  <?php snippet('seo') ?>
 
   <link rel="icon" href="<?= url('favicon.ico') ?>" sizes="48x48">
   <link rel="icon" href="<?= url('assets/images/favicon.svg') ?>" type="image/svg+xml">

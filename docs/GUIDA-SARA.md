@@ -25,3 +25,15 @@ Per sapere quale dei due casi vale sul server:
    del server (versioni, percorsi, configurazione): è un'informazione utile a chi vuole attaccarlo.
 
 Nella stessa pagina puoi controllare anche la riga **PHP Version** in alto: il sito richiede PHP 8.3 o più recente.
+
+## Pubblicare il sito su Google
+
+Finché il cliente non approva, il sito resta nascosto ai motori di ricerca: ogni pagina dice "non indicizzare"
+e `robots.txt` blocca tutto. Si cambia con **una sola riga**.
+
+1. Apri `site/config/config.php` e cambia `'beweeg.indexable' => false` in `'beweeg.indexable' => true`.
+2. Se il dominio è già definitivo, togli il `//` davanti alla riga `'url' => …` e scrivi l'indirizzo vero
+   (con `https://`): così tutti i link per Google usano il dominio giusto.
+3. Carica il file sul server e controlla nel browser `https://indirizzo-del-sito/robots.txt`:
+   deve dire `Allow: /` e indicare la sitemap.
+4. In Google Search Console aggiungi il sito e invia la sitemap: `https://indirizzo-del-sito/sitemap.xml`.

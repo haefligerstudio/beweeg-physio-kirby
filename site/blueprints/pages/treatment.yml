@@ -9,21 +9,27 @@ options:
   changeTemplate: false
   delete: false
 
-fields:
-  label:
-    label: Nome breve
-    type: text
-    help: Usato nelle schede dei trattamenti e nella home. In italiano può essere uguale al titolo.
-  tagline:
-    label: Sottotitolo
-    type: text
-    help: La riga sotto "Beweeg physio", sopra le foto.
-  lead:
-    extends: fields/lead
-  text:
-    extends: fields/text
-  photo:
-    extends: fields/images
-    label: Foto
-    multiple: false
-    help: La foto della scheda del trattamento.
+tabs:
+  content:
+    label: Contenuto
+    icon: text
+    fields:
+      label:
+        label: Nome breve
+        type: text
+        help: Usato nelle schede dei trattamenti e nella home. In italiano può essere uguale al titolo.
+      tagline:
+        label: Sottotitolo
+        type: text
+        help: La riga sotto "Beweeg physio", sopra le foto.
+      lead:
+        extends: fields/lead
+      text:
+        extends: fields/text
+      photo:
+        extends: fields/images
+        label: Foto
+        multiple: false
+        help: La foto della scheda del trattamento.
+
+  seo: tabs/seo

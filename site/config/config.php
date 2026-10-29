@@ -11,6 +11,38 @@ return [
     // Spento di base: sul server pubblico mostrare gli errori PHP è un rischio di sicurezza.
     'debug' => false,
 
+    // L'unico interruttore per Google. false: ogni pagina ha "noindex" e robots.txt blocca tutto.
+    // Metti true solo quando il cliente approva la pubblicazione (vedi docs/GUIDA-SARA.md).
+    'beweeg.indexable' => false,
+
+    // Indirizzo del sito: di base Kirby lo ricava dalla richiesta. Quando il dominio è deciso,
+    // si può fissarlo qui, così canonical, hreflang e sitemap usano sempre quello giusto.
+    // 'url' => 'https://www.esempio.ch',
+
+    // sitemap.xml e robots.txt non sono file: li crea Kirby (snippet sitemap.php e robots.php).
+    // Senza l'opzione "language" queste rotte rispondono all'indirizzo senza /it, come vogliono i motori di ricerca.
+    // https://getkirby.com/docs/cookbook/content-structure/sitemap
+    'routes' => [
+        [
+            'pattern' => 'sitemap.xml',
+            'action' => function () {
+                return new Kirby\Cms\Response(snippet('sitemap', [], true), 'application/xml');
+            },
+        ],
+        [
+            'pattern' => 'sitemap',
+            'action' => function () {
+                return go('sitemap.xml', 301);
+            },
+        ],
+        [
+            'pattern' => 'robots.txt',
+            'action' => function () {
+                return new Kirby\Cms\Response(snippet('robots', [], true), 'text/plain');
+            },
+        ],
+    ],
+
     // Multilingua attivo fin da subito, anche se oggi c'è solo l'italiano:
     // aggiungere inglese e tedesco dopo non cambierà gli indirizzi delle pagine italiane.
     // https://getkirby.com/docs/guide/languages/introduction
