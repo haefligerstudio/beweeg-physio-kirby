@@ -14,10 +14,20 @@ con la pagina 2 del visual generale).
   bottoni a pillola con freccia, footer blu con logo, indirizzo, contatti e orari.
 
 ## Palette
-Palette ufficiale (pagina 2 del visual generale): #4f7ca3 · #7bacd7 · #a5d0f2 · #3c7bae · #222220 · #ffffff.
-Colori cambiati per la leggibilità, con valori e rapporti di contrasto: **`docs/CAMBIAMENTI-RISPETTO-AL-VISUAL.md`**
-(header/footer #4c7a9c, pulsanti #547996, titoli e didascalie sulla banda #005a84, focus nero + anello bianco).
-**Da far approvare a Sara.**
+Foglio dei colori di Rebecca (31 ottobre, `00-materiale-cliente/indicazionixcolori_rebecca.pdf`), in `assets/css/main.css`:
+- **#2c7da4** `--color-brand`: header, footer, pulsanti in hover (testo bianco 4,59:1);
+- **#5aaed9** `--color-button`: pulsanti (il PDF scrive anche RGB 90,176,217, che non coincide: vale l'esadecimale);
+- **#92d1f4** `--color-tint`: fondi celesti;
+- **#007cb1** `--color-accent`: titoli, numeri, linee tra i numeri, linea sotto i titoli (4,65:1 su bianco);
+- **nero** testi, **bianco** sfondo principale.
+
+Due punti diversi dagli standard, con i numeri in **`docs/CAMBIAMENTI-RISPETTO-AL-VISUAL.md`**:
+- **deviazione dal foglio:** titoli e testi sui fondi celesti in blu scuro **#005a84** `--color-on-tint` (4,52:1),
+  perché il bianco del foglio fa 1,66:1. In attesa di Sara;
+- **eccezione di accessibilità decisa dal cliente:** testo dei pulsanti **bianco** su #5aaed9, come nel visual:
+  **2,47:1**, sotto il minimo AA di 4,5:1. In hover bianco su #2c7da4, 4,59:1.
+
+Focus da tastiera: nero con anello bianco, visibile su ogni sfondo.
 
 ## Tipografia
 - Roboto (variabile) + Reenie Beanie (frase a mano), self-hosted in `app/fonts/`.
@@ -30,15 +40,18 @@ Colori cambiati per la leggibilità, con valori e rapporti di contrasto: **`docs
 
 ## Altre deviazioni dal visual (tutte da segnalare a Sara)
 - Testo bianco sulle foto (hero, card trattamenti): aggiunto un velo scuro a gradiente, altrimenti il contrasto dipende dalla foto.
-- Slideshow: pulsante pausa e indicatori cliccabili, fermo con `prefers-reduced-motion` (WCAG 2.2.2).
+- Slideshow: indicatori cliccabili e raggiungibili da tastiera; si ferma con il mouse sopra e con il focus; fermo con
+  `prefers-reduced-motion`. **Nessun pulsante pausa**, su richiesta di Sara: eccezione a WCAG 2.2.2 decisa dal cliente
+  (vedi `CAMBIAMENTI-RISPETTO-AL-VISUAL.md`, sezione 5).
 - Footer: numero di telefono visibile e cliccabile (il visual mostra solo icone). Link a Privacy e Impressum da aggiungere.
 - L'H1 non è "Beweeg physio" in ogni pagina (un solo H1 per pagina, titolo del contenuto: serve a Google).
 - Pagina Prenota: non disegnata nel visual.
-- Bottoni: testo peso 400 (visual 300), stessa logica del corpo; testo mai a capo.
+- Bottoni: testo peso 400 (visual 300), stessa logica del corpo; testo mai a capo. Testo bianco come nel visual
+  (eccezione di contrasto decisa dal cliente, vedi Palette).
 - Home tra 768 e 1023px: statistiche e bottone "scopri di più" impilati come su mobile (in riga non ci stanno).
 - Mappa su mobile: il visual non mostra l'indirizzo sopra la mappa; anche qui è solo da md in su (resta nel footer).
 - Footer mobile: testo a 18px (visual ≈ 12px), quindi l'indirizzo va a capo nella colonna stretta.
-- Didascalie dei diplomi e titolo "Dai un'occhiata agli altri trattamenti": bianco sulla banda nel visual (1.6:1) → `--accent-on-tint`.
+- Didascalie dei diplomi e titolo "Dai un'occhiata agli altri trattamenti": bianco sulla banda nel visual (1,66:1) → `--color-on-tint` (#005a84, 4,52:1).
 - Diplomi su mobile (Kirby): il visual mostra solo le didascalie con il link "clicca per visualizzare" (immagine a parte).
   Qui i diplomi sono immagini impilate, ognuna con la sua didascalia; **ogni diploma è un link a una versione grande (circa 2000px)** che si apre
   in una nuova scheda (nome accessibile: didascalia + "si apre in una nuova scheda"). Nessun testo nuovo da tradurre.

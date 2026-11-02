@@ -2,8 +2,9 @@
   Slideshow dell'apertura (snippet slideshow.php).
   Senza questo file si vede solo la prima foto. Con questo file:
   - le foto cambiano ogni 6 secondi;
-  - si fermano con il pulsante pausa, con il mouse sopra e con il focus dentro;
-  - con "riduci movimento" attivo nel sistema non partono da sole (si avviano con il pulsante).
+  - si fermano con il mouse sopra e con il focus dentro (anche sui pallini);
+  - con "riduci movimento" attivo nel sistema non partono mai da sole: si cambiano con i pallini.
+  Nessun pulsante pausa, su richiesta di Sara (eccezione a WCAG 2.2.2).
 */
 
 const INTERVAL = 6000;
@@ -11,7 +12,6 @@ const INTERVAL = 6000;
 document.querySelectorAll('[data-slideshow]').forEach(function (slideshow) {
   const slides = slideshow.querySelectorAll('.slideshow__slide');
   const dots = slideshow.querySelectorAll('.slideshow__dot');
-  const pauseButton = slideshow.querySelector('.slideshow__pause');
 
   if (slides.length < 2) {
     return;
@@ -23,7 +23,6 @@ document.querySelectorAll('[data-slideshow]').forEach(function (slideshow) {
 
   let current = 0;
   let timer = null;
-  let pausedByUser = reduceMotion;
   let hovered = false;
   let focused = false;
 
@@ -43,27 +42,16 @@ document.querySelectorAll('[data-slideshow]').forEach(function (slideshow) {
     });
   }
 
-  // Avvia o ferma il cambio automatico in base a pausa, mouse e focus.
+  // Avvia o ferma il cambio automatico in base a "riduci movimento", mouse e focus.
   function update() {
     clearInterval(timer);
     timer = null;
-    if (!pausedByUser && !hovered && !focused) {
+    if (!reduceMotion && !hovered && !focused) {
       timer = setInterval(function () {
         show((current + 1) % slides.length);
       }, INTERVAL);
     }
   }
-
-  function setPausedByUser(paused) {
-    pausedByUser = paused;
-    pauseButton.classList.toggle('is-paused', paused);
-    pauseButton.setAttribute('aria-label', paused ? pauseButton.dataset.labelPlay : pauseButton.dataset.labelPause);
-    update();
-  }
-
-  pauseButton.addEventListener('click', function () {
-    setPausedByUser(!pausedByUser);
-  });
 
   dots.forEach(function (dot, i) {
     dot.addEventListener('click', function () {
@@ -83,5 +71,5 @@ document.querySelectorAll('[data-slideshow]').forEach(function (slideshow) {
   });
 
   slideshow.querySelector('.slideshow__controls').hidden = false;
-  setPausedByUser(pausedByUser);
+  update();
 });

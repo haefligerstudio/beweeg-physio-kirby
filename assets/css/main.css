@@ -15,18 +15,20 @@
    ========================================================================== */
 
 :root {
-  /* Colori. Quelli cambiati rispetto al visual (per il contrasto) sono spiegati
-     in CAMBIAMENTI-RISPETTO-AL-VISUAL.md, da far approvare a Sara. */
-  --color-brand: #4c7a9c;          /* header e footer · testo bianco 4,59:1 (visual #4f7ca3, 4,43:1) */
-  --color-brand-strong: #547996;   /* pulsanti · testo bianco 4,61:1 (visual #7bacd7, 2,41:1) */
-  --color-tint: #a5d0f3;           /* bande azzurre */
-  --color-accent: #007db6;         /* titoli e numeri su bianco · 4,56:1 */
-  --color-accent-on-tint: #005a84; /* titoli sulla banda azzurra · 4,62:1 (visual: bianco, 1,63:1) */
-  --color-pin: #9b1514;            /* segnaposto della mappa */
+  /* Colori: foglio di Rebecca del 31 ottobre (indicazionixcolori_rebecca.pdf), un punto per colore.
+     L'unica deviazione dal foglio, per il contrasto, è --color-on-tint qui sotto
+     (CAMBIAMENTI-RISPETTO-AL-VISUAL.md). */
+  --color-brand: #2c7da4;          /* header, footer, pulsanti in hover · testo bianco 4,59:1 */
+  --color-button: #5aaed9;         /* pulsanti (il PDF scrive anche RGB 90,176,217: vale l'esadecimale) */
+  --color-tint: #92d1f4;           /* fondi celesti */
+  --color-accent: #007cb1;         /* titoli, numeri, linee · 4,65:1 su bianco */
+  --color-accent-on-tint: #005a84; /* blu scuro leggibile sui fondi celesti · 4,52:1 */
   --color-ink: #000;               /* testo */
   --color-paper: #fff;             /* sfondo */
+  /* Deviazione a) dal foglio: titoli e testi sui fondi celesti. Il foglio li vuole bianchi (1,66:1).
+     Per seguire il foglio: var(--color-paper). */
+  --color-on-tint: var(--color-accent-on-tint);
   --color-focus: #000;             /* contorno del focus, con anello bianco: 3:1 su ogni sfondo */
-  --color-control: rgb(0 0 0 / 0.5);            /* fondo del pulsante pausa sopra le foto */
   --color-dot-off: rgb(255 255 255 / 0.3);      /* pallino della foto non visibile */
   /* Velo scuro sotto il testo bianco sulle foto: il contrasto non dipende dalla foto (DESIGN.md). */
   --gradient-photo: linear-gradient(to top, rgb(0 0 0 / 0.7), rgb(0 0 0 / 0.3) 50%, transparent);
@@ -150,14 +152,16 @@
   --radius-pill: 999px;
 
   /* Pulsanti (regole di Sara: raggio 20px, freccia che scorre di più, nessun movimento verticale).
-     I tre colori sono ancora quelli scelti per il contrasto (CAMBIAMENTI-RISPETTO-AL-VISUAL.md):
-     aspettano la risposta di Sara e si cambiano solo qui. */
+     Colori dal foglio di Rebecca: celeste a riposo, blu dell'header in hover. */
   --radius-button: 1.25rem;       /* 20px */
   --button-arrow-shift: 0.5rem;   /* 8px: quanto scorre la freccia all'hover e al focus */
   --button-arrow-duration: 300ms; /* un po' più lenta delle altre transizioni */
-  --button-bg: var(--color-brand-strong);  /* #547996 · testo bianco 4,61:1 */
-  --button-bg-hover: var(--color-brand);   /* #4c7a9c */
+  --button-bg: var(--color-button);
+  --button-bg-hover: var(--color-brand);
+  /* Testo bianco come nel visual, per scelta del cliente: sul celeste fa solo 2,47:1 (WCAG AA chiede 4,5:1).
+     Eccezione accettata, vedi CAMBIAMENTI-RISPETTO-AL-VISUAL.md. Per il testo nero (8,49:1): var(--color-ink). */
   --button-text: var(--color-paper);
+  --button-text-hover: var(--color-paper); /* bianco su #2c7da4: 4,59:1 */
 
   /* Movimento: solo funzionale, breve. */
   --duration: 200ms;
@@ -769,12 +773,14 @@ main {
   line-height: var(--leading-heading);
   text-decoration: none;
   white-space: nowrap; /* il testo del pulsante non va mai a capo */
-  transition: background-color var(--duration) var(--ease);
+  transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease);
 }
 
-/* All'hover cambia solo lo sfondo: niente movimento verticale (regola di Sara). */
+/* All'hover cambiano solo i colori: niente movimento verticale (regola di Sara).
+   La freccia usa currentColor e cambia insieme al testo. */
 .button:hover {
   background: var(--button-bg-hover);
+  color: var(--button-text-hover);
 }
 
 /* La freccia scorre a destra: segnala che il pulsante porta altrove.
@@ -915,7 +921,7 @@ main {
   object-fit: cover;
 }
 
-/* Comandi nella striscia in basso: pallini al centro, pausa a destra. */
+/* Pallini nella striscia in basso, centrati. */
 .slideshow__controls {
   position: absolute;
   inset: auto 0 0;
@@ -924,10 +930,6 @@ main {
   justify-content: center;
   align-items: center;
   height: var(--intro-controls);
-}
-
-.slideshow__dots {
-  display: flex;
 }
 
 .slideshow__dot {
@@ -953,36 +955,6 @@ main {
 
 .slideshow__dot[aria-current]::before {
   background: var(--color-paper);
-}
-
-.slideshow__pause {
-  position: absolute;
-  right: var(--space-2);
-  display: grid;
-  place-items: center;
-  width: var(--tap);
-  height: var(--tap);
-  padding: 0;
-  border: 0;
-  border-radius: var(--radius-pill);
-  background: var(--color-control);
-  color: var(--color-paper);
-  cursor: pointer;
-}
-
-.slideshow__icon-play,
-.slideshow__pause.is-paused .slideshow__icon-pause {
-  display: none;
-}
-
-.slideshow__pause.is-paused .slideshow__icon-play {
-  display: block;
-}
-
-@media (min-width: 48rem) {
-  .slideshow__pause {
-    right: var(--gutter);
-  }
 }
 
 /* Sezioni ------------------------------------------------------------------ */
@@ -1074,14 +1046,14 @@ main {
   margin-top: var(--gap-paragraph);
 }
 
-/* Banda azzurra (snippet band.php): titoli più scuri per il contrasto (4,62:1). */
+/* Banda celeste (snippet band.php): titoli blu scuro per il contrasto (4,52:1, deviazione a). */
 .band {
   padding-block: var(--space-16) var(--space-24);
   background: var(--color-tint);
 }
 
 .band .section-heading {
-  color: var(--color-accent-on-tint);
+  color: var(--color-on-tint);
 }
 
 @media (min-width: 48rem) {
@@ -1264,7 +1236,7 @@ main {
   align-items: center;
   min-height: var(--tap);
   margin-top: var(--space-2);
-  color: var(--color-accent-on-tint);
+  color: var(--color-on-tint);
   font-weight: var(--weight-bold);
 }
 
@@ -1272,7 +1244,7 @@ main {
   .map__address {
     display: block;
     margin-top: var(--space-20);
-    color: var(--color-accent-on-tint);
+    color: var(--color-on-tint);
     font-size: var(--text-h3);
     font-weight: var(--weight-bold);
     line-height: var(--leading-heading);
@@ -1378,6 +1350,7 @@ main {
 /* Il pulsante dentro la scheda reagisce alla scheda intera, che è il link. */
 .treatment-card:hover .button {
   background: var(--button-bg-hover);
+  color: var(--button-text-hover);
 }
 
 .treatment-card:hover .button__arrow,
@@ -1493,7 +1466,7 @@ main {
 
   .other-treatments .section-heading {
     margin: 0;
-    color: var(--color-accent-on-tint);
+    color: var(--color-on-tint);
   }
 
   .other-treatments__grid {
@@ -1694,7 +1667,7 @@ main {
   }
 
   .diplomas__caption {
-    color: var(--color-accent-on-tint); /* sulla banda: 4,62:1 (visual: bianco, 1,63:1) */
+    color: var(--color-on-tint); /* sulla banda: 4,52:1 (foglio: bianco, 1,66:1) */
   }
 
   .about__action {

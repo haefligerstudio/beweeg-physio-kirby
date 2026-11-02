@@ -39,8 +39,6 @@ return [
         'a11y.menuOpen' => 'Apri il menu',
         'a11y.menuClose' => 'Chiudi il menu',
         'a11y.language' => 'Lingua',
-        'a11y.slidePause' => 'Metti in pausa la presentazione',
-        'a11y.slidePlay' => 'Riprendi la presentazione',
         'a11y.slideGo' => 'Vai all’immagine',
         'a11y.mainNav' => 'Navigazione principale',
         'a11y.home' => 'Beweeg physio, pagina iniziale',

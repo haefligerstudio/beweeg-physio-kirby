@@ -2,8 +2,9 @@
 /*
   Foto che scorrono nell'apertura di ogni pagina (campo "Foto dello slideshow").
   Senza JavaScript si vede solo la prima foto e i comandi restano nascosti.
-  Con JavaScript (slideshow.js) le foto cambiano da sole, con pausa obbligatoria:
-  nessun movimento automatico che non si possa fermare (WCAG 2.2.2).
+  Con JavaScript (slideshow.js) le foto cambiano da sole e si fermano con il mouse sopra
+  e con il focus (anche sui pallini); con "riduci movimento" non partono e si cambiano solo con i pallini.
+  Nessun pulsante pausa: l'ha chiesto Sara (eccezione a WCAG 2.2.2, vedi CAMBIAMENTI-RISPETTO-AL-VISUAL.md).
 */
 $images = $site->slideshow()->toFiles();
 
@@ -30,18 +31,9 @@ $number = 0;
 
   <?php if ($images->count() > 1): ?>
   <div class="slideshow__controls" hidden>
-    <div class="slideshow__dots">
-      <?php for ($i = 1; $i <= $images->count(); $i++): ?>
-      <button class="slideshow__dot" type="button" aria-label="<?= esc(t('a11y.slideGo') . ' ' . $i, 'attr') ?>"<?= $i === 1 ? ' aria-current="true"' : '' ?>></button>
-      <?php endfor ?>
-    </div>
-    <button class="slideshow__pause" type="button"
-            aria-label="<?= esc(t('a11y.slidePause'), 'attr') ?>"
-            data-label-pause="<?= esc(t('a11y.slidePause'), 'attr') ?>"
-            data-label-play="<?= esc(t('a11y.slidePlay'), 'attr') ?>">
-      <svg class="slideshow__icon-pause" aria-hidden="true" width="12" height="14" viewBox="0 0 12 14" fill="currentColor"><path d="M0 0h4v14H0zM8 0h4v14H8z"/></svg>
-      <svg class="slideshow__icon-play" aria-hidden="true" width="12" height="14" viewBox="0 0 12 14" fill="currentColor"><path d="M0 0l12 7-12 7z"/></svg>
-    </button>
+    <?php for ($i = 1; $i <= $images->count(); $i++): ?>
+    <button class="slideshow__dot" type="button" aria-label="<?= esc(t('a11y.slideGo') . ' ' . $i, 'attr') ?>"<?= $i === 1 ? ' aria-current="true"' : '' ?>></button>
+    <?php endfor ?>
   </div>
   <?= js('assets/js/slideshow.js', ['defer' => true]) ?>
   <?php endif ?>
