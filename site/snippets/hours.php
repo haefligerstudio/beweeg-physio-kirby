@@ -1,7 +1,8 @@
 <?php
 /*
-  Orari dalla tabella "Orari" delle Impostazioni sito: testo dei giorni e fasce orarie.
-  Un gruppo senza fasce è un giorno di chiusura.
+  Orari dalla tabella "Orari" delle Impostazioni sito (usato nel footer): testo dei giorni e fasce orarie.
+  Un gruppo senza fasce è un giorno di chiusura. È una lista di definizioni (<dl>): giorni → orari,
+  letta così anche dagli screen reader. Le caselle "Giorni" della tabella le usa solo schema.php.
 */
 if ($site->hours()->toStructure()->isEmpty()) {
     return; // tabella vuota: niente <dl> vuota nella pagina

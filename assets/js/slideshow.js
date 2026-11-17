@@ -1,10 +1,11 @@
 /*
-  Slideshow dell'apertura (snippet slideshow.php).
+  Slideshow dell'apertura. Caricato dallo snippet slideshow.php, solo con almeno due foto.
   Senza questo file si vede solo la prima foto. Con questo file:
   - le foto cambiano ogni 6 secondi;
   - si fermano con il mouse sopra e con il focus dentro (anche sui pallini);
   - con "riduci movimento" attivo nel sistema non partono mai da sole: si cambiano con i pallini.
-  Nessun pulsante pausa, su richiesta di Sara (eccezione a WCAG 2.2.2).
+  Nessun pulsante pausa: decisione del cliente, eccezione a WCAG 2.2.2
+  (docs/CAMBIAMENTI-RISPETTO-AL-VISUAL.md, sezione 5).
 */
 
 const INTERVAL = 6000;

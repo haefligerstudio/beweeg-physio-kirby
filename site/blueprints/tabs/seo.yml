@@ -1,5 +1,5 @@
 # Scheda SEO, uguale in tutte le pagine che ce l'hanno.
-# Sono i testi che Google mostra nei risultati di ricerca.
+# Sono i testi che Google mostra nei risultati di ricerca: li usano layout.php (title) e seo.php (description).
 label: SEO
 icon: search
 fields:

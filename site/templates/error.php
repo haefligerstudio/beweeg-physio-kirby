@@ -1,7 +1,7 @@
 <?php
 /*
   Pagina non trovata (404). I testi sono nel file della lingua (error.*, buttons.home),
-  così si traducono come il resto dell'interfaccia.
+  così si traducono come il resto dell'interfaccia. La pagina "error" è nascosta nel pannello (pages/error.yml).
 */
 ?>
 <?php snippet('layout', slots: true) ?>

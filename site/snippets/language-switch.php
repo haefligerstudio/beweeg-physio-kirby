@@ -1,6 +1,6 @@
 <?php
 /*
-  Selettore lingua. Con una sola lingua attiva non mostra niente.
+  Selettore lingua (incluso da menu.php). Con una sola lingua attiva non mostra niente.
   Ogni link porta alla stessa pagina nell'altra lingua (gli indirizzi sono tradotti).
   https://getkirby.com/docs/guide/languages/switching-languages
 */

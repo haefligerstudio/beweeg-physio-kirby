@@ -1,7 +1,7 @@
 <?php
 /*
   Trattamento con icona e nome breve (home, sezione "Cosa faccio"). Tutto il blocco è un link.
-  Parametro: $treatment (pagina trattamento).
+  Parametro: $treatment (pagina trattamento). L'icona viene dal modello site/models/treatment.php.
 */
 ?>
 <a class="treatment-link" href="<?= $treatment->url() ?>">

@@ -1,10 +1,10 @@
 <?php
 /*
-  Riquadro neutro al posto di una foto non ancora arrivata (foto di Jan, diplomi):
+  Riquadro neutro al posto di una foto non ancora arrivata (foto di Jan, diplomi; usato in about.php):
   bordo e X come i segnaposto del visual, nessun testo. Sparisce da solo quando la foto viene caricata.
   Parametro: $shape, la forma con le proporzioni del visual:
   'portrait' (foto di Jan, 5:6), 'landscape' (diploma orizzontale A4), 'a4' (diploma verticale A4).
-  Le proporzioni stanno nel CSS (classi), non in uno style nell'HTML: così la CSP potrà vietare gli stili inline.
+  Le proporzioni stanno nel CSS (classi), non in uno style nell'HTML: la CSP del .htaccess vieta gli stili inline.
 */
 ?>
 <div class="placeholder placeholder--<?= $shape ?>" aria-hidden="true">

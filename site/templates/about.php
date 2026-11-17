@@ -2,6 +2,8 @@
 /*
   Pagina "chi sono": citazione di Jan, testo con due foto, diplomi e pulsante verso i trattamenti.
   Foto e diplomi mancanti diventano riquadri neutri: il layout resta quello del visual.
+  Campi: blueprint pages/about.yml (heading, quote, signature, text, photos, diplomasTitle, diplomas);
+  la didascalia di ogni diploma è un campo della foto (files/image.yml).
 */
 
 // Il campo Testo è un solo writer: lo divido a metà dopo un </p>, una metà accanto a ogni foto.

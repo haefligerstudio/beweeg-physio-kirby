@@ -1,4 +1,4 @@
-# Testo su più paragrafi.
+# Testo su più paragrafi (snippet lead-text.php; in about.php diviso in due metà).
 # Solo grassetto, corsivo e link, niente titoli né elenchi: la grafica dei titoli la decide il sito.
 # https://getkirby.com/docs/reference/panel/fields/writer
 label: Testo

@@ -2,6 +2,8 @@
 /*
   Home. Sezioni nell'ordine del visual: apertura, chi sono (con i numeri), cosa faccio,
   un plus (servizio a domicilio), dove trovi lo studio.
+  Campi: blueprint pages/home.yml. Le voci di "Cosa faccio" sono le sottopagine di "trattamenti";
+  l'indirizzo della mappa viene dalle Impostazioni sito.
 */
 $about = page('chi-sono');
 $treatments = page('trattamenti');
@@ -24,11 +26,13 @@ $treatments = page('trattamenti');
         <ul class="stats">
           <?php foreach ($page->stats()->toStructure() as $stat): ?>
           <li class="stats__item">
-            <span class="stats__value"><?= $stat->value()->esc() ?></span>
+            <?php // Il valore finale resta nell'HTML; stats.js lo fa salire da 0 solo se è un intero semplice ("31", non "100%"). ?>
+            <span class="stats__value"<?= ctype_digit($stat->value()->value()) ? ' data-count' : '' ?>><?= $stat->value()->esc() ?></span>
             <span class="stats__label"><?= $stat->label()->esc() ?></span>
           </li>
           <?php endforeach ?>
         </ul>
+        <?= js('assets/js/stats.js', ['defer' => true]) ?>
       </div>
     </div>
   </section>

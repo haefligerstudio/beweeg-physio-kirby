@@ -3,6 +3,7 @@
   Pagina di un trattamento: titolo (H1), paragrafo guida, testo e pulsante per prenotare.
   Sotto, sulla banda azzurra, le schede degli altri trattamenti.
   La foto del trattamento si vede solo nelle schede, come nel visual.
+  Campi: blueprint pages/treatment.yml (title, lead, text); il titolo sopra le schede è moreTitle della pagina "trattamenti".
 */
 $others = $page->siblings(false)->listed();
 ?>

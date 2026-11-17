@@ -1,4 +1,5 @@
-# Campo per scegliere o caricare foto, uguale in tutto il sito.
+# Campo per scegliere o caricare foto, uguale in tutto il sito (slideshow, foto di Jan, diplomi, foto dei trattamenti).
+# Le foto si stampano con lo snippet picture.php.
 # https://getkirby.com/docs/reference/panel/fields/files
 type: files
 layout: cards

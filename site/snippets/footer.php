@@ -1,13 +1,14 @@
 <?php
 /*
-  Footer: logo, indirizzo, contatti, orari e icone social. Tutti i dati vengono dalle Impostazioni sito.
+  Footer (incluso da layout.php): logo, indirizzo, contatti, orari e icone social.
+  Tutti i dati vengono dalle Impostazioni sito.
   Un solo markup per tutte le larghezze: su mobile i blocchi sono in colonna (social in fondo),
   da tablet il CSS li dispone in due colonne con una griglia.
 */
 ?>
 <footer class="site-footer">
   <div class="container site-footer__inner">
-    <img class="site-footer__logo" src="<?= url('assets/images/logo-white.svg') ?>" alt="<?= $site->title()->esc() ?>" width="380" height="133">
+    <img class="site-footer__logo" src="<?= url('assets/images/logo-white.svg') ?>" alt="<?= $site->title()->esc() ?>" width="380" height="139">
 
     <div class="site-footer__blocks">
       <address class="site-footer__address">
@@ -27,7 +28,6 @@
       <?php snippet('social') ?>
     </div>
 
-    <?php // Qui andranno i link a Privacy e Note legali, quando le pagine esisteranno. ?>
     <p class="site-footer__copyright">© <?= date('Y') ?> <?= $site->title()->esc() ?></p>
   </div>
 </footer>

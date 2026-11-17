@@ -11,6 +11,10 @@
  *
  * Si può rilanciare: i campi vengono riscritti con i testi del JSON, le foto già presenti restano.
  * Alla fine elenca le chiavi del JSON che non sono state importate.
+ *
+ * Attenzione: il JSON è fermo a prima del 17 novembre 2026. Rilanciando l'italiano tornano il vecchio nome
+ * ("Beweeg physio" nel titolo del sito e nei titoli per Google) e "oltre 30 anni" in home,
+ * cambiati poi nel pannello su decisione del cliente (FisioNassa, oltre 40 anni).
  */
 
 // Mai dal browser: il server di sviluppo di PHP eseguirebbe questo file a chi ne apre l'indirizzo.
@@ -252,7 +256,7 @@ if ($linguaPrincipale) {
 // --- Home ------------------------------------------------------------------------------
 
 echo "Home\n";
-// Il grande "Beweeg physio" in cima alle pagine è il titolo del sito, non un campo.
+// Il grande nome dello studio in cima alle pagine è il titolo del sito, non un campo.
 $usate[] = 'home.title';
 aggiorna($kirby->page('home'), [
     'tagline' => $testo('home.tagline'),

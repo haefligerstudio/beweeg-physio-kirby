@@ -1,6 +1,14 @@
-# Beweeg physio · sito Kirby
+# FisioNassa · sito Kirby
 
 Sito vetrina di uno studio di fisioterapia e osteopatia a Tesserete (Ticino). Cliente finale: Johannes "Jan" de Wild.
+
+**Nome dello studio: FisioNassa** (scrittura esatta, deciso il 17 novembre 2026; prima "Beweeg physio").
+Nel sito il nome viene solo dal titolo del sito (pannello) e dai file del logo in `assets/images/`: mai scritto nei template.
+Restano col vecchio nome, apposta: le cartelle (`beweeg-physio-kirby`, `../beweeg-physio`, `~/beweeg-checks`),
+il nome Composer `haefligerstudio/beweeg-physio`, l'account SimplyBook `beweegprova` e la sua CSP (si cambiano solo
+su indicazione di Amos), la cartella di prova `gusmeroli.ch/beweeg` finché Sara non la rinomina.
+Telefono in header e footer: +41 77 452 17 64 (cellulare e WhatsApp). Il fisso 091 930 04 85 va solo nelle pagine legali.
+Dominio definitivo: fisionassa.ch (non ancora registrato): nessun indirizzo scritto a mano, solo in `config.<dominio>.php`.
 Lavoro di Amos Haefliger (HaefligerStudio) per lo studio grafico di Sara, che ha disegnato il visual.
 Pubblico: pazienti locali, molti anziani o con difficoltà motorie, e i loro familiari.
 
@@ -28,8 +36,11 @@ Hosting: server di Sara su Hostpoint, caricamento via FTP/SFTP.
 ### 1. Il visual è definitivo
 Si implementa, non si ridisegna. Prima di toccare una pagina guarda i JPG del visual (desktop e mobile).
 Le sole deviazioni ammesse sono quelle già scritte in `DESIGN.md` e in `CAMBIAMENTI-RISPETTO-AL-VISUAL.md`
-(contrasto, corpo 18px su mobile, pausa dello slideshow, un H1 per pagina…). Ogni nuova differenza dal visual
+(contrasto, corpo 18px su mobile, un H1 per pagina…). Ogni nuova differenza dal visual
 si chiede prima e, se approvata, si annota in `docs/CAMBIAMENTI-RISPETTO-AL-VISUAL.md`.
+Due decisioni del cliente vanno contro gli standard di accessibilità e restano così finché il cliente non cambia idea
+(sezione 5 di `docs/CAMBIAMENTI-RISPETTO-AL-VISUAL.md`): slideshow **senza pulsante pausa** (WCAG 2.2.2) e
+**testo bianco dei pulsanti** su #5aaed9 (2,47:1, WCAG 1.4.3).
 
 ### 2. Testi mai inventati
 - Nessun testo, numero, nome, titolo professionale, claim clinico, orario o zona servita scritto da te.
@@ -62,6 +73,8 @@ Se una dipendenza sembra davvero necessaria, chiedi prima spiegando perché.
 - **noindex** su tutto finché Amos non decide di pubblicare (una sola opzione in configurazione).
 - Non fanno parte della consegna: `CLAUDE.md`, `docs/`, `scripts/`, `.claude/`, `.git`, file `.env`,
   account utenti, sessioni, cache, media generati, licenza locale.
+- `site/config/` e `site/snippets/` si caricano sempre insieme (gli snippet leggono le opzioni `fisionassa.*`):
+  scritto anche in `docs/GUIDA-SARA.md`.
 
 ### 7. Multilingua attivo, per ora solo italiano
 - Il multilingua di Kirby è attivo con la sola lingua `it`. Inglese e tedesco arriveranno dopo.
@@ -112,3 +125,13 @@ quelle del progetto Next): le deviazioni nuove si scrivono lì. K4d: servizio a 
 o testo di riserva, sempre con contatti e orari), header sticky con `scroll-padding-top`. Tutte le pagine hanno
 il loro template. Prossimo passo: K4e (rifinitura grafica). Mancano ancora: foto di Jan, diplomi, mappa statica,
 email e social dello studio, strumento di prenotazione, testi legali (vedi `../beweeg-physio/docs/MATERIALE.md`).
+17 novembre 2026: nome FisioNassa e logo nuovo (`docs/CAMBIAMENTI-RISPETTO-AL-VISUAL.md`, sezione 4); opzioni di
+configurazione rinominate da `beweeg.*` a `fisionassa.*` (indexable, hsts, webp); home "Da oltre 40 anni".
+Description di Chi sono: "oltre 40 anni". Tag og: con immagine **provvisoria** `assets/images/og-image.png`
+(logo bianco originale centrato su #2c7da4, 1200×630, fatta con Chrome: si sostituisce il file, i tag restano).
+Foto di Jan in Chi sono (`content/1_chi-sono/jan-ritratto.jpg`, `jan-trattamento.jpg`, campo "Foto di Jan"):
+copie 1800×2400 convertite da Adobe RGB a sRGB, senza EXIF/XMP/ICC; originali intatti nel materiale cliente.
+Per la foto 2 si usa il "taglio mobile" del cliente: il riquadro del visual è 5:6 anche su desktop,
+la versione "desktop" orizzontale non è usata.
+Ancora aperti: favicon (pittogramma chiesto al cliente, `favicon.svg` e `favicon.ico` restano i vecchi),
+contatore "31 anni di studio" (si aspetta il cliente), grafia Johannes/Johannus (decide Amos con il cliente).

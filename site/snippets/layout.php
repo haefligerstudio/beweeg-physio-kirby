@@ -10,6 +10,11 @@
 // La 404 usa il suo titolo tradotto ("Pagina non trovata"), non il titolo tecnico della pagina "error".
 $pageTitle = $page->isErrorPage() ? t('error.title') : $page->title()->value();
 $title = $page->seoTitle()->or($pageTitle . ' · ' . $site->title());
+
+// HSTS con la durata dell'ambiente (opzione fisionassa.hsts in site/config): solo sulle pagine in HTTPS.
+if ($kirby->environment()->https()) {
+    $kirby->response()->header('Strict-Transport-Security', option('fisionassa.hsts'));
+}
 ?>
 <!DOCTYPE html>
 <html lang="<?= $kirby->language()->code() ?>">
@@ -17,16 +22,16 @@ $title = $page->seoTitle()->or($pageTitle . ' · ' . $site->title());
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?= $title->esc() ?></title>
-  <?php snippet('seo') ?>
+  <?php snippet('seo', ['title' => $title]) ?>
 
   <link rel="icon" href="<?= url('favicon.ico') ?>" sizes="48x48">
   <link rel="icon" href="<?= url('assets/images/favicon.svg') ?>" type="image/svg+xml">
 
-  <!-- Il font del testo serve subito: lo scarichiamo prima del CSS per evitare il cambio di carattere. -->
+  <?php // Il font del testo serve subito: lo scarichiamo prima del CSS per evitare il cambio di carattere. ?>
   <link rel="preload" href="<?= url('assets/fonts/roboto-latin-wght-normal.woff2') ?>" as="font" type="font/woff2" crossorigin>
   <?= css('assets/css/main.css') ?>
 
-  <!-- Senza defer: la prima riga aggiunge la classe "js" prima che la pagina venga disegnata (niente lampeggio del menu). -->
+  <?php // Senza defer: la prima riga aggiunge la classe "js" prima che la pagina venga disegnata (niente lampeggio del menu). ?>
   <?= js('assets/js/main.js') ?>
 </head>
 <body>

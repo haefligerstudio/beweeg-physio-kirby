@@ -18,7 +18,7 @@ Fallback: Il sistema di prenotazione non è ancora attivo. Nel frattempo puoi co
 
 ----
 
-Seotitle: Prenota un appuntamento · Beweeg physio
+Seotitle: Prenota un appuntamento · FisioNassa
 
 ----
 

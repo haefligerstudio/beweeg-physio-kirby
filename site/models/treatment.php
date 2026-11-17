@@ -3,7 +3,8 @@
 use Kirby\Cms\Page;
 
 /**
- * Metodi in più per le pagine "trattamento".
+ * Metodi in più per le pagine "trattamento" (blueprint pages/treatment.yml): Kirby usa questa classe
+ * al posto di Page per ogni pagina con quel template. iconUrl() serve allo snippet treatment-link.php.
  * https://getkirby.com/docs/guide/templates/page-models
  */
 class TreatmentPage extends Page

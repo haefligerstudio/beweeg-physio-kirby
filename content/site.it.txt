@@ -1,4 +1,4 @@
-Title: Beweeg physio
+Title: FisioNassa
 
 ----
 
@@ -64,7 +64,11 @@ Hours:
 
 ----
 
-Bookingurl: 
+Bookingurl: https://beweegprova.simplybook.me
+
+----
+
+Bookingwidget: true
 
 ----
 

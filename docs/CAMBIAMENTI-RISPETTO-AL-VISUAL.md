@@ -1,4 +1,4 @@
-# Cambiamenti rispetto al visual (aggiornato il 2 novembre, testo dei pulsanti e pausa dello slideshow)
+# Cambiamenti rispetto al visual (aggiornato il 17 novembre: nome FisioNassa e logo nuovo)
 
 Tutto quello che nel sito è diverso dal visual definitivo, con il valore originale, quello usato e il motivo.
 Riferimento per i contrasti: **WCAG 2.2 livello AA**. Testo normale ≥ 4,5:1; testo grande (≥ 24px, o ≥ 18,7px in
@@ -35,7 +35,7 @@ Il testo bianco dei pulsanti segue il foglio, ma è sotto il minimo di contrasto
 | Testo bianco sulle foto (apertura, schede) | bianco sulla foto | — | bianco + **velo scuro** a gradiente | stabile su ogni foto | il contrasto non deve dipendere dalla foto (vedi deviazioni) |
 | Contorno del focus da tastiera | — (non disegnato) | — | **nero #000** con anello bianco | 21:1 sul bianco, 4,58:1 sull'header, 8,49:1 sul pulsante | serve per chi usa la tastiera; un solo colore non arriva a 3:1 sia sul bianco sia sul blu |
 | Riquadri segnaposto | bordo e X neri | — | bordo e X neri, senza testo | — | come i segnaposto del visual; spariscono quando arrivano le foto |
-| Pin della mappa | #9b1514 | — | (non usato: oggi c'è l'iframe di Google Maps) | — | vedi deviazioni |
+| Pin della mappa | #9b1514 | — | (non usato: mappa standard di Google) | — | vedi deviazioni |
 
 Bordo dei pulsanti: #5aaed9 fa 2,47:1 sul bianco e 1,49:1 sul celeste. Non serve 3:1, perché il pulsante si riconosce
 dal suo testo (WCAG 1.4.11), ma sul fondo celeste il pulsante si stacca poco.
@@ -83,13 +83,14 @@ Corrette in K4f:
 | Dove | Visual / richiesta | Sito | Motivo |
 |---|---|---|---|
 | Testi bianchi sulle foto | bianco direttamente sulla foto | velo scuro a gradiente sotto il testo | con foto chiare il bianco non si legge |
-| H1 | "Beweeg physio" su ogni pagina | un solo H1 per pagina: "Beweeg physio" nella home, il titolo del contenuto nelle altre | accessibilità e Google |
+| Nome e logo | "Beweeg physio", logo "beweegphysio · studio fisioterapeutico" | **FisioNassa** (scrittura esatta), logo "FisioNassa · Jan de Wild" di Sara (file bianco nell'header e nel footer, a colori nel JSON-LD), copiato senza modifiche. Il nome viene solo dal titolo del sito (pannello): header, footer, titoli delle schede, JSON-LD e testo per gli screen reader lo leggono da lì. Il grande titolo in cima alle pagine diventa "FisioNassa" tutto in grassetto (regola "prima parola in grassetto": è una parola sola, come nel logo) | decisione del cliente, 17 novembre |
+| H1 | "Beweeg physio" su ogni pagina | un solo H1 per pagina: il nome dello studio nella home, il titolo del contenuto nelle altre | accessibilità e Google |
 | Footer, telefono | solo icone | numero visibile e cliccabile | chi chiama non deve indovinare il numero |
 | Diplomi | su mobile solo didascalie con "clicca per visualizzare" | immagini con didascalia; ogni diploma apre una versione grande (circa 2000px) in una nuova scheda | nessun testo nuovo da tradurre; stesso comportamento su ogni schermo |
-| Mappa | immagine statica in bianco e nero con pin rosso | oggi: **iframe di Google Maps** (indirizzo sopra solo da 768px) e link "Apri la mappa" | soluzione provvisoria: in un passo successivo sarà sostituita dalla mappa con stile personalizzato (tema chiaro o monocromatico, già arrivato). Finché c'è l'iframe di Google va citato nella privacy |
+| Mappa | immagine statica in bianco e nero con pin rosso | **mappa standard di Google incorporata** (iframe), senza stile personalizzato, chiave o Map ID; indirizzo grande sopra solo da 768px; **nessun link "Apri la mappa"** sotto (tolto su decisione del cliente, era stato previsto in K4e-6: dentro la mappa resta "Apri in Maps" di Google) | decisione del cliente, 2 novembre. **Per K6:** la mappa di Google riceve l'IP del visitatore e può usare cookie di Google: va scritto nella pagina Privacy |
 | Schede dei trattamenti, mobile | "scopri di più" | "scopri ora", come su desktop | un solo testo |
 | "Cosa faccio", mobile | (brief: 2 + 2) | una colonna, come il visual mobile | scelta di Amos |
-| Prenota | non disegnata | stessi componenti delle altre pagine; contatti e orari sempre visibili | — |
+| Prenota | non disegnata | stessi componenti delle altre pagine; contatti e orari sempre visibili. Widget di **SimplyBook.me** (iframe) a tutta larghezza sotto il pulsante "prenota ora", che resta come riserva (nuova scheda); indirizzo e interruttore in Impostazioni sito → Prenotazione | **Per K6:** SimplyBook riceve l'IP e i dati inseriti dal visitatore; dentro l'iframe partono richieste a Google (gstatic) e al tracker Metricool; widget.js scrive sul nostro dominio il cookie `sb_widget`. Da scrivere nella Privacy |
 | Testi in tedesco | — | sillabazione automatica solo su titoli ed etichette | parole lunghe in colonne strette |
 
 ## 5. Eccezioni agli standard di accessibilità (decise dal cliente)

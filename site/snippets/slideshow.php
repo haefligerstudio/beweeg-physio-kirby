@@ -1,10 +1,12 @@
 <?php
 /*
-  Foto che scorrono nell'apertura di ogni pagina (campo "Foto dello slideshow").
+  Foto che scorrono nell'apertura di ogni pagina (incluso da page-intro.php; campo "Foto dello slideshow"
+  delle Impostazioni sito). slideshow.js si carica solo se le foto sono almeno due.
   Senza JavaScript si vede solo la prima foto e i comandi restano nascosti.
   Con JavaScript (slideshow.js) le foto cambiano da sole e si fermano con il mouse sopra
   e con il focus (anche sui pallini); con "riduci movimento" non partono e si cambiano solo con i pallini.
-  Nessun pulsante pausa: l'ha chiesto Sara (eccezione a WCAG 2.2.2, vedi CAMBIAMENTI-RISPETTO-AL-VISUAL.md).
+  Nessun pulsante pausa: decisione del cliente, eccezione a WCAG 2.2.2
+  (docs/CAMBIAMENTI-RISPETTO-AL-VISUAL.md, sezione 5).
 */
 $images = $site->slideshow()->toFiles();
 

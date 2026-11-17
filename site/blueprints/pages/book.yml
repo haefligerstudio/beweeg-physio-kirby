@@ -1,4 +1,4 @@
-# Pagina "prenota". Il link allo strumento di prenotazione è in Impostazioni sito.
+# Pagina "prenota" (template book.php). Indirizzo e interruttore del widget di prenotazione sono in Impostazioni sito.
 title: Prenota
 icon: calendar
 
@@ -15,7 +15,7 @@ tabs:
       tagline:
         label: Sottotitolo
         type: text
-        help: La riga sotto "Beweeg physio", sopra le foto.
+        help: La riga sotto il nome dello studio, sopra le foto.
       heading:
         label: Titolo
         type: text
@@ -25,6 +25,6 @@ tabs:
       fallback:
         extends: fields/lead
         label: Testo se la prenotazione online non è attiva
-        help: Appare finché in Impostazioni sito il link di prenotazione è vuoto. Sotto il sito mostra telefono, WhatsApp ed email.
+        help: Appare quando in Impostazioni sito il link di prenotazione è vuoto o il widget è spento. Sotto il sito mostra il numero di telefono.
 
   seo: tabs/seo

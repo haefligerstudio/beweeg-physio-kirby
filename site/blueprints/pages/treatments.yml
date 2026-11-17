@@ -1,4 +1,4 @@
-# Pagina "trattamenti": elenco dei trattamenti, ognuno è una sottopagina.
+# Pagina "trattamenti" (template treatments.php): elenco dei trattamenti, ognuno è una sottopagina.
 title: Trattamenti
 icon: list-bullet
 
@@ -18,7 +18,7 @@ tabs:
           tagline:
             label: Sottotitolo
             type: text
-            help: La riga sotto "Beweeg physio", sopra le foto.
+            help: La riga sotto il nome dello studio, sopra le foto.
           heading:
             label: Titolo
             type: text

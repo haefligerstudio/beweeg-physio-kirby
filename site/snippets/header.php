@@ -1,15 +1,17 @@
 <?php
 /*
-  Barra in alto: logo e menu. Resta fissa in cima mentre si scorre (visual: "Menu desktop: sticky").
+  Barra in alto: logo e menu (incluso da layout.php). Resta fissa in cima mentre si scorre
+  (visual: "Menu desktop: sticky"); dopo 120px di scorrimento si riduce (main.js, classe is-compact).
 */
 ?>
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="site-header__logo" href="<?= $site->url() ?>" aria-label="<?= esc(t('a11y.home'), 'attr') ?>">
-      <img src="<?= url('assets/images/logo-white.svg') ?>" alt="" width="201" height="70">
+    <?php // Il nome dello studio viene dal titolo del sito: se cambia nel pannello, cambia anche qui. ?>
+    <a class="site-header__logo" href="<?= $site->url() ?>" aria-label="<?= esc(tt('a11y.home', ['site' => $site->title()->value()]), 'attr') ?>">
+      <img src="<?= url('assets/images/logo-white.svg') ?>" alt="<?= $site->title()->esc() ?>" width="192" height="70">
     </a>
 
-    <!-- Nascosto finché il JavaScript non lo attiva: senza JS il menu resta visibile sotto il logo. -->
+    <?php // Nascosto finché il JavaScript non lo attiva: senza JS il menu resta visibile sotto il logo. ?>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu"
             aria-label="<?= esc(t('a11y.menuOpen'), 'attr') ?>"
             data-label-open="<?= esc(t('a11y.menuOpen'), 'attr') ?>" data-label-close="<?= esc(t('a11y.menuClose'), 'attr') ?>" hidden>

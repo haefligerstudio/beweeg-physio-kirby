@@ -1,21 +1,14 @@
 <?php
 /*
   Pagina "prenota". Non è disegnata nel visual: usa solo componenti già esistenti.
-  - Link di prenotazione compilato (Impostazioni sito): pulsante verso lo strumento, in una nuova scheda.
-    L'incorporamento nella pagina arriverà in K6, quando lo strumento sarà scelto.
-  - Link vuoto: il testo di riserva del pannello.
-  In tutti e due i casi, sotto: contatti diretti e orari.
+  Decisione del cliente: c'è solo il widget di SimplyBook (assets/js/booking.js); contatti e orari sono nel footer.
+  - Indirizzo di prenotazione compilato e interruttore "mostra il widget" acceso (Impostazioni sito → Prenotazione):
+    introduzione e widget. Senza JavaScript il widget non parte: al suo posto il numero di telefono.
+  - Altrimenti: il testo di riserva del pannello e il numero di telefono, nessun link verso siti esterni.
+  Campi: blueprint pages/book.yml (heading, intro, fallback); bookingUrl, bookingWidget e phone in Impostazioni sito.
+  Il widget vuole due concessioni nella CSP del .htaccess: vedi il punto PRENOTAZIONE.
 */
-$contacts = [];
-if ($site->phone()->isNotEmpty()) {
-    $contacts[] = ['url' => 'tel:' . $site->phoneLink(), 'text' => $site->phone()->value()];
-}
-if ($site->whatsapp()->isNotEmpty()) {
-    $contacts[] = ['url' => $site->whatsapp()->value(), 'text' => t('social.whatsapp')];
-}
-if ($site->email()->isNotEmpty()) {
-    $contacts[] = ['url' => 'mailto:' . $site->email()->value(), 'text' => $site->email()->value()];
-}
+$showWidget = $site->bookingUrl()->isNotEmpty() && $site->bookingWidget()->toBool();
 ?>
 <?php snippet('layout', slots: true) ?>
 
@@ -25,31 +18,37 @@ if ($site->email()->isNotEmpty()) {
     <div class="container">
       <?php snippet('section-heading', ['text' => $page->heading(), 'level' => 'h1']) ?>
 
+      <?php if ($showWidget): ?>
+      <?php if ($page->intro()->isNotEmpty()): ?>
+      <?php // intro e fallback sono campi writer su una riga: HTML già ripulito da Kirby, si stampano senza esc(). ?>
       <div class="lead-text">
-        <?php if ($page->intro()->isNotEmpty()): ?>
         <p><?= $page->intro() ?></p>
-        <?php endif ?>
-
-        <?php if ($site->bookingUrl()->isNotEmpty()): ?>
-        <div class="section__action section__action--start">
-          <?php snippet('button', ['url' => $site->bookingUrl()->value(), 'text' => t('buttons.book'), 'newTab' => true]) ?>
-        </div>
-        <?php elseif ($page->fallback()->isNotEmpty()): ?>
-        <p class="book__fallback"><?= $page->fallback() ?></p>
-        <?php endif ?>
       </div>
+      <?php endif ?>
 
-      <?php if ($contacts !== [] || $site->hours()->toStructure()->isNotEmpty()): ?>
-      <div class="book__contacts">
-        <h2 class="book__label"><?= esc(t('footer.contacts')) ?></h2>
-        <?php if ($contacts !== []): ?>
-        <ul class="book__buttons">
-          <?php foreach ($contacts as $contact): ?>
-          <li><?php snippet('button', $contact) ?></li>
-          <?php endforeach ?>
-        </ul>
+      <?php // Widget a tutta la larghezza del contenitore (il calendario ha bisogno di spazio); nome accessibile: il titolo della pagina. ?>
+      <div class="booking" role="region" aria-label="<?= $page->heading()->esc('attr') ?>" data-booking-url="<?= $site->bookingUrl()->esc('attr') ?>"></div>
+      <?= js('https://widget.simplybook.me/v2/widget/widget.js', ['defer' => true]) ?>
+      <?= js('assets/js/booking.js', ['defer' => true]) ?>
+
+      <?php if ($site->phone()->isNotEmpty()): ?>
+      <noscript>
+        <div class="section__action section__action--start">
+          <?php snippet('button', ['url' => 'tel:' . $site->phoneLink(), 'text' => $site->phone()->value()]) ?>
+        </div>
+      </noscript>
+      <?php endif ?>
+
+      <?php else: ?>
+      <div class="lead-text">
+        <?php if ($page->fallback()->isNotEmpty()): ?>
+        <p><?= $page->fallback() ?></p>
         <?php endif ?>
-        <?php snippet('hours') ?>
+        <?php if ($site->phone()->isNotEmpty()): ?>
+        <div class="section__action section__action--start">
+          <?php snippet('button', ['url' => 'tel:' . $site->phoneLink(), 'text' => $site->phone()->value()]) ?>
+        </div>
+        <?php endif ?>
       </div>
       <?php endif ?>
     </div>

@@ -1,7 +1,7 @@
 <?php
 /*
   Scheda di un trattamento: foto, nome breve e "scopri ora". Tutta la scheda è un solo link.
-  Parametro: $treatment (pagina trattamento).
+  Parametro: $treatment (pagina trattamento). Usata in treatments.php e in fondo a treatment.php.
   La foto è decorativa (alt vuoto): il nome del trattamento nel link dice già tutto.
   Senza foto resta il fondo blu della scheda: il nome bianco si legge comunque.
 */

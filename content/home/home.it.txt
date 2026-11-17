@@ -10,7 +10,7 @@ Abouttitle: Chi sono
 
 ----
 
-Aboutlead: <strong>Da oltre 30 anni fisioterapista diplomato, sono sempre stato guidato fin da giovane dalla curiosità per il modo in cui ogni persona affronta sfide, ostacoli e difficoltà quotidiane.</strong>
+Aboutlead: <strong>Da oltre 40 anni fisioterapista diplomato, sono sempre stato guidato fin da giovane dalla curiosità per il modo in cui ogni persona affronta sfide, ostacoli e difficoltà quotidiane.</strong>
 
 ----
 
@@ -52,7 +52,7 @@ Wheretitle: Dove trovi lo studio
 
 ----
 
-Seotitle: Beweeg physio · Fisioterapia e osteopatia a Tesserete
+Seotitle: FisioNassa · Fisioterapia e osteopatia a Tesserete
 
 ----
 

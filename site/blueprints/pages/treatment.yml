@@ -1,4 +1,4 @@
-# Un singolo trattamento (sottopagina di "trattamenti").
+# Un singolo trattamento (sottopagina di "trattamenti", template treatment.php).
 # Il titolo della pagina è il titolo grande del trattamento.
 # L'icona non è un campo: è un file del sito scelto in base all'indirizzo della pagina.
 title: Trattamento
@@ -21,7 +21,7 @@ tabs:
       tagline:
         label: Sottotitolo
         type: text
-        help: La riga sotto "Beweeg physio", sopra le foto.
+        help: La riga sotto il nome dello studio, sopra le foto.
       lead:
         extends: fields/lead
       text:

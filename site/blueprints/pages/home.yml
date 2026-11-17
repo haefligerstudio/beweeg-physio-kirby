@@ -1,4 +1,4 @@
-# Home. I campi seguono le sezioni della pagina, dall'alto in basso.
+# Home (template home.php). I campi seguono le sezioni della pagina, dall'alto in basso.
 title: Home
 icon: home
 
@@ -15,7 +15,7 @@ tabs:
       tagline:
         label: Sottotitolo
         type: text
-        help: La riga sotto "Beweeg physio", sopra le foto.
+        help: La riga sotto il nome dello studio, sopra le foto.
 
       aboutTitle:
         label: Chi sono · titolo

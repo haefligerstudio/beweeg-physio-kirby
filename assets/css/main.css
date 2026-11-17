@@ -1,8 +1,8 @@
 /* ==========================================================================
-   Beweeg physio · foglio di stile unico
+   FisioNassa · foglio di stile unico
    Ordine: variabili → font → reset → base → layout → componenti → utilità.
-   I valori vengono dal progetto Next (app/globals.css) e dai documenti
-   AUDIT-TIPOGRAFIA.md e CAMBIAMENTI-RISPETTO-AL-VISUAL.md.
+   I valori vengono dal visual (tabella a pagina 2), dal foglio colori di Rebecca e dai documenti
+   in docs/ (DESIGN.md, CAMBIAMENTI-RISPETTO-AL-VISUAL.md).
    Nei componenti si usano solo le variabili, mai valori fissi.
 
    Breakpoint (le variabili CSS non funzionano dentro @media, quindi sono scritti a mano):
@@ -50,7 +50,7 @@
   --text-h3: 1.25rem;        /* 20px */
   --text-h4: 1.25rem;        /* 20px */
   --leading-heading: 1.2;
-  --leading-tight: 1;
+  --leading-tight: 1;         /* numeri grandi e citazione: righe strette */
   --text-menu: 1rem;         /* 16px: il visual ha 15px, +1 per leggibilità (audit) */
   --text-menu-mobile: 1.25rem; /* 20px, menu a tutto schermo (visual circa 15px × 1,3) */
   --text-footer: 1.125rem;   /* 18px */
@@ -75,6 +75,7 @@
   --header-logo-padding: 0.3125rem; /* 5px sopra e sotto il logo */
   --header-compact-after: 7.5rem;   /* l'header si riduce dopo 120px di scorrimento */
   --tap: 2.75rem;            /* 44px: area minima cliccabile */
+  /* Scala degli spazi: --space-N vale N × 4px (--space-6 = 24px). */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -136,12 +137,14 @@
   --rule-height: 3px;
   --rule-gap: 0.625rem;                       /* 10px tra il titolo e il trattino (Sara) */
 
-  /* Mappa */
+  /* Mappa: proporzioni dell'iframe, alta su mobile e larga da tablet (8 / 3). */
   --map-ratio: 4 / 5;
+
+  /* Home: icone di "Cosa faccio" e separatori dei numeri */
   --treatment-icon: 8.5rem;   /* altezza delle icone di "Cosa faccio": 136px su mobile (visual circa 100px × 1,3) */
   --icons-gap: 1.875rem;      /* 30px tra le colonne delle icone, da lg (Sara) */
   --gap-heading-icons: 9.6875rem; /* 155px dal trattino di "Cosa faccio" alle icone, da tablet (audit) */
-  --treatment-label-width: 16rem;
+  --treatment-label-width: 16rem; /* nome sotto l'icona: va a capo invece di allargare la colonna */
   --hover-scale: 1.05;        /* icona dei trattamenti all'hover */
   --border-thin: 1px;
   --border-stat: 2px;         /* separatori tra i numeri */
@@ -215,7 +218,7 @@
     --logo-height-compact: 3.125rem;   /* 50px (Sara) */
     --text-body: 1.5625rem;   /* 25px */
     /* 29/25 = 1,16: interlinea della tabella a pagina 2 ("Interlinea 29 px").
-       DA DISCUTERE con Sara: è stretta per un pubblico anziano. */
+       È stretta per un pubblico anziano: punto ancora da decidere (CAMBIAMENTI-RISPETTO-AL-VISUAL.md). */
     --leading-body: 1.16;
     --text-h1: 3.75rem;       /* 60px */
     --text-h2: 2.8125rem;     /* 45px */
@@ -811,7 +814,7 @@ main {
 
 .page-intro__frame {
   position: relative;
-  isolation: isolate;
+  isolation: isolate; /* foto, velo e testo (z-index 1–3) restano dentro il riquadro, sotto l'header */
   display: flex;
   align-items: flex-end;
   aspect-ratio: var(--intro-ratio);
@@ -1086,11 +1089,25 @@ main {
 }
 
 .stats__value {
+  position: relative;
   display: block;
   color: var(--color-accent);
   font-size: var(--text-stat);
   font-weight: var(--weight-bold);
+  font-variant-numeric: tabular-nums; /* cifre tutte larghe uguali: il conteggio non balla */
   line-height: var(--leading-tight);
+}
+
+/* Conteggio (stats.js): il numero vero resta al suo posto, invisibile, e tiene la larghezza;
+   sopra c'è il contatore, nascosto agli screen reader, che leggono solo il numero vero. */
+.stats__value.is-counting {
+  color: transparent;
+}
+
+.stats__counter {
+  position: absolute;
+  inset: 0;
+  color: var(--color-accent);
 }
 
 .stats__label {
@@ -1231,15 +1248,6 @@ main {
   border: 0;
 }
 
-.map__link {
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--tap);
-  margin-top: var(--space-2);
-  color: var(--color-on-tint);
-  font-weight: var(--weight-bold);
-}
-
 @media (min-width: 48rem) {
   .map__address {
     display: block;
@@ -1284,6 +1292,7 @@ main {
 
 /* Scheda di un trattamento (snippet treatment-card.php) ---------------------- */
 
+/* isolation: la foto (z-index -2) e il velo (-1) stanno dietro al testo ma restano dentro la scheda. */
 .treatment-card {
   position: relative;
   isolation: isolate;
@@ -1448,6 +1457,8 @@ main {
   gap: var(--grid-gap);
 }
 
+/* Banda mobile larga quanto lo schermo, anche se la lista sta nel contenitore:
+   parte dal centro della lista (left 50%) e torna indietro di metà schermo. */
 .other-treatments__list::before {
   content: "";
   position: absolute;
@@ -1528,6 +1539,13 @@ main {
   width: 100%;
   aspect-ratio: var(--ratio-portrait);
   object-fit: cover;
+}
+
+/* Secondo riquadro (foto del trattamento): taglio solo dal basso. Nello scatto originale la testa di Jan
+   tocca già il bordo superiore, e il taglio centrato toglieva anche la fronte. Il ritratto resta centrato.
+   La regola vale per il riquadro, non per il file: se dal pannello cambia la seconda foto, va ricontrollata. */
+.about__row:not(.about__row--photo-first) .about__photo img {
+  object-position: top;
 }
 
 @media (min-width: 48rem) {
@@ -1717,27 +1735,15 @@ main {
   padding-block: var(--space-16) var(--space-28);
 }
 
-.book__fallback {
-  margin-top: var(--gap-paragraph);
-}
-
-.book__contacts {
+/* Widget di SimplyBook (booking.js): l'iframe prende tutta la larghezza, l'altezza la regola SimplyBook. */
+.booking {
   margin-top: var(--gap-text-action);
 }
 
-.book__label {
-  font-size: var(--text-subheading);
-}
-
-.book__buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--grid-gap);
-  margin-top: var(--space-6);
-}
-
-.book__contacts .hours {
-  margin-top: var(--space-8);
+.booking iframe {
+  display: block;
+  width: 100%;
+  border: 0;
 }
 
 @media (min-width: 48rem) {

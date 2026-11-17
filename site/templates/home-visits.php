@@ -2,6 +2,7 @@
 /*
   Pagina "servizio a domicilio": titolo (H1), sottotitolo della sezione, paragrafo guida, testo
   e pulsante per prenotare. Nessuna banda azzurra (visual).
+  Campi: blueprint pages/home-visits.yml (heading, subheading, lead, text).
 */
 ?>
 <?php snippet('layout', slots: true) ?>

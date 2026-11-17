@@ -1,6 +1,6 @@
 <?php
 /*
-  Menu principale: le pagine pubblicate del sito, nell'ordine del pannello.
+  Menu principale (incluso da header.php): le pagine pubblicate del sito, nell'ordine del pannello.
   Su desktop è in riga nell'header; su mobile (con JavaScript) diventa un pannello a tutto schermo,
   con in più le icone social come nel visual.
 */

@@ -1,15 +1,15 @@
 <?php
 /*
-  Mappa di Google incorporata, senza chiave API, con l'indirizzo delle Impostazioni sito.
-  - L'iframe usa l'indirizzo "maps?q=…&output=embed": funziona senza chiave ma Google non lo documenta.
-  - Il link usa invece l'indirizzo ufficiale (https://developers.google.com/maps/documentation/urls).
-  Attenzione: l'iframe carica cookie di Google → da citare nella Privacy (K6).
-  Sul server la CSP del .htaccess lo blocca finché non si completa il punto "MAPPA".
+  Mappa standard di Google incorporata (home, "Dove trovi lo studio"; decisione del cliente: niente stile,
+  chiave o Map ID), con l'indirizzo delle Impostazioni sito.
+  L'iframe usa l'indirizzo "maps?q=…&output=embed": funziona senza chiave ma Google non lo documenta.
+  La CSP del .htaccess la permette con frame-src https://www.google.com.
+  Privacy: l'iframe di Google riceve l'IP del visitatore e può usare cookie di Google:
+  va scritto nella pagina Privacy.
 */
 $address = $site->street() . ', ' . $site->zip() . ' ' . $site->city();
 // hl = lingua dei comandi della mappa, la stessa della pagina.
 $embedUrl = 'https://www.google.com/maps?q=' . urlencode($address) . '&hl=' . $kirby->language()->code() . '&output=embed';
-$linkUrl = 'https://www.google.com/maps/search/?api=1&query=' . urlencode($address);
 ?>
 <div class="map">
   <p class="map__address container">
@@ -17,9 +17,4 @@ $linkUrl = 'https://www.google.com/maps/search/?api=1&query=' . urlencode($addre
     <?= $site->zip()->esc() ?> <?= $site->city()->esc() ?>
   </p>
   <iframe class="map__frame" src="<?= esc($embedUrl, 'attr') ?>" title="<?= esc(t('map.alt'), 'attr') ?>" loading="lazy"></iframe>
-  <p class="container">
-    <a class="map__link" href="<?= esc($linkUrl, 'attr') ?>" target="_blank" rel="noopener noreferrer">
-      <?= esc(t('map.open')) ?><span class="visually-hidden"> (<?= esc(t('a11y.newTab')) ?>)</span>
-    </a>
-  </p>
 </div>

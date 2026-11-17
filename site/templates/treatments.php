@@ -1,7 +1,8 @@
 <?php
 /*
   Pagina "trattamenti": le schede dei trattamenti, nell'ordine del pannello, sulla banda azzurra.
-  L'H1 è il titolo del contenuto ("Trattamenti disponibili"), non "Beweeg physio".
+  L'H1 è il titolo del contenuto ("Trattamenti disponibili"), non il nome dello studio.
+  Campi: blueprint pages/treatments.yml (heading); ogni scheda è una sottopagina (snippet treatment-card).
 */
 ?>
 <?php snippet('layout', slots: true) ?>

@@ -14,7 +14,7 @@ use Kirby\Cms\ModelWithContent;
 use Kirby\Exception\InvalidArgumentException;
 
 // Interrompe il salvataggio se una foto della pagina (o del sito) non ha il testo alternativo.
-function beweegControllaAlt(ModelWithContent $model): void
+function fisionassaControllaAlt(ModelWithContent $model): void
 {
     foreach ($model->images() as $image) {
         if ($image->alt()->isEmpty()) {
@@ -27,15 +27,15 @@ function beweegControllaAlt(ModelWithContent $model): void
 }
 
 Kirby::plugin(
-    name: 'beweeg/alt-obbligatorio',
+    name: 'fisionassa/alt-obbligatorio',
     extends: [
         'hooks' => [
             'page.update:before' => function (Kirby\Cms\Page $page) {
-                beweegControllaAlt($page);
+                fisionassaControllaAlt($page);
             },
             // Le foto dello slideshow appartengono al sito, non a una pagina.
             'site.update:before' => function (Kirby\Cms\Site $site) {
-                beweegControllaAlt($site);
+                fisionassaControllaAlt($site);
             },
         ],
     ]

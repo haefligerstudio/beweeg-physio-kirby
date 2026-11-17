@@ -1,4 +1,4 @@
-# Pagina "chi sono".
+# Pagina "chi sono" (template about.php).
 title: Chi sono
 icon: user
 
@@ -16,7 +16,7 @@ tabs:
       tagline:
         label: Sottotitolo
         type: text
-        help: La riga sotto "Beweeg physio", sopra le foto.
+        help: La riga sotto il nome dello studio, sopra le foto.
 
       heading:
         label: Titolo

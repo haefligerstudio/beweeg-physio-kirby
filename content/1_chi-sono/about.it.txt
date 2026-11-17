@@ -22,7 +22,10 @@ Signature: Jan
 
 ----
 
-Photos: []
+Photos:
+
+- 'file://ijlfq0746p4mjns6'
+- 'file://ihmekv2ynq8ypdv5'
 
 ----
 
@@ -41,7 +44,7 @@ Seotitle: Chi sono · Jan de Wild, fisioterapista a Tesserete
 
 ----
 
-Seodescription: Johannes “Jan” de Wild, fisioterapista originario dell’Olanda con oltre 30 anni di esperienza. Il mio percorso, le tecniche e i diplomi principali.
+Seodescription: Johannes “Jan” de Wild, fisioterapista originario dell’Olanda con oltre 40 anni di esperienza. Il mio percorso, le tecniche e i diplomi principali.
 
 ----
 

@@ -1,4 +1,4 @@
-# Pagina "servizio a domicilio".
+# Pagina "servizio a domicilio" (template home-visits.php).
 title: Servizio a domicilio
 icon: home
 
@@ -15,7 +15,7 @@ tabs:
       tagline:
         label: Sottotitolo
         type: text
-        help: La riga sotto "Beweeg physio", sopra le foto.
+        help: La riga sotto il nome dello studio, sopra le foto.
       heading:
         label: Titolo
         type: text

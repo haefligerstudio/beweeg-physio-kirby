@@ -1,4 +1,4 @@
-# .htaccess del sito Beweeg physio (server Apache di Hostpoint)
+# .htaccess del sito FisioNassa (server Apache di Hostpoint)
 # Base: il .htaccess di Kirby (revision 2023-07-22), più HTTPS e header di sicurezza.
 # Fonti: https://getkirby.com/docs/guide/security
 #        https://support.hostpoint.ch/en/products/security/freessl/what-do-i-have-to-do-for-my-website-to-work-with-https
@@ -12,7 +12,8 @@ Options -Indexes
 
 RewriteEngine on
 
-# Se il sito finisse in una sottocartella, qui va il suo nome (es. RewriteBase /beweeg).
+# RewriteBase non serve, né alla radice né in una sottocartella vera (es. gusmeroli.ch/beweeg, provato).
+# Servirebbe solo se la cartella fosse raggiunta con un alias o un redirect del server.
 # RewriteBase /
 
 # Tutto su HTTPS: senza, la password del pannello viaggerebbe in chiaro.
@@ -71,10 +72,8 @@ Header always set X-Content-Type-Options "nosniff"
 # Non dire a tutti quale versione di PHP gira sul server
 Header always unset X-Powered-By
 
-# HSTS: per un anno il browser apre il sito solo in HTTPS. Solo sulle risposte HTTPS, come indica Hostpoint.
-# Niente includeSubDomains né preload: il dominio non è ancora deciso e non sappiamo
-# se altri sottodomini dello studio hanno HTTPS. Si possono aggiungere dopo, toglierli è difficile.
-Header always set Strict-Transport-Security "max-age=31536000" env=HTTPS
+# HSTS non è qui: lo manda Kirby (site/snippets/layout.php) con il valore dell'opzione fisionassa.hsts,
+# diverso per la prova (dominio di Sara, durata breve) e per il dominio definitivo (un anno).
 
 # Agli altri siti non arriva nessuna informazione sulla pagina di provenienza; dentro il sito sì
 Header always set Referrer-Policy "same-origin"
@@ -86,24 +85,26 @@ Header always set X-Frame-Options "SAMEORIGIN"
 # Funzioni del browser che il sito non usa: spente per il sito e per ciò che incorpora (mappa, prenotazione)
 Header always set Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
 
-# CSP: il browser carica solo ciò che è elencato. Tutto viene dal sito stesso ('self'):
-# CSS, JavaScript, font locali, foto e icone. Nessuno stile o script scritto nella pagina.
+# CSP: il browser carica solo ciò che è elencato. default-src 'none' vieta tutto il resto.
+# Tutto viene dal sito stesso ('self'): CSS, JavaScript, font locali, foto e icone.
+# Nessuno stile o script scritto nella pagina: per questo il JavaScript sta sempre in assets/js.
 # Il blocco JSON-LD dei dati strutturati non viene eseguito, quindi non serve permetterlo.
+# base-uri e form-action 'none': il sito non usa <base> e non ha moduli.
 # frame-ancestors 'self': come SAMEORIGIN sopra, per l'anteprima del pannello.
 #
-# >>> MAPPA (da completare): la mappa Google è un iframe; finché qui non c'è "frame-src"
-#     il browser la blocca. Aggiungere: frame-src con l'indirizzo esatto del servizio della mappa.
-#     Se la mappa nuova usa una chiave Google limitata per dominio, Google deve ricevere il dominio:
-#     allora Referrer-Policy diventa "strict-origin-when-cross-origin".
-# >>> PRENOTAZIONE (da completare, K6): se lo strumento di prenotazione viene incorporato
-#     in un iframe, aggiungere il suo dominio alla stessa direttiva frame-src.
-#     Se è solo un link esterno, non serve nulla.
+# >>> MAPPA: frame-src https://www.google.com, per l'iframe standard di Google Maps della home.
+#     Senza chiave: Referrer-Policy resta "same-origin".
+# >>> PRENOTAZIONE: widget di SimplyBook.me nella pagina Prenota.
+#     script-src https://widget.simplybook.me (il file widget.js) e frame-src con l'indirizzo dell'account,
+#     lo stesso del pannello (Impostazioni sito → Prenotazione): se lì cambia, va cambiato anche qui.
+#     Tutto il resto lo carica l'iframe di SimplyBook, con le sue regole: qui non serve altro.
 #
-# Il pannello (/panel e /api) è escluso: usa script con un codice monouso (nonce) generato da Kirby
-# a ogni pagina e manda già da solo "frame-ancestors 'none'". %{THE_REQUEST} è l'indirizzo chiesto
-# dal browser, prima che Kirby lo passi a index.php.
-<If "%{THE_REQUEST} !~ m#^\S+ /(panel|api)(/|\?|\s)#">
-Header always set Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'self'"
+# Il pannello (/panel e /api, alla radice o in una cartella come /beweeg/panel) è escluso: usa script
+# con un codice monouso (nonce) generato da Kirby a ogni pagina e manda già da solo "frame-ancestors 'none'".
+# %{THE_REQUEST} è l'indirizzo chiesto dal browser, prima che Kirby lo passi a index.php.
+# (/[^/?\s]+)? accetta al massimo una cartella prima di panel o api: stessa regola alla radice e in sottocartella.
+<If "%{THE_REQUEST} !~ m#^\S+ (/[^/?\s]+)?/(panel|api)(/|\?|\s)#">
+Header always set Content-Security-Policy "default-src 'none'; script-src 'self' https://widget.simplybook.me; style-src 'self'; img-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'; frame-src https://www.google.com https://beweegprova.simplybook.me; frame-ancestors 'self'"
 </If>
 
 </IfModule>

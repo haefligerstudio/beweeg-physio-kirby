@@ -1,5 +1,7 @@
 # Pagina iniziale del pannello: elenco delle pagine e impostazioni comuni a tutto il sito.
-# Il titolo del sito ("Beweeg physio") è anche il grande titolo in cima a ogni pagina.
+# Il titolo del sito ("FisioNassa") è anche il grande titolo in cima a ogni pagina.
+# Chi legge le impostazioni: footer, menu e social (contatti, orari), map.php (indirizzo), schema.php (dati per Google),
+# slideshow.php (foto), book.php (prenotazione).
 # https://getkirby.com/docs/reference/panel/blueprints/site
 title: Sito
 
@@ -68,7 +70,7 @@ tabs:
         width: 1/2
         fields:
           # Una riga per ogni gruppo di giorni, come nel footer.
-          # Le caselle dei giorni e le fasce orarie servono anche ai dati per Google (K5):
+          # Le caselle dei giorni e le fasce orarie servono anche ai dati per Google (snippet schema.php):
           # così gli orari si scrivono una volta sola.
           hours:
             label: Orari
@@ -110,13 +112,27 @@ tabs:
                     type: time
                     step: 15
                     width: 1/2
-          bookingUrl:
-            label: Link di prenotazione
-            type: url
-            translate: false
-            help: Indirizzo dello strumento di prenotazione online. Finché è vuoto, la pagina Prenota mostra telefono, WhatsApp ed email.
           slideshow:
             extends: fields/images
             label: Foto dello slideshow
             translate: false
             help: Le foto che scorrono in cima a ogni pagina, nell'ordine in cui appaiono.
+
+  # Strumento di prenotazione online (SimplyBook.me). Colori e lingua del widget si impostano in SimplyBook.
+  booking:
+    label: Prenotazione
+    icon: calendar
+    fields:
+      bookingUrl:
+        label: Indirizzo della pagina di prenotazione
+        type: url
+        translate: false
+        help: Per esempio https://nome.simplybook.me. Finché è vuoto, la pagina Prenota mostra il testo di riserva e il numero di telefono. Se cambia, va aggiornato anche il .htaccess (riga frame-src).
+      bookingWidget:
+        label: Mostra il widget nella pagina Prenota
+        type: toggle
+        translate: false
+        text:
+          - "no"
+          - "sì"
+        help: Con "no" la pagina Prenota mostra il testo di riserva e il numero di telefono.

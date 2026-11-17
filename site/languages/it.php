@@ -41,23 +41,21 @@ return [
         'a11y.language' => 'Lingua',
         'a11y.slideGo' => 'Vai all’immagine',
         'a11y.mainNav' => 'Navigazione principale',
-        'a11y.home' => 'Beweeg physio, pagina iniziale',
-        // Aggiunto in K4b: avvisa che un link apre una scheda nuova (link della mappa).
+        'a11y.home' => '{{ site }}, pagina iniziale', // {{ site }}: il titolo del sito, dal pannello
+        // Avvisa che un link apre una scheda nuova (pulsanti con newTab, diplomi).
         'a11y.newTab' => 'si apre in una nuova scheda',
 
-        // Nomi delle icone social, letti dagli screen reader (nel progetto Next erano scritti nel codice)
+        // Nomi delle icone social, letti dagli screen reader
         'social.facebook' => 'Facebook',
         'social.instagram' => 'Instagram',
         'social.whatsapp' => 'WhatsApp',
         'social.email' => 'Email',
 
         // Mappa
-        'map.open' => 'Apri la mappa',
         'map.alt' => 'Mappa con la posizione dello studio',
 
         // Segnaposto: si tolgono quando arriva il materiale
         'placeholders.photo' => '[DA FORNIRE] foto di Jan',
         'placeholders.diploma' => '[DA FORNIRE] immagine del diploma',
-        'placeholders.map' => '[DA FORNIRE] mappa statica',
     ],
 ];

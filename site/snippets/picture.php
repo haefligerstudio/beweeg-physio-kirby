@@ -1,7 +1,8 @@
 <?php
 /*
-  Foto responsive, uguale per tutto il sito. Kirby crea le misure dei preset in config.php.
-  WebP solo se il server lo supporta (opzione beweeg.webp), JPEG sempre come riserva.
+  Foto responsive, uguale per tutto il sito (slideshow, schede dei trattamenti, foto di Jan, diplomi).
+  Kirby crea le misure dei preset di config.php (thumbs.srcsets) alla prima visita e le tiene in media/.
+  WebP solo se il server lo supporta (opzione fisionassa.webp), JPEG sempre come riserva.
   https://getkirby.com/docs/cookbook/performance/responsive-images
 
   Parametri: $image (la foto), $srcset (nome del preset), $sizes (larghezza a schermo),
@@ -12,7 +13,7 @@ $reference = $image->resize($width);
 $alt = ($decorative ?? false) ? '' : $image->alt()->esc('attr');
 ?>
 <picture>
-  <?php if (option('beweeg.webp')): ?>
+  <?php if (option('fisionassa.webp')): ?>
   <source type="image/webp" srcset="<?= $image->srcset($srcset . '-webp') ?>" sizes="<?= $sizes ?>">
   <?php endif ?>
   <img src="<?= $reference->url() ?>"
