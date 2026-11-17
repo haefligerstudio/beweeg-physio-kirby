@@ -685,10 +685,33 @@ main {
   text-decoration: underline;
 }
 
-.site-footer__copyright {
+/* Ultima riga: copyright e link a Privacy e Note legali (non nel visual, previsti in DESIGN.md).
+   Vanno a capo da soli quando lo spazio non basta. */
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 var(--space-6);
   margin-top: var(--space-12);
   font-size: var(--text-small);
   font-weight: var(--weight-light);
+}
+
+.site-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-6);
+}
+
+/* Area cliccabile di almeno 44px anche se il testo è piccolo. */
+.site-footer__legal a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+}
+
+.site-footer__legal a:hover {
+  text-decoration: none;
 }
 
 /* Da tablet, regole di Sara: padding 50px, contenitore a tutta larghezza, blocchi a 70px dal logo.
@@ -1748,6 +1771,71 @@ main {
 
 @media (min-width: 48rem) {
   .book {
+    padding-block: var(--space-36) var(--space-80);
+  }
+}
+
+/* Pagine "privacy" e "note legali" (non disegnate nel visual: solo componenti esistenti) ---- */
+
+.legal {
+  padding-block: var(--space-16) var(--space-28);
+}
+
+.legal__content {
+  max-width: var(--text-column);
+  margin-top: var(--gap-heading-text);
+}
+
+.legal__lead {
+  font-weight: var(--weight-bold);
+}
+
+/* Titoli delle sezioni: più piccoli del titolo della pagina, senza trattino. */
+.legal__heading {
+  margin-top: var(--space-12);
+  color: var(--color-accent);
+  font-size: var(--text-h4);
+  line-height: var(--leading-heading);
+}
+
+.legal__text p + p {
+  margin-top: var(--gap-paragraph);
+}
+
+.legal__heading + .studio-data,
+.legal__heading + .legal__text {
+  margin-top: var(--space-4);
+}
+
+/* Dati dello studio (snippet studio-data.php): etichetta in grassetto, valore sotto. */
+.studio-data {
+  margin-top: var(--space-8);
+}
+
+.studio-data__name {
+  font-weight: var(--weight-bold);
+}
+
+.studio-data__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.studio-data__list dt {
+  font-weight: var(--weight-bold);
+}
+
+/* Numeri ed email: area cliccabile di almeno 44px. */
+.studio-data__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+}
+
+@media (min-width: 48rem) {
+  .legal {
     padding-block: var(--space-36) var(--space-80);
   }
 }

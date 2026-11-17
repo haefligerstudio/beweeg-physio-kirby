@@ -1,4 +1,4 @@
-# Cambiamenti rispetto al visual (aggiornato il 17 novembre: nome FisioNassa e logo nuovo)
+# Cambiamenti rispetto al visual (aggiornato il 17 novembre: nome FisioNassa, logo nuovo, pagine legali)
 
 Tutto quello che nel sito è diverso dal visual definitivo, con il valore originale, quello usato e il motivo.
 Riferimento per i contrasti: **WCAG 2.2 livello AA**. Testo normale ≥ 4,5:1; testo grande (≥ 24px, o ≥ 18,7px in
@@ -86,11 +86,13 @@ Corrette in K4f:
 | Nome e logo | "Beweeg physio", logo "beweegphysio · studio fisioterapeutico" | **FisioNassa** (scrittura esatta), logo "FisioNassa · Jan de Wild" di Sara (file bianco nell'header e nel footer, a colori nel JSON-LD), copiato senza modifiche. Il nome viene solo dal titolo del sito (pannello): header, footer, titoli delle schede, JSON-LD e testo per gli screen reader lo leggono da lì. Il grande titolo in cima alle pagine diventa "FisioNassa" tutto in grassetto (regola "prima parola in grassetto": è una parola sola, come nel logo) | decisione del cliente, 17 novembre |
 | H1 | "Beweeg physio" su ogni pagina | un solo H1 per pagina: il nome dello studio nella home, il titolo del contenuto nelle altre | accessibilità e Google |
 | Footer, telefono | solo icone | numero visibile e cliccabile | chi chiama non deve indovinare il numero |
+| Footer, link legali | — | link a "Note legali" e "Privacy" accanto al copyright (titoli delle pagine, area cliccabile 44px) | pagine obbligatorie, decisione di Amos (K6) |
+| Privacy e Note legali | non disegnate | stessi componenti delle altre pagine (slideshow, sottotitolo, titolo con trattino); titoli delle sezioni blu senza trattino, più piccoli; dati dello studio dal pannello, [DA FORNIRE] per i dati mancanti | decisione di Amos, 17 novembre (come Prenota) |
 | Diplomi | su mobile solo didascalie con "clicca per visualizzare" | immagini con didascalia; ogni diploma apre una versione grande (circa 2000px) in una nuova scheda | nessun testo nuovo da tradurre; stesso comportamento su ogni schermo |
 | Mappa | immagine statica in bianco e nero con pin rosso | **mappa standard di Google incorporata** (iframe), senza stile personalizzato, chiave o Map ID; indirizzo grande sopra solo da 768px; **nessun link "Apri la mappa"** sotto (tolto su decisione del cliente, era stato previsto in K4e-6: dentro la mappa resta "Apri in Maps" di Google) | decisione del cliente, 2 novembre. **Per K6:** la mappa di Google riceve l'IP del visitatore e può usare cookie di Google: va scritto nella pagina Privacy |
 | Schede dei trattamenti, mobile | "scopri di più" | "scopri ora", come su desktop | un solo testo |
 | "Cosa faccio", mobile | (brief: 2 + 2) | una colonna, come il visual mobile | scelta di Amos |
-| Prenota | non disegnata | stessi componenti delle altre pagine; contatti e orari sempre visibili. Widget di **SimplyBook.me** (iframe) a tutta larghezza sotto il pulsante "prenota ora", che resta come riserva (nuova scheda); indirizzo e interruttore in Impostazioni sito → Prenotazione | **Per K6:** SimplyBook riceve l'IP e i dati inseriti dal visitatore; dentro l'iframe partono richieste a Google (gstatic) e al tracker Metricool; widget.js scrive sul nostro dominio il cookie `sb_widget`. Da scrivere nella Privacy |
+| Prenota | non disegnata | stessi componenti delle altre pagine; contatti e orari sempre visibili. Widget di **SimplyBook.me** (iframe) a tutta larghezza sotto il pulsante "prenota ora", che resta come riserva (nuova scheda); indirizzo e interruttore in Impostazioni sito → Prenotazione | **Per K6:** SimplyBook riceve l'IP e i dati inseriti dal visitatore; dentro l'iframe partono richieste a Google (www.gstatic.com, Firebase) e al contatore di statistiche di SimplyBook (counter.simplybook.me, Matomo; Metricool non compare più nella misura del 17 novembre); cookie di sessione: `sb_widget` sul nostro dominio (widget.js) e quattro sul dominio di SimplyBook. Descritto nella pagina Privacy |
 | Testi in tedesco | — | sillabazione automatica solo su titoli ed etichette | parole lunghe in colonne strette |
 
 ## 5. Eccezioni agli standard di accessibilità (decise dal cliente)

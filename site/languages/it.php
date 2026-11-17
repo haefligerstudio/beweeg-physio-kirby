@@ -26,6 +26,15 @@ return [
         // Footer
         'footer.address' => 'Indirizzo',
         'footer.contacts' => 'Contatti',
+
+        // Dati dello studio nelle pagine Privacy e Note legali (snippet studio-data.php)
+        'studio.owner' => 'Titolare',
+        'studio.mobile' => 'Tel. cellulare',
+        'studio.landline' => 'Tel. fisso',
+        'studio.email' => 'Email',
+        'studio.idi' => 'IDI',
+        'studio.legalForm' => 'Forma giuridica',
+        'studio.authorization' => 'Autorizzazione cantonale',
         // Mostrato negli orari quando un gruppo di giorni non ha fasce orarie.
         'hours.closed' => 'chiuso',
 
@@ -57,5 +66,6 @@ return [
         // Segnaposto: si tolgono quando arriva il materiale
         'placeholders.photo' => '[DA FORNIRE] foto di Jan',
         'placeholders.diploma' => '[DA FORNIRE] immagine del diploma',
+        'placeholders.missing' => '[DA FORNIRE]',
     ],
 ];

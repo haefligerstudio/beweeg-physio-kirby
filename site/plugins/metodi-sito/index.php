@@ -11,9 +11,10 @@ Kirby::plugin(
         'siteMethods' => [
             // Numero di telefono per i link tel:, senza spazi ("+41 77 452 17 64" → "+41774521764").
             // Nel pannello il numero si scrive come deve apparire; qui si ricava quello da comporre.
-            // Usato da footer.php, book.php e schema.php.
-            'phoneLink' => function (): string {
-                return str_replace(' ', '', $this->phone()->value());
+            // $field: il campo da leggere, di base il cellulare ('phone'); 'landline' per il fisso.
+            // Usato da footer.php, book.php, schema.php e studio-data.php.
+            'phoneLink' => function (string $field = 'phone'): string {
+                return str_replace(' ', '', $this->content()->get($field)->value());
             },
         ],
     ]

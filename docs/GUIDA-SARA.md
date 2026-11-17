@@ -12,6 +12,14 @@ nella versione vecchia, il sito non legge più le impostazioni giuste.
 Quando carichi una nuova versione, quindi, carica **sempre tutte e due le cartelle intere**, anche se ti sembra
 cambiato un solo file. Il file `config.<dominio>.php` del server va aggiornato insieme a loro.
 
+## Dove si cambiano i dati dello studio
+
+Nome completo, titolare, IDI, forma giuridica, autorizzazione cantonale, indirizzo, telefoni ed email stanno in
+**un solo punto**: pannello → Sito → scheda **Dati dello studio**. Footer, mappa, dati per Google e le pagine
+Privacy e Note legali li leggono da lì: se cambiano, si cambiano una volta sola.
+Il telefono fisso compare solo nelle pagine Privacy e Note legali; header e footer mostrano il cellulare.
+Finché forma giuridica e autorizzazione cantonale sono vuote, le pagine legali mostrano [DA FORNIRE].
+
 ## Verificare se il server crea immagini WebP
 
 Il sito mostra le foto in formato WebP (più leggero) solo se il server lo supporta.

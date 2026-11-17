@@ -1,0 +1,59 @@
+# Pagine "privacy" e "note legali" (template legal.php). Non sono nel menu: i link sono nel footer.
+# I dati dello studio (titolare, indirizzo, IDI…) non si scrivono qui: vengono da Sito → Dati dello studio.
+title: Pagina legale
+icon: file-document
+
+# Pagine fisse e sempre fuori dal menu (non in elenco): niente cambio di stato, indirizzo o template.
+options:
+  changeSlug: false
+  changeStatus: false
+  changeTemplate: false
+  delete: false
+
+tabs:
+  content:
+    label: Contenuto
+    icon: text
+    fields:
+      # Avviso solo nel pannello: sul sito non compare.
+      # Da togliere quando un esperto di protezione dei dati ha verificato i testi.
+      # https://getkirby.com/docs/reference/panel/fields/info
+      draft:
+        type: info
+        theme: notice
+        text: >-
+          **BOZZA da far verificare.** I testi di questa pagina non sono ancora stati controllati da un esperto.
+          I punti segnati con ⚠ e [DA FORNIRE] sono visibili anche sul sito: vanno confermati o completati.
+
+      tagline:
+        label: Sottotitolo
+        type: text
+        help: La riga sotto il nome dello studio, sopra le foto.
+      heading:
+        label: Titolo
+        type: text
+      lead:
+        extends: fields/lead
+        label: Introduzione
+        help: Facoltativa. Il paragrafo in grassetto sotto il titolo.
+      studioTitle:
+        label: Titolo sopra i dati dello studio
+        type: text
+        help: Facoltativo. I dati (titolare, indirizzo, contatti, IDI…) si modificano in Sito → Dati dello studio.
+      sections:
+        label: Sezioni
+        type: structure
+        help: Ogni sezione ha un titolo e un testo, nell'ordine dell'elenco.
+        columns:
+          heading:
+            width: 1/3
+          text:
+            width: 2/3
+        fields:
+          heading:
+            label: Titolo della sezione
+            type: text
+          text:
+            extends: fields/text
+
+  seo: tabs/seo

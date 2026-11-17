@@ -79,7 +79,7 @@ Se una dipendenza sembra davvero necessaria, chiedi prima spiegando perché.
 ### 7. Multilingua attivo, per ora solo italiano
 - Il multilingua di Kirby è attivo con la sola lingua `it`. Inglese e tedesco arriveranno dopo.
 - Slug italiani: `chi-sono`, `trattamenti` (`osteopatia`, `terapia-del-cuore`, `ortopedia`, `cure-palliative`),
-  `servizio-a-domicilio`, `prenota`.
+  `servizio-a-domicilio`, `prenota`; pagine legali non in elenco (link nel footer): `privacy`, `note-legali`.
 - Ogni testo di interfaccia (menu, pulsanti, etichette accessibili) passa dal sistema di traduzioni di Kirby,
   così aggiungere una lingua non richiede di toccare i template.
 - Selettore lingua nascosto finché c'è una sola lingua attiva.
@@ -133,5 +133,12 @@ Foto di Jan in Chi sono (`content/1_chi-sono/jan-ritratto.jpg`, `jan-trattamento
 copie 1800×2400 convertite da Adobe RGB a sRGB, senza EXIF/XMP/ICC; originali intatti nel materiale cliente.
 Per la foto 2 si usa il "taglio mobile" del cliente: il riquadro del visual è 5:6 anche su desktop,
 la versione "desktop" orizzontale non è usata.
+K6 (17 novembre 2026): pagine Privacy e Note legali (template `legal`, blueprint `pages/legal.yml` con avviso
+"BOZZA da far verificare" solo nel pannello), link nel footer. Dati dello studio in un'unica scheda del pannello
+(Sito → Dati dello studio), letti da footer, mappa, JSON-LD e snippet `studio-data.php`. Nella Privacy i punti da
+verificare sono segnati con ⚠ e i dati mancanti con [DA FORNIRE]: verifica.js fallisce se [DA FORNIRE] è online
+a sito pubblicato. Cookie misurati: nessuno, tranne quelli di sessione di SimplyBook nella pagina Prenota.
 Ancora aperti: favicon (pittogramma chiesto al cliente, `favicon.svg` e `favicon.ico` restano i vecchi),
-contatore "31 anni di studio" (si aspetta il cliente), grafia Johannes/Johannus (decide Amos con il cliente).
+contatore "31 anni di studio" (si aspetta il cliente), grafia Johannes/Johannus (decide Amos con il cliente),
+forma giuridica e autorizzazione cantonale, durata di conservazione dei log di Hostpoint, "A Garamé" o "a Garamé",
+verifica dei testi della Privacy da parte di un esperto di protezione dei dati.

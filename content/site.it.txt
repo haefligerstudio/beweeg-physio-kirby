@@ -2,6 +2,26 @@ Title: FisioNassa
 
 ----
 
+Legalname: Studio di fisioterapia FisioNassa
+
+----
+
+Owner: Jan de Wild
+
+----
+
+Idi: CHE-108.163.362
+
+----
+
+Legalform: 
+
+----
+
+Authorization: 
+
+----
+
 Street: a Garamé 10
 
 ----
@@ -14,11 +34,19 @@ City: Tesserete
 
 ----
 
+Municipality: Capriasca
+
+----
+
 Region: Ticino
 
 ----
 
 Phone: +41 77 452 17 64
+
+----
+
+Landline: 091 930 04 85
 
 ----
 
@@ -64,17 +92,17 @@ Hours:
 
 ----
 
-Bookingurl: https://beweegprova.simplybook.me
-
-----
-
-Bookingwidget: true
-
-----
-
 Slideshow:
 
 - 'file://zxd4nj27vywdrog9'
 - 'file://smfj4rilbdujzxum'
 - 'file://0z1wlovjmpikwq3e'
 - 'file://9d6laovo9ety5ooh'
+
+----
+
+Bookingurl: https://beweegprova.simplybook.me
+
+----
+
+Bookingwidget: true

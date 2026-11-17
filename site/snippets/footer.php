@@ -28,6 +28,15 @@
       <?php snippet('social') ?>
     </div>
 
-    <p class="site-footer__copyright">© <?= date('Y') ?> <?= $site->title()->esc() ?></p>
+    <div class="site-footer__bottom">
+      <p class="site-footer__copyright">© <?= date('Y') ?> <?= $site->title()->esc() ?></p>
+      <?php // Privacy e Note legali: tutte le pagine con il template "legal", con il loro titolo (niente indirizzi scritti qui).
+          // https://getkirby.com/docs/reference/objects/cms/pages/template ?>
+      <ul class="site-footer__legal">
+        <?php foreach ($site->children()->template('legal') as $item): ?>
+        <li><a href="<?= $item->url() ?>"<?php if ($item->isActive()): ?> aria-current="page"<?php endif ?>><?= $item->title()->esc() ?></a></li>
+        <?php endforeach ?>
+      </ul>
+    </div>
   </div>
 </footer>

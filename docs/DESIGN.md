@@ -46,7 +46,7 @@ Focus da tastiera: nero con anello bianco, visibile su ogni sfondo.
 - Slideshow: indicatori cliccabili e raggiungibili da tastiera; si ferma con il mouse sopra e con il focus; fermo con
   `prefers-reduced-motion`. **Nessun pulsante pausa**, su richiesta di Sara: eccezione a WCAG 2.2.2 decisa dal cliente
   (vedi `CAMBIAMENTI-RISPETTO-AL-VISUAL.md`, sezione 5).
-- Footer: numero di telefono visibile e cliccabile (il visual mostra solo icone). Link a Privacy e Impressum da aggiungere.
+- Footer: numero di telefono visibile e cliccabile (il visual mostra solo icone). Link a Privacy e Note legali accanto al copyright (K6).
 - L'H1 non è il nome dello studio in ogni pagina (un solo H1 per pagina, titolo del contenuto: serve a Google).
 - Pagina Prenota: non disegnata nel visual.
 - Bottoni: testo peso 400 (visual 300), stessa logica del corpo; testo mai a capo. Testo bianco come nel visual

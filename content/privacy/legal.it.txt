@@ -1,0 +1,52 @@
+Title: Privacy
+
+----
+
+Tagline: privacy
+
+----
+
+Heading: Privacy
+
+----
+
+Lead: Questa pagina spiega quali dati personali raccoglie questo sito, chi li riceve e come puoi chiedere di vederli o cancellarli.
+
+----
+
+Studiotitle: Chi è responsabile dei dati
+
+----
+
+Sections:
+
+-
+  heading: 'Visite al sito'
+  text: '<p>⚠Il sito è ospitato da Hostpoint⚠. Il server registra ogni visita in un file di registro: ⚠indirizzo IP, data e ora, pagina richiesta e tipo di browser⚠. Questi dati vengono conservati per [DA FORNIRE].</p>'
+-
+  heading: 'Mappa di Google'
+  text: '<p>Nella pagina iniziale, la sezione «Dove trovi lo studio» mostra una mappa di Google. La mappa si carica solo quando scorri la pagina fin vicino a quella sezione: da quel momento il tuo browser si collega ai server di Google, che ricevono il tuo indirizzo IP.</p>'
+-
+  heading: 'Prenotazioni online'
+  text: '<p>La pagina Prenota contiene il modulo di prenotazione di SimplyBook.me, un servizio esterno ⚠con server in Europa⚠, che si carica appena apri la pagina. I dati che inserisci per prenotare vanno direttamente a SimplyBook.me, che li conserva e li tratta. Il modulo carica anche file da server di Google (gstatic.com) e conta le visite con un proprio strumento di statistica.</p><p>Se preferisci, puoi prenotare per telefono.</p>'
+-
+  heading: Cookie
+  text: '<p>Questo sito non usa cookie propri, statistiche o pubblicità. Solo nella pagina Prenota il modulo di SimplyBook.me salva cookie di sessione, che si cancellano quando chiudi il browser: uno sul dominio di questo sito e alcuni sul dominio di SimplyBook.me.</p><p>Quando la mappa si carica, Google può salvare cookie o altri dati sul tuo dispositivo, secondo le proprie condizioni.</p>'
+-
+  heading: 'Link a Facebook, Instagram e WhatsApp'
+  text: '<p>Le icone sono semplici link: questo sito non carica niente da quei servizi finché non ci clicchi.</p>'
+-
+  heading: 'Vedere, correggere o cancellare i tuoi dati'
+  text: '<p>Puoi chiedere in ogni momento quali tuoi dati ha lo studio, e farli correggere o cancellare: scrivi o telefona allo studio, ai contatti in cima a questa pagina.</p>'
+
+----
+
+Seotitle: 
+
+----
+
+Seodescription: 
+
+----
+
+Uuid: sdzxnyspkcxbicym
